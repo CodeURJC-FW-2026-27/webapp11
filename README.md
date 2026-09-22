@@ -16,26 +16,23 @@ Our goal is to make a Pokémon encyclopedia website, called: **RotomWeb Dex**
 
 #### Main entity (Pokemon):
 **Attributes:**
-* name
-* pokedex_number
-* type
-* generation
-* height
-* weight
-* description
-* imageFilename
-* moves
+* name: Text
+* pokedex_number: Int
+* type: Text
+* generation: Int (1-9)
+* height: Float (0.1-100)
+* weight: Float (0.1-1000)
+* description: Text
 
 #### Secondary entity (Abilities):
 **Attributes:**
-* name
-* type
-* category
-* power
-* accuracy
-* pp
-* description
-* imageFilename
+* name: Text 
+* type: Text
+* category: Text
+* power: Int (0-5050)
+* accuracy: Int (30-100)
+* pp: Int (1-160)
+* description: Text
 
 ---
 
@@ -52,7 +49,6 @@ Entities will have associated images:
 * **Text search:** Search pokemon by name.
 
 #### Filtering
-* **By type:** Filter pokemon list based on predefined elemental types.
 * **By generation:** Filter pokemon according to their region or generation.
 
 #### Categorization
