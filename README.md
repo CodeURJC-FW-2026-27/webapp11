@@ -19,6 +19,7 @@ Our goal is to make a Pokémon encyclopedia website, called: **RotomWeb Dex**
 * name
 * pokedex_number
 * type
+* generation
 * height
 * weight
 * description
@@ -48,10 +49,10 @@ Entities will have associated images:
 ### Search, Filtering and Categorization
 
 #### Search
-* **Text search:** Search pokemon by name (case-insensitive substring match).
+* **Text search:** Search pokemon by name.
 
 #### Filtering
-* **By type:** Filter pokemon list based on predefined elemental types (Fire, Water, Grass, Electric, etc.).
+* **By type:** Filter pokemon list based on predefined elemental types.
 * **By generation:** Filter pokemon according to their region or generation.
 
 #### Categorization
