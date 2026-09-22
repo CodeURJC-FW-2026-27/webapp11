@@ -41,7 +41,7 @@ Our goal is to make a Pokémon encyclopedia website, called: **RotomWeb Dex**
 
 ### Images
 Entities will have associated images:
-* **Pokemon:** Each pokemon will have an uploaded image (official artwork or sprite) stored in the `uploads/` folder.
+* **Pokemon:** Each pokemon will have an uploaded image.
 * **Move:** Moves can include an optional icon representing the move's type or animation.
 
 ---
