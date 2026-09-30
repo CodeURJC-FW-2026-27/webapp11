@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'EssentiarumTCG';
+  src: url('fonts/EssentiarumTCG-COLR.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body{
+    background-color: #101A2E;
+}
+.nav-link{
+    color: white !important;
+}
+.navbar{
+    background-color: #FF7A3D;
+}
+.notika-header{
+    background-color: #E63946;
+    border-bottom: 0;
+    
+}
+.footer-copyright-area{
+    background-color: #E63946;
+}
+.fa-solid{
+    background-color: fixed;color: white !important;
+}
+.search-input-group input:focus {
+    border-color: #FF7A3D !important; 
+}
+.notika-dropdown-header{
+    background: #FF7A3D; 
+}
+.wb-traffic-inner{
+    background:#a3e8f0;
+}
+.tcg-icon {
+    font-family: 'EssentiarumTCG', sans-serif;
+    line-height: 1;
+    font-size: 1.25rem;
+    vertical-align: middle;
+}
+.Pokemon{
+    margin-left: auto;
+ 
+    text-align: right;
+}
+.notika-dropdown-item:hover {
+    color: #FF7A3D !important;
+}
+
+
+
+
+.notika-dropdown-item:hover img {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #e9ecef !important; /* Keeps the neutral image border, prevents green */
+}
+
