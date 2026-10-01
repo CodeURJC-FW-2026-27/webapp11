@@ -55,6 +55,16 @@ body{
     justify-content: flex-start !important;
 }
 
+.btn-primary {
+    color: #e9ecef;
+    background-color: #FF7A3D !important;
+    width: fit-content;
+    border-width: 0.2em;
+    border-color: #101A2E;
+    margin-right: 0.2em;   
+    margin-bottom:  1rem;
+}
+
 
 
 .notika-dropdown-item:hover img {
