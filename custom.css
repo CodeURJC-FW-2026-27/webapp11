@@ -35,6 +35,7 @@ body{
 }
 .wb-traffic-inner{
     background:#a3e8f0;
+    color: inherit;
 }
 .tcg-icon {
     font-family: 'EssentiarumTCG', sans-serif;
