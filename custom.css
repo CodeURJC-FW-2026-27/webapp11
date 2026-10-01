@@ -60,6 +60,5 @@ body{
 .notika-dropdown-item:hover img {
     outline: none !important;
     box-shadow: none !important;
-    border-color: #e9ecef !important; /* Keeps the neutral image border, prevents green */
+    border-color: #e9ecef !important; 
 }
-
