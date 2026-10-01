@@ -1,3 +1,464 @@
+/* ==========================================================================
+   SECTION: Mobile Menu Styles (source: css/mobile-menu.css)
+   ========================================================================== */
+
+/* Mobile Offcanvas Menu Styles */
+#mobileNavOffcanvas {
+    width: 280px;
+    max-width: 85vw;
+}
+
+/* Hamburger button: always visible below 992px, never shrinks */
+@media (max-width: 991.98px) {
+    [data-bs-target="#mobileNavOffcanvas"] {
+        display: flex !important;
+        flex-shrink: 0;
+    }
+
+    /* Prevent header nav icons from wrapping */
+    .notika-nav {
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+}
+
+/* Hide offcanvas and hamburger menu completely on desktop */
+@media (min-width: 992px) {
+    #mobileNavOffcanvas,
+    #mobileNavOffcanvas.show,
+    .offcanvas-backdrop,
+    [data-bs-target="#mobileNavOffcanvas"] {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    /* Ensure body doesn't get offcanvas styles on desktop */
+    body.modal-open {
+        overflow: auto !important;
+        padding-right: 0 !important;
+    }
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) on mobile menu */
+#mobileNavOffcanvas .collapse {
+    visibility: visible;
+}
+
+/* Simple fade animation - no height resizing! */
+#mobileNavOffcanvas .collapse:not(.show) {
+    display: none;
+}
+
+#mobileNavOffcanvas .collapse.show {
+    display: block;
+    animation: simpleFadeIn 0.15s ease-out;
+}
+
+/* Instant expand, just fade in - much cleaner */
+#mobileNavOffcanvas .collapse.collapsing {
+    display: block;
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
+}
+
+@keyframes simpleFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#mobileNavOffcanvas .nav-link {
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#mobileNavOffcanvas .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #00c292;
+}
+
+#mobileNavOffcanvas .nav-item {
+    position: relative;
+}
+
+#mobileNavOffcanvas .collapse .nav-link {
+    font-size: 14px;
+    color: #666;
+    padding-left: 2.5rem;
+}
+
+#mobileNavOffcanvas .collapse .nav-link:hover {
+    color: #00c292;
+    background-color: rgba(0, 194, 146, 0.05);
+}
+
+/* Chevron rotation for expanded items */
+#mobileNavOffcanvas .nav-link[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+#mobileNavOffcanvas .fa-chevron-down {
+    transition: transform 0.3s ease;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Active state */
+#mobileNavOffcanvas .nav-link.active {
+    color: #00c292;
+    background-color: rgba(0, 194, 146, 0.1);
+}
+
+/* Ensure proper spacing */
+#mobileNavOffcanvas .nav-item:last-child {
+    border-bottom: none !important;
+}
+
+/* Remove redundant transition (handled by .collapsing state) */
+
+/* Offcanvas overlay */
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   SECTION: Modern Clean Header Styles (source: css/header-modern-clean.css)
+   ========================================================================== */
+
+/* Clean Modern Bootstrap 5 Header Styles for Notika */
+/* Simple, stable implementation without positioning conflicts */
+
+.notika-header {
+    background: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-bottom: 1px solid #e9ecef;
+    position: relative;
+    z-index: 1090;
+}
+
+.notika-brand img {
+    height: 40px;
+    width: auto;
+    transition: all 0.2s ease;
+}
+
+.notika-brand:hover img {
+    transform: scale(1.02);
+}
+
+/* Logo variants for different themes */
+.notika-brand .logo-light {
+    display: block;
+}
+
+.notika-brand .logo-dark {
+    display: none;
+}
+
+/* Dark theme logo switching */
+@media (prefers-color-scheme: dark) {
+    .notika-brand .logo-light {
+        display: none;
+    }
+    
+    .notika-brand .logo-dark {
+        display: block;
+    }
+}
+
+/* Custom dark mode class */
+.dark-theme .notika-brand .logo-light {
+    display: none;
+}
+
+.dark-theme .notika-brand .logo-dark {
+    display: block;
+}
+
+.notika-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+.notika-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: #666;
+    font-size: 18px;
+    transition: all 0.2s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.notika-nav-link:hover {
+    background: #f8f9fa;
+    color: #00c292;
+}
+
+.notika-nav-link:focus {
+    box-shadow: 0 0 0 3px rgba(0, 194, 146, 0.2);
+    outline: none;
+}
+
+/* Badge for notifications */
+.notika-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #ff5722;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Simple Modern Dropdown Styles - Let Bootstrap handle positioning */
+.notika-dropdown {
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    padding: 0;
+    overflow: hidden;
+    min-width: 320px;
+    border: none;
+}
+
+.notika-dropdown-header {
+    background: linear-gradient(135deg, #00c292, #00a085);
+    color: white;
+    padding: 16px 20px;
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.notika-dropdown-body {
+    padding: 8px 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.notika-dropdown-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.15s ease;
+    border: none;
+    width: 100%;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.notika-dropdown-item:hover {
+    background: #f8f9fa;
+    color: #00c292;
+}
+
+.notika-dropdown-item img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+    border: 2px solid #e9ecef;
+}
+
+.notika-dropdown-content h6 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.notika-dropdown-content p {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 220px;
+}
+
+.notika-dropdown-footer {
+    padding: 12px 20px;
+    background: #f8f9fa;
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+}
+
+.notika-dropdown-footer a {
+    color: #00c292;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.notika-dropdown-footer a:hover {
+    color: #00a085;
+    text-decoration: underline;
+}
+
+/* Search Dropdown */
+.search-dropdown {
+    min-width: 300px;
+    padding: 16px;
+}
+
+.search-input-group {
+    position: relative;
+}
+
+.search-input-group input {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 40px 12px 16px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+.search-input-group input:focus {
+    border-color: #00c292;
+    box-shadow: 0 0 0 3px rgba(0, 194, 146, 0.1);
+    outline: none;
+}
+
+.search-input-group .search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+/* Tasks Progress */
+.task-progress {
+    margin: 8px 0 4px 0;
+}
+
+.task-progress .progress {
+    height: 6px;
+    border-radius: 3px;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+.task-progress .progress-bar {
+    border-radius: 3px;
+    background: linear-gradient(90deg, #00c292, #00a085);
+}
+
+.task-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-title {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+/* Chat Status */
+.chat-status {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background: #4caf50;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+/* Mobile Responsive with Logo Variants */
+@media (max-width: 768px) {
+    .notika-nav {
+        gap: 8px;
+    }
+    
+    .notika-nav-link {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    .notika-dropdown {
+        min-width: 280px;
+        max-width: calc(100vw - 40px);
+    }
+    
+    .notika-dropdown-content p {
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .notika-header {
+        padding: 10px 0;
+    }
+    
+    .notika-nav {
+        gap: 5px;
+    }
+    
+    .notika-nav-link {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .notika-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+        top: 6px;
+        right: 6px;
+    }
+    
+    /* Switch to mobile logo on small screens */
+    /* Logo is handled by responsive img tags in HTML - no CSS overrides needed */
+}
+
+/* ==========================================================================
+   SECTION: Notika Admin Base Template Styles (source: style.css)
+   ========================================================================== */
+
 /*-----------------------------------------------------------------------------------
 
     Template Name: Notika - Notika Admin Template 
@@ -4428,3 +4889,680 @@ textarea.auto-size {
     font-size: 10px;
     padding: 3px 6px;
 }
+
+/* ==========================================================================
+   SECTION: Modern Notika Styles (source: css/modern.css)
+   ========================================================================== */
+
+/**
+ * Modern Notika Styles (Plain CSS)
+ */
+
+:root {
+  --notika-primary: #00c292;
+  --notika-secondary: #03a9f3;
+  --notika-success: #00c292;
+  --notika-warning: #ff9800;
+  --notika-danger: #e91e63;
+  --notika-info: #03a9f3;
+  --notika-light: #f8f9fa;
+  --notika-dark: #343a40;
+  
+  --notika-spacer: 1rem;
+  --notika-spacer-lg: 2rem;
+  --notika-spacer-sm: 0.5rem;
+  
+  --notika-font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  --notika-font-size-base: 1rem;
+  --notika-line-height-base: 1.5;
+  
+  --notika-border-radius: 0.375rem;
+  --notika-border-radius-lg: 0.5rem;
+  --notika-border-width: 1px;
+  
+  --notika-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --notika-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --notika-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  
+  --notika-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --notika-transition-fast: all 0.15s ease-out;
+  
+  --notika-z-dropdown: 1000;
+  --notika-z-sticky: 1020;
+  --notika-z-fixed: 1030;
+  --notika-z-modal-backdrop: 1040;
+  --notika-z-modal: 1050;
+  --notika-z-popover: 1060;
+  --notika-z-tooltip: 1070;
+  --notika-z-toast: 1080;
+}
+
+:root[data-theme="dark"] {
+  --notika-light: #343a40;
+  --notika-dark: #f8f9fa;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 30px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.6s var(--notika-transition);
+}
+
+.animate-fade-scale {
+  animation: fadeInScale 0.4s var(--notika-transition);
+}
+
+.notika-shadow {
+  box-shadow: var(--notika-shadow);
+  transition: var(--notika-transition);
+  border-radius: var(--notika-border-radius);
+}
+
+.notika-shadow:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--notika-shadow-lg);
+}
+
+.btn {
+  border-radius: var(--notika-border-radius);
+  transition: var(--notika-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--notika-primary);
+  outline-offset: 2px;
+}
+
+.notika-nav-link {
+  transition: var(--notika-transition-fast);
+  border-radius: var(--notika-border-radius);
+}
+
+.notika-nav-link:hover {
+  background-color: rgba(0, 194, 146, 0.1);
+  transform: translateY(-1px);
+}
+
+.notika-nav-link:focus-visible {
+  outline: 2px solid var(--notika-primary);
+  outline-offset: 2px;
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: var(--notika-shadow-lg);
+  border-radius: var(--notika-border-radius-lg);
+}
+
+.form-control {
+  border-radius: var(--notika-border-radius);
+  transition: var(--notika-transition-fast);
+}
+
+.form-control:focus {
+  border-color: var(--notika-primary);
+  box-shadow: 0 0 0 0.2rem rgba(0, 194, 146, 0.25);
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+}
+
+.chart-container canvas {
+  border-radius: var(--notika-border-radius);
+}
+
+@container (min-width: 768px) {
+  .container-query-md {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--notika-primary);
+  outline-offset: 2px;
+  border-radius: var(--notika-border-radius);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--notika-light);
+  border-radius: var(--notika-border-radius);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--notika-primary);
+  border-radius: var(--notika-border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #009b75;
+}
+
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--notika-primary);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.toast-container {
+  z-index: var(--notika-z-toast);
+}
+
+.inbox-email-item {
+  cursor: pointer;
+}
+
+.inbox-email-item .email-subject {
+  color: inherit;
+  text-decoration: none;
+}
+
+.inbox-email-item .email-subject:hover,
+.inbox-email-item .email-subject:focus-visible {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   SECTION: Responsive Styles (source: css/responsive.css)
+   ========================================================================== */
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1169px) {
+.dk-res-mg-t-30{
+		margin-top:30px;
+	}
+.dk-res-ds{
+		display:none;
+	}
+.email-signle-gp {
+		margin: 0px 25px;
+	}
+.realtime-country-ctn {
+		padding-top: 26px;
+	}
+.dk-res-mg-t-10{
+		margin-top:10px;
+	}
+.dropdown-trig-an-list .dropdown-trig-sgn {
+		margin: 5px 0px;
+	}
+.images-cropper-pro .btn{
+		margin:5px 0px;
+	}
+.table-responsive {
+		width: 100%;
+		overflow-y: hidden;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		border: 0px solid #ddd;
+	}
+.table-responsive > .table > tbody > tr > td, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > td, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > thead > tr > th {
+		white-space: nowrap;
+	}
+.table-responsive .pagination-inbox {
+		margin-bottom: 20px;
+	}
+.realtime-map {
+		margin-top: 10px;
+	}
+.btn-list .btn {
+		margin: 5px 5px;
+	}
+.dash-widget-visits {
+		overflow: hidden;
+	}
+.popover-wp {
+		padding: 40px 80px;
+	}
+.dash-widget-visits canvas{
+		width:100% !important;
+	}
+.contact-dt ul.contact-list li:first-child {
+		padding-top: 5px;
+	}
+.breadcomb-ctn {
+		top: 2px;
+	}
+.btn-button-mg{
+		margin-bottom: 10px !important;
+		margin-top: 0px !important;
+	}
+}
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+.tb-res-mg-t-30{
+		margin-top:30px;
+	}
+.tb-res-mg-t-0{
+		margin-top:0px;
+	}
+.tb-res-ds-n{
+		display:none;
+	}
+.flot-chart {
+		height: 300px;
+	}
+.flot-chart.tb-rc-it-res{
+		height: 142px;
+	}
+.email-signle-gp {
+		margin: 0px 6px;
+	}
+.flot-chart.bar-three {
+		height: 268px !important;
+	}
+.flot-chart.dyn-ctn-fr{
+		height: 268px !important;
+	}
+.tb-res-mg-t-40{
+		margin-top:40px;
+	}
+.flot-chart.widget-dynamic-chart.ant-ctn-dyn{
+		height: 294px !important;
+	}
+.tb-res-mg-t-10{
+		margin-top:10px;
+	}
+.btn-list .btn{
+		margin: 5px 5px;
+	}
+.notika-tl-btn .btn{
+		margin: 5px 0px;
+	}
+.dropdown-trig-an-list .dropdown-trig-sgn {
+		margin: 5px 0px;
+	}
+.maincrop-img {
+		display: unset;
+	}
+.cp-img-anal {
+		margin-top: 15px;
+	}
+.images-action-pro .btn{
+		margin:5px 0px;
+	}
+.modal-inner-pro {
+		padding: 40px 40px;
+	}
+.modals-default-notika {
+		padding: 30px 30px;
+	}
+.modal-ft .btn, .modals-default-cl .btn, .notification-demo .btn{
+		margin:5px 5px;
+	}
+.modal-dialog.modals-default .modal-content, .modal-dialog.modal-sm .modal-content, .modal-dialog.modal-large .modal-content {
+		padding: 30px 30px;
+	}
+.modal-dialog.modals-default, .modal-dialog.modal-sm, .modal-dialog.modal-large {
+		width: 650px;
+		margin: 50px 70px;
+	}
+.table-responsive {
+		width: 100%;
+		overflow-y: hidden;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		border: 0px solid #ddd;
+	}
+.table-responsive > .table > tbody > tr > td, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > td, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > thead > tr > th {
+		white-space: nowrap;
+	}
+.table-responsive .pagination-inbox {
+		margin-bottom: 20px;
+	}
+.breadcomb-area {
+		margin-top: 40px;
+	}
+.dash-widget-visits {
+		margin: 35px 0px;
+	}
+.dash-widget-visits {
+		overflow: hidden;
+	}
+.popovers-pr-sg {
+		width: 275px;
+	}
+.popover-wp {
+		padding: 40px 30px;
+	}
+.dash-widget-visits canvas{
+		width:100% !important;
+	}
+.widget-signup-list img {
+		top: -2px;
+	}
+.widget-signup-list a {
+		height: 45px;
+		width: 45px;
+		margin: 9px 1px;
+		line-height: 45px;
+	}
+.contact-dt ul.contact-list li:first-child {
+		padding-top: 5px;
+	}
+.breadcomb-ctn {
+		top: 2px;
+	}
+.btn-button-mg{
+		margin-bottom: 10px !important;
+		margin-top: 0px !important;
+	}
+}
+/* small mobile :320px. */
+@media (max-width: 767px) {
+.sm-res-mg-t-30{
+		margin-top:30px;
+	}
+.sm-res-mg-t-0{
+		margin-top:0px;
+	}
+.sm-res-ds-n{
+		display:none;
+	}
+.breadcomb-area {
+		margin-top: 40px;
+	}
+.breadcomb-report .tooltip{
+		width:150px;
+	}
+.website-traffic-ctn p, .curved-ctn p, .recent-post-title p, .recent-post-it-ctn p, .view-ml-rl p, .mail-ads p, .multiupload-sys p{
+		line-height:24px;
+	}
+.error-page-wrap .btn.error-btn-mg{
+		margin:5px 5px;
+	}
+.sm-res-mg-t-40{
+		margin-top:40px;
+	}
+.sm-res-mg-t-10{
+		margin-top:10px;
+	}
+.btn-list .btn{
+		margin: 5px 5px;
+	}
+.notika-tl-btn .btn{
+		margin: 5px 0px;
+	}
+.cmp-int-lb{
+		text-align:left;
+	}
+.cmp-int-lb.cmp-int-lb1 span {
+		top: 3px;
+		right: 0px;
+	}
+.cmp-int-lb span {
+		top: 4px;
+	}
+.view-mail-list .btn-group .btn{
+		margin:5px 1px;
+	}
+.dataTables_wrapper .dataTables_filter {
+		width: 100%;
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+.dataTables_wrapper .dataTables_filter input {
+		padding: 0px 0px 0px 0px;
+	}
+.dataTables_filter label::after {
+		right: 10px;
+	}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+		margin: 5px 2px;
+		margin-bottom: 0px;
+	}
+.dropdown-trig-hd h2{
+		line-height:24px;
+	}
+.dropdown-trig-an-list .dropdown-trig-sgn {
+		margin: 5px 0px;
+	}
+.summernote-wrap .btn-group .btn{
+		margin: 5px 0px;
+	}
+.summernote-clickable .btn{
+		margin: 5px 0px;
+	}
+.form-example-int.form-horizental .hrzn-fm {
+		text-align: left;
+	}
+.cropper-container {
+		left: 0px !important;
+		margin-bottom: 15px;
+	}
+.maincrop-img {
+		display: unset;
+	}
+.cp-img-anal {
+		margin-top: 15px;
+	}
+.img-preview-custom {
+		width: 225px;
+		height:150px;
+	}
+.images-action-pro .btn{
+		margin:5px 0px;
+	}
+.ivc-frm {
+		text-align: left;
+	}
+.invoice-img {
+		padding: 30px 0px;
+	}
+.invoice-sp, .bsc-tbl, .bsc-tbl-st, .bsc-tbl-bdr, .bsc-tbl-hvr, .bsc-tbl-cds, .bsc-tbl-cls{
+		width: 100%;
+		overflow-y: hidden;
+	}
+.modal-inner-pro {
+		padding: 15px 15px;
+	}
+.modals-default-notika {
+		padding: 15px 15px;
+	}
+.modal-ft .btn, .modals-default-cl .btn, .notification-demo .btn, .popover-cl-pro .btn, .tooltips-static .btn{
+		margin:5px 5px;
+	}
+.modal-dialog.modals-default .modal-content, .modal-dialog.modal-sm .modal-content, .modal-dialog.modal-large .modal-content {
+		padding: 20px 20px;
+	}
+.modal-dialog.modals-default, .modal-dialog.modal-sm, .modal-dialog.modal-large {
+		width: 288px;
+		margin: 50px 70px;
+	}
+.popover-wp {
+		padding: 15px 15px;
+	}
+.popovers-pr-sg {
+		width: 200px;
+	}
+.popovers-sgn h4{
+		line-height:24px;
+	}
+.sm-res-mg-t-15{
+		margin-top:15px;
+	}
+.widget-tabs-list .nav-tabs {
+		border-bottom: 0px solid #ddd;
+	}
+.table-responsive {
+		width: 100%;
+		overflow-y: hidden;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		border: 0px solid #ddd;
+	}
+.table-responsive .pagination-inbox {
+		margin-bottom: 20px;
+	}
+.dw-atc-sn a{
+		display:none;
+	}
+.view-ml-rl {
+		display: none;
+	}
+.wizard-wrap-int .nav > li > a {
+		margin: 1px 0px;
+	}
+.dash-widget-visits {
+		overflow: hidden;
+	}
+.breadcomb-ctn p {
+		line-height: 24px;
+	}
+.recent-items-inn{
+		width: 100%;
+		overflow-y: hidden;
+	}
+.recent-items-inn .table{
+		margin-bottom:10px;
+	}
+.table.table-inner.table-vmiddle > tbody > tr > td, .table.table-inner.table-vmiddle > tbody > tr > th, .table.table-inner.table-vmiddle > tfoot > tr > td, .table.table-inner.table-vmiddle > tfoot > tr > th, .table.table-inner.table-vmiddle > thead > tr > td, .table.table-inner.table-vmiddle > thead > tr > th {
+		white-space:nowrap;
+	}
+.flot-chart-items {
+		margin: -10px -10px 0;
+	}
+.realtime-country-ctn h5 {
+		line-height: 20px;
+	}
+.dash-widget-visits canvas{
+		width:100% !important;
+	}
+.breadcomb-report{
+		display:none;
+	}
+.bread-ntd{
+		display:none;
+	}
+.breadcomb-ctn {
+		top: 0px;
+	}
+.cropper-container {
+		width: 100% !important;
+	}
+.ntd-ctn {
+		left: -25px;
+	}
+.spinner4 {
+		left: -30px;
+	}
+.floating-numner p {
+		line-height: 24px;
+	}
+.res-mg-fcs .nk-int-st {
+		margin-bottom: 15px;
+	}
+.fm-checkbox label {
+		line-height: 24px;
+	}
+.nk-int-mk p {
+		line-height: 24px;
+	}
+.fm-cmp-mg{
+		margin-bottom:15px;
+	}
+.dropzone.dropzone-nk h2, .dropzone.dropzone-nk p {
+		line-height: 24px;
+	}
+.btn-button-mg{
+		margin-bottom: 10px !important;
+		margin-top: 0px !important;
+	}
+.table.table-hover > tbody > tr > td, .table.table-hover > tbody > tr > th, .table.table-hover > tfoot > tr > td, .table.table-hover > tfoot > tr > th, .table.table-hover > thead > tr > td, .table.table-hover > thead > tr > th {
+		white-space: nowrap;
+	}
+}
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.lg-res-mg-bl{
+		display:block;
+	}
+.email-round-pro {
+		width: 33.33%;
+	}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+		margin-bottom: 30px;
+	}
+.img-preview-custom {
+		width: 345px;
+		height: 205px;
+	}
+.modal-dialog.modals-default .modal-content, .modal-dialog.modal-sm .modal-content, .modal-dialog.modal-large .modal-content {
+		padding: 20px 20px;
+	}
+.modal-dialog.modals-default, .modal-dialog.modal-sm, .modal-dialog.modal-large {
+		width: 388px;
+		margin: 70px 100px;
+	}
+.popovers-pr-sg {
+		width: 350px;
+	}
+.dropdown-trig-list .dropdown-trig-sing {
+		margin-right: 4px;
+	}
+.bread-ntd{
+		display:inline-block;
+	}
+}
+
