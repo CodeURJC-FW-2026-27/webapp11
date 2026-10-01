@@ -10,7 +10,9 @@ body{
 }
 .nav-link{
     color: white !important;
+    
 }
+
 .navbar{
     background-color: #FF7A3D;
 }
@@ -49,6 +51,9 @@ body{
     color: #FF7A3D !important;
 }
 
+.notika-navbar .navbar-nav {
+    justify-content: flex-start !important;
+}
 
 
 
