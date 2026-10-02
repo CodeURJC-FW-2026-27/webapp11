@@ -73,3 +73,6 @@ body{
     box-shadow: none !important;
     border-color: #e9ecef !important; 
 }
+.text-center {
+    color: white !important;
+}
