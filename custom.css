@@ -36,7 +36,19 @@ body{
 .wb-traffic-inner{
     background:#a3e8f0;
     color: inherit;
+    padding: 2.5rem 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
 }
+
+/* Permitir que el formulario ocupe el 100% del ancho del contenedor azul */
+.wb-traffic-inner form {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
 .tcg-icon {
     font-family: 'EssentiarumTCG', sans-serif;
     line-height: 1;
@@ -65,8 +77,6 @@ body{
     margin-right: 0.2em;   
     margin-bottom:  1rem;
 }
-
-
 
 .notika-dropdown-item:hover img {
     outline: none !important;

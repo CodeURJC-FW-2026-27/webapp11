@@ -112,75 +112,77 @@
                 <div class="wb-traffic-inner notika-shadow">
 
                     <form>
-                        <!-- Pokemon name -->
-                        <div class="mb-3">
-                            <label for="pokemon-name" class="form-label">Nombre</label>
-                            <input type="text" id="pokemon-name" name="name" class="form-control" required>
+                        <!-- Pokemon name & Pokedex number -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="pokemon-name" class="form-label">Nombre</label>
+                                <input type="text" id="pokemon-name" name="name" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="pokedex-number" class="form-label">Número de la Pokédex</label>
+                                <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1"
+                                    required>
+                            </div>
                         </div>
 
-                        <!-- Pokedex number -->
-                        <div class="mb-3">
-                            <label for="pokedex-number" class="form-label">Número de la Pokédex</label>
-                            <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1"
-                                required>
+                        <!-- Type & Generation -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="pokemon-type" class="form-label">Tipo</label>
+                                <select id="pokemon-type" name="type" class="form-select" required>
+                                    <option value="">Selecciona un tipo</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="fire">Fuego</option>
+                                    <option value="water">Agua</option>
+                                    <option value="grass">Planta</option>
+                                    <option value="electric">Eléctrico</option>
+                                    <option value="ice">Hielo</option>
+                                    <option value="fighting">Lucha</option>
+                                    <option value="poison">Veneno</option>
+                                    <option value="ground">Tierra</option>
+                                    <option value="flying">Volador</option>
+                                    <option value="psychic">Psíquico</option>
+                                    <option value="bug">Bicho</option>
+                                    <option value="rock">Roca</option>
+                                    <option value="ghost">Fantasma</option>
+                                    <option value="dragon">Dragón</option>
+                                    <option value="dark">Siniestro</option>
+                                    <option value="steel">Acero</option>
+                                    <option value="fairy">Hada</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="pokemon-generation" class="form-label">Generación</label>
+                                <select id="pokemon-generation" name="generation" class="form-select" required>
+                                    <option value="">Selecciona una generación</option>
+                                    <option value="1">Generación I</option>
+                                    <option value="2">Generación II</option>
+                                    <option value="3">Generación III</option>
+                                    <option value="4">Generación IV</option>
+                                    <option value="5">Generación V</option>
+                                    <option value="6">Generación VI</option>
+                                    <option value="7">Generación VII</option>
+                                    <option value="8">Generación VIII</option>
+                                    <option value="9">Generación IX</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <!-- Type -->
-                        <div class="mb-3">
-                            <label for="pokemon-type" class="form-label">Tipo</label>
-                            <select id="pokemon-type" name="type" class="form-select" required>
-                                <option value="">Selecciona un tipo</option>
-                                <option value="normal">Normal</option>
-                                <option value="fire">Fuego</option>
-                                <option value="water">Agua</option>
-                                <option value="grass">Planta</option>
-                                <option value="electric">Eléctrico</option>
-                                <option value="ice">Hielo</option>
-                                <option value="fighting">Lucha</option>
-                                <option value="poison">Veneno</option>
-                                <option value="ground">Tierra</option>
-                                <option value="flying">Volador</option>
-                                <option value="psychic">Psíquico</option>
-                                <option value="bug">Bicho</option>
-                                <option value="rock">Roca</option>
-                                <option value="ghost">Fantasma</option>
-                                <option value="dragon">Dragón</option>
-                                <option value="dark">Siniestro</option>
-                                <option value="steel">Acero</option>
-                                <option value="fairy">Hada</option>
-                            </select>
-                            <!--Yes, I hate this, yes, it will be changed with javascript in the future-->
-                        </div>
+                        <!-- Height & Weight -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="pokemon-height" class="form-label">Altura (m)</label>
+                                <input type="number" id="pokemon-height" name="height" class="form-control" min="0"
+                                    step="0.1" required>
+                            </div>
 
-                        <!-- Generation -->
-                        <div class="mb-3">
-                            <label for="pokemon-generation" class="form-label">Generación</label>
-                            <select id="pokemon-generation" name="generation" class="form-select" required>
-                                <option value="">Selecciona una generación</option>
-                                <option value="1">Generación I</option>
-                                <option value="2">Generación II</option>
-                                <option value="3">Generación III</option>
-                                <option value="4">Generación IV</option>
-                                <option value="5">Generación V</option>
-                                <option value="6">Generación VI</option>
-                                <option value="7">Generación VII</option>
-                                <option value="8">Generación VIII</option>
-                                <option value="9">Generación IX</option>
-                            </select>
-                        </div>
-
-                        <!-- Height -->
-                        <div class="mb-3">
-                            <label for="pokemon-height" class="form-label">Altura (m)</label>
-                            <input type="number" id="pokemon-height" name="height" class="form-control" min="0"
-                                step="0.1" required>
-                        </div>
-
-                        <!-- Weight -->
-                        <div class="mb-3">
-                            <label for="pokemon-weight" class="form-label">Peso (kg)</label>
-                            <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0"
-                                step="0.1" required>
+                            <div class="col-md-6 mb-3">
+                                <label for="pokemon-weight" class="form-label">Peso (kg)</label>
+                                <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0"
+                                    step="0.1" required>
+                            </div>
                         </div>
 
                         <!-- Description -->
@@ -197,8 +199,8 @@
                                 required>
                         </div>
 
-                        <div class="d-flex justify-content-center gap-2">
-                            <button type="button" class="btn btn-primary">
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary">
                                 Guardar
                             </button>
 
