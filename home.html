@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="custom.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 has-desktop-sidebar">
     <!-- Modern Bootstrap 5 Header -->
     <header class="notika-header">
         <div class="container">
@@ -101,45 +101,61 @@
     </header>
     <!-- End Modern Header -->
 
-    <!-- Desktop Navigation -->
+    <!-- Desktop Sidebar Navigation -->
     <nav class="navbar navbar-expand-lg notika-navbar d-none d-lg-block" aria-label="Main navigation">
-        <div class="container">
+        <div class="sidebar-inner">
+            <a class="sidebar-brand" href="home.html">
+                <img src="images/pokeball-icon-594337-512.png" alt="">
+                <span>RotomWeb Dex</span>
+            </a>
             <div class="navbar-collapse">
-                <ul class="navbar-nav w-100 justify-content-center">
-
-                    <!-- Home Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="tcg-icon">c</span>
-                            <span>Type</span>
+                <ul class="navbar-nav w-100">
+                    <li class="sidebar-section-label">Pages</li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="home.html" aria-current="page">
+                            <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" >One</a></li>
-                            <li><a class="dropdown-item" >Two</a></li>
-                            <li><a class="dropdown-item" >Three</a></li>
-                            <li><a class="dropdown-item" >Four</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" >Five</a></li>
-                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new-pokemon.html">
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Create Pokémon</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pokemon.html">
+                            <i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Pokémon details</span>
+                        </a>
                     </li>
 
-                    <!-- Email Dropdown -->
+                    <li class="sidebar-section-label">Browse</li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-earth-oceania"></i>
-                            <span>Generation</span>
+                            <span class="tcg-icon" aria-hidden="true">c</span><span>Type</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" >One</a></li>
-                            <li><a class="dropdown-item" >Two</a></li>
-                            <li><a class="dropdown-item" >Three</a></li>
+                            <li><a class="dropdown-item">One</a></li>
+                            <li><a class="dropdown-item">Two</a></li>
+                            <li><a class="dropdown-item">Three</a></li>
+                            <li><a class="dropdown-item">Four</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item">Five</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generation</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item">One</a></li>
+                            <li><a class="dropdown-item">Two</a></li>
+                            <li><a class="dropdown-item">Three</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- End Desktop Navigation -->
+    <!-- End Desktop Sidebar Navigation -->
     <!-- Start Status area -->
     <div class="notika-status-area">
         <div class="container">

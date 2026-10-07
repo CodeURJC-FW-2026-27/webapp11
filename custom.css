@@ -86,3 +86,114 @@ body{
 .text-center {
     color: white !important;
 }
+
+@media (min-width: 992px) {
+    body.has-desktop-sidebar {
+        padding-left: 264px;
+    }
+
+    .has-desktop-sidebar .notika-header .notika-brand {
+        display: none;
+    }
+
+    .has-desktop-sidebar .notika-navbar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        display: block !important;
+        width: 264px;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 0;
+        background: #19283d;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1091;
+    }
+
+    .has-desktop-sidebar .sidebar-inner {
+        min-height: 100%;
+        padding: 24px 16px;
+    }
+
+    .has-desktop-sidebar .sidebar-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 4px 28px;
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .has-desktop-sidebar .sidebar-brand img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+    }
+
+    .has-desktop-sidebar .notika-navbar .navbar-collapse {
+        display: block !important;
+    }
+
+    .has-desktop-sidebar .notika-navbar .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .has-desktop-sidebar .sidebar-section-label {
+        margin: 18px 12px 6px;
+        color: #aab5c5;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .has-desktop-sidebar .notika-navbar .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 44px;
+        padding: 10px 12px;
+        border-radius: 6px;
+        color: #e9eef5 !important;
+        text-decoration: none;
+    }
+
+    .has-desktop-sidebar .notika-navbar .nav-link:hover,
+    .has-desktop-sidebar .notika-navbar .nav-link:focus-visible,
+    .has-desktop-sidebar .notika-navbar .nav-link.active {
+        color: #101a2e !important;
+        background: #ff7a3d;
+    }
+
+    .has-desktop-sidebar .notika-navbar .nav-link > i,
+    .has-desktop-sidebar .notika-navbar .nav-link > .tcg-icon {
+        width: 18px;
+        text-align: center;
+    }
+
+    .has-desktop-sidebar .notika-navbar .dropdown-toggle::after {
+        margin-left: auto;
+    }
+
+    .has-desktop-sidebar .notika-navbar .dropdown-menu {
+        position: static !important;
+        width: 100%;
+        margin: 0;
+        padding: 4px 0 4px 42px;
+        transform: none !important;
+        background: transparent;
+        border: 0;
+    }
+
+    .has-desktop-sidebar .notika-navbar .dropdown-item {
+        padding: 8px 10px;
+        border-radius: 5px;
+        color: #e9eef5;
+    }
+
+    .has-desktop-sidebar .notika-navbar .dropdown-item:hover {
+        color: #101a2e;
+        background: #ff7a3d;
+    }
+}
