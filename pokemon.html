@@ -87,6 +87,51 @@
             <a href="pokemon.html" class="btn btn-primary" role="button"> <i class="bi bi-box-arrow-left"></i> Volver </a>
         </div>
     </div>
+
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="Name"><strong> Nombre: </strong></label>
+                <input type="text" class="form-control" id="Name" placeholder="Nombre del movimiento" required>
+            </div> 
+            
+            <div class="form-group">
+                <label for="Type"><strong> Tipo: </strong></label>
+                <input type="text" class="form-control" id="Type" placeholder="Tipo del movimiento" required>
+            </div> 
+
+            <div class="form-group">
+                <label for="Category"><strong> Categoría: </strong></label>
+                <input type="text" class="form-control" id="Category" placeholder="Categoría del movimiento" required>
+            </div> 
+
+            </div>
+
+            <div class="form-group">
+                <label for="Power"><strong> Poder: </strong></label>
+                <input type="Number" class="form-control" min="0" max= "5050" id="Power" placeholder="Poder del movimiento (0-5050)">
+            </div>  
+
+            <div class="form-group">
+                <label for="Accuracy"><strong> Precisión: </strong></label>
+                <input type="Number" class="form-control" min="30" max= "100" id="Accuracy" placeholder="Precisión del movimiento (30-100)">
+            </div>  
+
+            <div class="form-group">
+                <label for="PP"><strong> Número de movimientos: </strong></label>
+                <input type="Number" class="form-control" min="0" max= "160" id="PP" placeholder="Número de movientos (0-160)">
+            </div>  
+
+            <div class="form-group">
+                <label for="Description"><strong> Descripción: </strong></label>
+                <textarea class="form-control" id="Description" rows="3"></textarea>
+            </div>
+
+            <div class="form-group mb-0">
+                <button type="submit" class="btn btn-primary"> <i class="bi bi-plus-lg"></i> Crear </button>
+            </div>
+        </form>
+    </div>
     
 
 
