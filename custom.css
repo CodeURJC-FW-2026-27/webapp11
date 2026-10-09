@@ -273,4 +273,13 @@ body{
         color: white;
         padding: 15px 0;
     }
+
+    .form-container {
+        width: 90%;
+        max-width: 700px;
+        margin: 40px auto;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
 }
