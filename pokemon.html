@@ -27,7 +27,7 @@
 </head>
 
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 has-desktop-sidebar">
     <!-- Modern Bootstrap 5 Header -->
         <header class="notika-header">
             <div class="container">
@@ -45,6 +45,73 @@
             </div>
         </header>
     <!-- End Modern Header -->
+
+    <!-- Desktop Sidebar Navigation -->
+    <nav class="navbar navbar-expand-lg notika-navbar d-none d-lg-block" aria-label="Main navigation">
+        <div class="sidebar-inner">
+            <a class="sidebar-brand" href="home.html">
+                <img src="images/pokeball-icon-594337-512.png" alt="">
+                <span>RotomWeb Dex</span>
+            </a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav w-100">
+                    <li class="sidebar-section-label">Pages</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">
+                            <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new-pokemon.html">
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Create Pokémon</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pokemon.html" aria-current="page">
+                            <i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Pokémon details</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-section-label">Browse</li>
+
+                    <!-- Type Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="tcg-icon" aria-hidden="true">c</span><span>Type</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">g</span> Grass</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">f</span> Fire</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">w</span> Water</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">l</span> Electric</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">p</span> Psychic</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">n</span> Dragon</a></li>
+                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">c</span> Normal</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Generation Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generation</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Gen I (Kanto)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen II (Johto)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen III (Hoenn)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen IV (Sinnoh)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen V (Unova)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen VI (Kalos)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen VII (Alola)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen VIII (Galar)</a></li>
+                            <li><a class="dropdown-item" href="#">Gen IX (Paldea)</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Desktop Sidebar Navigation -->
 
     <div class="pokemon-card">
 
