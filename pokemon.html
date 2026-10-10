@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard One | Notika - Modern Vite Template</title>
+    <title>Pokémon Details | RotomWeb Dex</title>
     <meta name="description" content="Modern Notika Admin Template powered by Vite 7.1.5">
 
-    <!-- Mobile Menu CSS -->
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
@@ -26,24 +25,23 @@
     <link rel="stylesheet" href="custom.css">
 </head>
 
-
 <body class="d-flex flex-column min-vh-100 has-desktop-sidebar">
     <!-- Modern Bootstrap 5 Header -->
-        <header class="notika-header">
-            <div class="container">
-                <div class="row align-items-center">
-                    <!-- Logo Section -->
-                    <div class="col-lg-4 col-6">
-                        <div class="notika-brand">
-                            <a href="home.html">
-                                <!-- Desktop Logo (768px and up) -->
-                                <img src="images/pokeball-icon-594337-512.png" alt="Notika" class="d-none d-md-block">
-                            </a>
-                        </div>
+    <header class="notika-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Logo Section -->
+                <div class="col-lg-4 col-6">
+                    <div class="notika-brand">
+                        <a href="home.html">
+                            <!-- Desktop Logo (768px and up) -->
+                            <img src="images/pokeball-icon-594337-512.png" alt="Notika" class="d-none d-md-block">
+                        </a>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
     <!-- End Modern Header -->
 
     <!-- Desktop Sidebar Navigation -->
@@ -114,9 +112,7 @@
     <!-- End Desktop Sidebar Navigation -->
 
     <div class="pokemon-card">
-
         <div class="pokemon-content">
-
             <!-- Texto -->
             <div class="pokemon-text">
                 <h2><strong>Pikachu</strong></h2>
@@ -138,16 +134,15 @@
                 <img src="https://github.com/HybridShivam/Pokemon/blob/master/assets/images/0025.png?raw=true" alt="Pikachu">
             </div>
 
-
             <div class="d-flex justify-content-center gap-2 p-3">
-                <button type="button" class="btn btn-primary"> <i class="fa-solid fa-trash""></i>  Borrar </button>
+                <button type="button" class="btn btn-primary"> <i class="fa-solid fa-trash"></i>  Borrar </button>
                 <button type="button" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i>  Editar </button>
                 <a href="pokemon.html" class="btn btn-primary" role="button"> <i class="fa-solid fa-arrow-left"></i> Volver </a>
             </div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container mb-4">
         <div class="text-center">
             <h3> Bola Voltio</h3>
             <p>Eléctrico</p>
@@ -159,71 +154,90 @@
         </div>
 
         <div class="d-flex justify-content-center gap-2 p-3">
-            <button type="button" class="btn btn-primary"> <i class="fa-solid fa-trash""></i>  Borrar </button>
+            <button type="button" class="btn btn-primary"> <i class="fa-solid fa-trash"></i>  Borrar </button>
             <button type="button" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i>  Editar </button>
             <a href="pokemon.html" class="btn btn-primary" role="button"> <i class="fa-solid fa-arrow-left"></i> Volver </a>
         </div>
     </div>
 
-    <div class="form-container">
-        <form>
-            <div class="form-group">
-                <label for="Name"><strong> Nombre: </strong></label>
-                <input type="text" class="form-control" id="Name" placeholder="Nombre del movimiento" required>
-            </div> 
-            
-            <div class="form-group">
-                <label for="Type"><strong> Tipo: </strong></label>
-                <input type="text" class="form-control" id="Type" placeholder="Tipo del movimiento" required>
-            </div> 
+    <!-- Se sustituye .form-container por el contenedor azul idéntico al de Crear Pokémon -->
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="wb-traffic-inner notika-shadow">
+                    <form>
+                        <!-- Nombre & Tipo -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Name" class="form-label"><strong>Nombre:</strong></label>
+                                <input type="text" class="form-control" id="Name" placeholder="Nombre del movimiento" required>
+                            </div> 
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="Type" class="form-label"><strong>Tipo:</strong></label>
+                                <input type="text" class="form-control" id="Type" placeholder="Tipo del movimiento" required>
+                            </div> 
+                        </div>
 
-            <div class="form-group">
-                <label for="Category"><strong> Categoría: </strong></label>
-                <input type="text" class="form-control" id="Category" placeholder="Categoría del movimiento" required>
-            </div> 
+                        <!-- Categoría & Poder -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Category" class="form-label"><strong>Categoría:</strong></label>
+                                <input type="text" class="form-control" id="Category" placeholder="Categoría del movimiento" required>
+                            </div> 
 
+                            <div class="col-md-6 mb-3">
+                                <label for="Power" class="form-label"><strong>Poder:</strong></label>
+                                <input type="number" class="form-control" min="0" max="5050" id="Power" placeholder="Poder del movimiento (0-5050)">
+                            </div>  
+                        </div>
+
+                        <!-- Precisión & Número de movimientos -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Accuracy" class="form-label"><strong>Precisión:</strong></label>
+                                <input type="number" class="form-control" min="30" max="100" id="Accuracy" placeholder="Precisión del movimiento (30-100)">
+                            </div>  
+
+                            <div class="col-md-6 mb-3">
+                                <label for="PP" class="form-label"><strong>Número de movimientos:</strong></label>
+                                <input type="number" class="form-control" min="0" max="160" id="PP" placeholder="Número de movimientos (0-160)">
+                            </div>  
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="mb-3">
+                            <label for="Description" class="form-label"><strong>Descripción:</strong></label>
+                            <textarea class="form-control" id="Description" rows="3" placeholder="Descripción del movimiento"></textarea>
+                        </div>
+
+                        <!-- Botón de Envío -->
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-plus"></i> Crear
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="Power"><strong> Poder: </strong></label>
-                <input type="Number" class="form-control" min="0" max= "5050" id="Power" placeholder="Poder del movimiento (0-5050)">
-            </div>  
-
-            <div class="form-group">
-                <label for="Accuracy"><strong> Precisión: </strong></label>
-                <input type="Number" class="form-control" min="30" max= "100" id="Accuracy" placeholder="Precisión del movimiento (30-100)">
-            </div>  
-
-            <div class="form-group">
-                <label for="PP"><strong> Número de movimientos: </strong></label>
-                <input type="Number" class="form-control" min="0" max= "160" id="PP" placeholder="Número de movientos (0-160)">
-            </div>  
-
-            <div class="form-group">
-                <label for="Description"><strong> Descripción: </strong></label>
-                <textarea class="form-control" id="Description" rows="3"></textarea>
-            </div>
-
-            <div class="form-group mb-0">
-                <button type="submit" class="btn btn-primary"> <i class="bi bi-plus-lg"></i> Crear </button>
-            </div>
-        </form>
+        </div>
     </div>
-    
-
-
 
     <!-- Start Footer area-->
-        <footer class="footer-copyright-area mt-auto">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="footer-copy-right">
-                            <p>RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
-                        </div>
+    <footer class="footer-copyright-area mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="footer-copy-right">
+                        <p>RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
     <!-- End Footer area-->
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
