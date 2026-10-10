@@ -10,7 +10,6 @@ body{
 }
 .nav-link{
     color: white !important;
-    
 }
 
 .navbar{
@@ -19,7 +18,6 @@ body{
 .notika-header{
     background-color: #E63946;
     border-bottom: 0;
-    
 }
 .create-pokemon-brand > a {
     display: block;
@@ -53,7 +51,8 @@ body{
     background-color: #E63946;
 }
 .fa-solid{
-    background-color: fixed;color: white !important;
+    background-color: fixed;
+    color: white !important;
 }
 .search-input-group input:focus {
     border-color: #FF7A3D !important; 
@@ -85,7 +84,6 @@ body{
 }
 .Pokemon{
     margin-left: auto;
- 
     text-align: right;
 }
 .notika-dropdown-item:hover {
@@ -228,10 +226,8 @@ body{
     .pokemon-card {
         width: 90%;
         max-width: 1100px;
-
         margin: 40px auto;
         padding: 30px;
-
         background-color: #0d6efd;
         border-radius: 12px;
     }
@@ -251,13 +247,10 @@ body{
     .pokemon-image-box {
         width: 42%;
         aspect-ratio: 1 / 1;
-
         background-color: white;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         border-radius: 10px;
     }
 
@@ -269,7 +262,6 @@ body{
 
     .pokemon-footer {
         margin-top: 25px;
-
         color: white;
         padding: 15px 0;
     }
@@ -282,4 +274,127 @@ body{
     .form-group {
         margin-bottom: 15px;
     }
+}
+
+/* =========================================================
+   ESTILOS ESPECÍFICOS Y RESPONSIVE DE LA TARJETA DE MOVIMIENTO
+   ========================================================= */
+.move-details-card {
+    display: block !important;
+}
+
+.move-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 2px solid #101A2E;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.move-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.move-title-group h2 {
+    margin: 0;
+    font-weight: 800;
+    color: #101A2E;
+}
+
+.move-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.type-pill {
+    background-color: #FFC107;
+    color: #101A2E;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 2px solid #101A2E;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.category-pill {
+    background-color: #0D6EFD;
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 2px solid #101A2E;
+}
+
+/* Grid de estadísticas adaptable en varias filas si es necesario */
+.move-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background-color: #FFFFFF;
+    border: 2px solid #101A2E;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card .stat-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6C757D;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card .stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #101A2E;
+}
+
+/* Caja de descripción del efecto del movimiento */
+.move-effect-box {
+    background-color: #FFFFFF;
+    border: 2px solid #101A2E;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.move-effect-box .effect-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0D6EFD;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+.move-effect-box p {
+    margin: 0;
+    color: #101A2E;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Acciones */
+.move-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
