@@ -67,6 +67,14 @@ body{
     margin-top: 2rem;
     margin-bottom: 2rem;
     border-radius: 12px;
+    align-items: center;
+}
+
+.wb-traffic-inner .sparkline-bar-stats1,
+.wb-traffic-inner .sparkline-bar-stats2,
+.wb-traffic-inner .sparkline-bar-stats3,
+.wb-traffic-inner .sparkline-bar-stats4 {
+    display: none;
 }
 
 /* Permitir que el formulario ocupe el 100% del ancho del contenedor azul */
@@ -85,6 +93,12 @@ body{
 .Pokemon{
     margin-left: auto;
     text-align: right;
+}
+.Pokemon h2 {
+    margin-bottom: 5px;
+}
+.Pokemon p {
+    margin-bottom: 0;
 }
 .notika-dropdown-item:hover {
     color: #FF7A3D !important;
