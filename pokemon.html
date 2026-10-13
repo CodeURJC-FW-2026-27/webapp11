@@ -9,14 +9,9 @@
     <title>Detalles del Pokémon | RotomWeb Dex</title>
     <meta name="description" content="Modern Notika Admin Template powered by Vite 7.1.5">
 
-<<<<<<< HEAD
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-
-    <!-- External Google Fonts (Roboto) -->
-=======
-    <!-- Google Fonts (Roboto) -->
->>>>>>> 0442597bc201ffaead13595fab8f77ed05ec9909
+<!--HEAD
+        Google Fonts (Roboto)
+--> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -50,16 +45,30 @@
                 <div class="col-8 col-lg-4">
                     <div class="notika-brand d-flex align-items-center gap-2">
                         <a href="home.html">
-                            <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex" style="height: 36px;">
+                            <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex">
                         </a>
                         <!-- Mobile-only brand text (Hidden on large desktop screens where sidebar shows) -->
                         <span class="fs-5 text-white fw-bold d-inline-block d-lg-none">RotomWeb Dex</span>
                     </div>
                 </div>
 
-                <!-- Right Header Actions (Search & Mobile Offcanvas Menu Button) -->
-                <div class="col-4 col-lg-8">
-                    <div class="notika-nav justify-content-end d-flex align-items-center gap-2">
+                <!-- Navigation Section: Right Header Actions (Search & Mobile Offcanvas Menu Button) -->
+                <div class="col-lg-8 col-6">
+                    <div class="notika-nav justify-content-end d-flex align-items-center gap-2 gap-lg-3">
+                        
+                        <!-- Search -->
+                        <div class="dropdown">
+                            <button class="notika-nav-link" type="button" data-bs-toggle="dropdown"
+                                data-bs-auto-close="outside" aria-label="Buscar">
+                                <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end notika-dropdown search-dropdown">
+                                <div class="search-input-group">
+                                    <input type="text" placeholder="Buscar..." class="form-control">
+                                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                </div>
+                            </div>
+                        </div>
                         <!-- 
                           Bootstrap Offcanvas Trigger Button:
                           - d-lg-none: Hidden on desktop displays (>=992px) where fixed sidebar is active.

@@ -35,6 +35,8 @@
                         <a href="home.html">
                             <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex">
                         </a>
+                        <!-- Mobile-only brand text (Hidden on large desktop screens where sidebar shows) -->
+                        <span class="fs-5 text-white fw-bold d-inline-block d-lg-none">RotomWeb Dex</span>
                     </div>
                 </div>
 
@@ -56,11 +58,15 @@
                             </div>
                         </div>
 
-                        <!-- Mobile Menu Toggle -->
-                        <button class="notika-nav-link d-lg-none" type="button" data-bs-toggle="offcanvas"
+                        <!-- 
+                          Bootstrap Offcanvas Trigger Button:
+                          - d-lg-none: Hidden on desktop displays (>=992px) where fixed sidebar is active.
+                          - data-bs-toggle="offcanvas" & data-bs-target="#mobileNavOffcanvas": Opens the offcanvas menu.
+                        -->
+                        <button class="notika-nav-link d-lg-none btn border-0 text-white" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas"
                             aria-label="Alternar navegación">
-                            <i aria-hidden="true" class="fa-solid fa-bars"></i>
+                            <i aria-hidden="true" class="fa-solid fa-bars fs-4"></i>
                         </button>
                     </div>
                 </div>
