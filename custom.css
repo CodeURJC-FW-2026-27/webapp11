@@ -481,6 +481,8 @@ body {
 
 #mobileNavOffcanvas .offcanvas-logo {
     size: 40px;
+    height: 40px;
+    width: 40px;
 }
 
 #mobileNavOffcanvas .sidebar-section-label {
