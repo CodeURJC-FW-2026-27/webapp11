@@ -98,7 +98,7 @@ body {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     border-radius: 12px;
-    display: block !important; /* Critical override: prevents children from stretching in a single row */
+    
 }
 
 /* Desktop Padding Expansion */
