@@ -2,9 +2,9 @@
 <html lang="es">
 
 <head>
+    <!-- Basic Metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Crear Pokémon | RotomWeb Dex</title>
 
     <!-- Google Fonts -->
@@ -18,7 +18,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Unified Template CSS -->
+    <!-- Custom and Template Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="custom.css">
 </head>
@@ -38,11 +38,11 @@
                     </div>
                 </div>
 
-                <!-- Navigation Section -->
+                <!-- Navigation Action Section -->
                 <div class="col-lg-8 col-6">
                     <div class="notika-nav justify-content-end d-flex align-items-center gap-2 gap-lg-3">
 
-                        <!-- Search -->
+                        <!-- Search Box -->
                         <div class="dropdown">
                             <button class="notika-nav-link" type="button" data-bs-toggle="dropdown"
                                 data-bs-auto-close="outside" aria-label="Buscar">
@@ -56,11 +56,7 @@
                             </div>
                         </div>
 
-                        <!-- 
-                          Bootstrap Offcanvas Trigger Button:
-                          - d-lg-none: Hidden on desktop displays (>=992px) where fixed sidebar is active.
-                          - data-bs-toggle="offcanvas" & data-bs-target="#mobileNavOffcanvas": Opens the offcanvas menu.
-                        -->
+                        <!-- Mobile Offcanvas Trigger Button -->
                         <button class="notika-nav-link d-lg-none btn border-0 text-white" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas"
                             aria-label="Alternar navegación">
@@ -71,7 +67,7 @@
             </div>
         </div>
     </header>
-    <!-- End Modern Header -->
+    <!-- End Header -->
 
     <!-- Mobile Offcanvas Navigation -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas" aria-labelledby="mobileNavOffcanvasLabel">
@@ -85,12 +81,12 @@
             <ul class="navbar-nav w-100">
                 <li class="sidebar-section-label">Páginas</li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="home.html" aria-current="page">
+                    <a class="nav-link" href="home.html">
                         <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="new-pokemon.html">
+                    <a class="nav-link active" href="new-pokemon.html" aria-current="page">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Crear Pokémon</span>
                     </a>
                 </li>
@@ -102,7 +98,7 @@
 
                 <li class="sidebar-section-label">Explorar</li>
 
-                <!-- Type Dropdown -->
+                <!-- Type Dropdown Mobile -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
@@ -118,7 +114,7 @@
                     </ul>
                 </li>
 
-                <!-- Generation Dropdown -->
+                <!-- Generation Dropdown Mobile -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
@@ -138,7 +134,7 @@
             </ul>
         </div>
     </div>
-    <!-- End Mobile Offcanvas Navigation -->
+    <!-- End Mobile Offcanvas -->
 
     <!-- Desktop Sidebar Navigation -->
     <nav class="navbar navbar-expand-lg notika-navbar d-none d-lg-block" aria-label="Navegación principal">
@@ -207,34 +203,37 @@
     </nav>
     <!-- End Desktop Sidebar Navigation -->
 
-    <!-- Start Create Pokemon area -->
+    <!-- =========================================================================
+         MAIN CONTENT AREA: CREATE POKÉMON FORM
+         Uses specific Bootstrap form controls (text, number, select, file, textarea)
+         integrated inside Notika's cyan container (.wb-traffic-inner).
+         ========================================================================= -->
     <div class="container my-auto">
-
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="wb-traffic-inner notika-shadow">
-
+                    <h2 class="fw-bold mb-4 text-dark">Crear Nuevo Pokémon</h2>
+                    
                     <form>
-                        <!-- Pokemon name & Pokedex number -->
+                        <!-- Row 1: Name & Pokedex Number -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="pokemon-name" class="form-label">Nombre</label>
-                                <input type="text" id="pokemon-name" name="name" class="form-control" required>
+                                <label for="pokemon-name" class="form-label"><strong>Nombre:</strong></label>
+                                <input type="text" id="pokemon-name" name="name" class="form-control" placeholder="Ej. Pikachu" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="pokedex-number" class="form-label">Número de la Pokédex</label>
-                                <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1"
-                                    required>
+                                <label for="pokedex-number" class="form-label"><strong>Número de la Pokédex:</strong></label>
+                                <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1" placeholder="Ej. 25" required>
                             </div>
                         </div>
 
-                        <!-- Type & Generation -->
+                        <!-- Row 2: Type Select & Generation Select -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="pokemon-type" class="form-label">Tipo</label>
+                                <label for="pokemon-type" class="form-label"><strong>Tipo:</strong></label>
                                 <select id="pokemon-type" name="type" class="form-select" required>
-                                    <option value="">Selecciona un tipo</option>
+                                    <option value="" selected disabled>Selecciona un tipo</option>
                                     <option value="normal">Normal</option>
                                     <option value="fire">Fuego</option>
                                     <option value="water">Agua</option>
@@ -257,9 +256,9 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="pokemon-generation" class="form-label">Generación</label>
+                                <label for="pokemon-generation" class="form-label"><strong>Generación:</strong></label>
                                 <select id="pokemon-generation" name="generation" class="form-select" required>
-                                    <option value="">Selecciona una generación</option>
+                                    <option value="" selected disabled>Selecciona una generación</option>
                                     <option value="1">Generación I</option>
                                     <option value="2">Generación II</option>
                                     <option value="3">Generación III</option>
@@ -273,66 +272,58 @@
                             </div>
                         </div>
 
-                        <!-- Height & Weight -->
+                        <!-- Row 3: Height & Weight (Decimals) -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="pokemon-height" class="form-label">Altura (m)</label>
-                                <input type="number" id="pokemon-height" name="height" class="form-control" min="0"
-                                    step="0.1" required>
+                                <label for="pokemon-height" class="form-label"><strong>Altura (m):</strong></label>
+                                <input type="number" id="pokemon-height" name="height" class="form-control" min="0" step="0.1" placeholder="Ej. 0.4" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="pokemon-weight" class="form-label">Peso (kg)</label>
-                                <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0"
-                                    step="0.1" required>
+                                <label for="pokemon-weight" class="form-label"><strong>Peso (kg):</strong></label>
+                                <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0" step="0.1" placeholder="Ej. 6.0" required>
                             </div>
                         </div>
 
-                        <!-- Description -->
+                        <!-- Row 4: Description Textarea -->
                         <div class="mb-3">
-                            <label for="pokemon-description" class="form-label">Descripción</label>
-                            <textarea id="pokemon-description" name="description" class="form-control" rows="4"
-                                required></textarea>
+                            <label for="pokemon-description" class="form-label"><strong>Descripción:</strong></label>
+                            <textarea id="pokemon-description" name="description" class="form-control" rows="4" placeholder="Escribe una descripción del Pokémon..." required></textarea>
                         </div>
 
-                        <!-- Image -->
+                        <!-- Row 5: Image File Upload Input -->
                         <div class="mb-3">
-                            <label for="pokemon-image" class="form-label">Imagen</label>
-                            <input type="file" id="pokemon-image" name="image" class="form-control" accept="image/*"
-                                required>
+                            <label for="pokemon-image" class="form-label"><strong>Imagen:</strong></label>
+                            <input type="file" id="pokemon-image" name="image" class="form-control" accept="image/*" required>
                         </div>
 
+                        <!-- Form Action Control Buttons (Save & Cancel) -->
                         <div class="d-flex justify-content-center gap-2 mt-4">
                             <button type="submit" class="btn btn-primary">
-                                Guardar
+                                <i class="fa-solid fa-floppy-disk me-1"></i> Guardar
                             </button>
 
                             <a href="home.html" class="btn btn-primary" role="button">
-                                Cancelar
+                                <i class="fa-solid fa-xmark me-1"></i> Cancelar
                             </a>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- End Create Pokemon area -->
+    <!-- End Create Pokemon Area -->
 
-    <!-- Start Footer area-->
-    <footer class="footer-copyright-area mt-auto">
+    <!-- Footer Area -->
+    <footer class="footer-copyright-area mt-auto py-3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="footer-copy-right">
-                        <p>RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
-                    </div>
+                <div class="col-lg-12 text-center text-white">
+                    <p class="mb-0">RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- End Footer area-->
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

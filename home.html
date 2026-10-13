@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Basic Metadata and Character Encoding -->
     <meta charset="utf-8">
+    <!-- Responsive Viewport Meta Tag: Ensures proper rendering and touch scaling on mobile screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pokédex | RotomWeb Dex</title>
     <meta name="description" content="Modern Notika Admin Template powered by Vite 7.1.5">
 
-    <!-- Mobile Menu CSS -->
-
-
-    <!-- Google Fonts (Roboto) -->
+    <!-- External Google Fonts (Roboto) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 Framework CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome 6 Icon Library (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Unified Template CSS -->
+    <!-- Custom and Template Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="custom.css">
 </head>
 
+<!-- 
+  BODY CLASSES EXPLANATION:
+  - d-flex flex-column min-vh-100: Bootstrap flexbox utilities forcing full viewport height to push the footer to the bottom.
+  - has-desktop-sidebar: Custom template class adding left padding on desktop devices (>=992px) for the fixed sidebar.
+-->
 <body class="d-flex flex-column min-vh-100 has-desktop-sidebar">
 
-    <!-- Modern Bootstrap 5 Header -->
+    <!-- =========================================================================
+         HEADER SECTION (Notika Template Top Navigation Bar)
+         Contains branding logo, search bar toggle, and mobile menu trigger.
+         ========================================================================= -->
     <header class="notika-header">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Logo Section -->
+                <!-- Branding Logo Column -->
                 <div class="col-lg-4 col-6">
                     <div class="notika-brand">
                         <a href="home.html">
@@ -40,11 +47,11 @@
                     </div>
                 </div>
 
-                <!-- Navigation Section -->
+                <!-- Navigation Action Controls (Search Dropdown & Mobile Menu Button) -->
                 <div class="col-lg-8 col-6">
                     <div class="notika-nav justify-content-end d-flex align-items-center gap-2 gap-lg-3">
 
-                        <!-- Search -->
+                        <!-- Search Box Dropdown Toggle -->
                         <div class="dropdown">
                             <button class="notika-nav-link" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-label="Buscar">
                                 <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
@@ -59,8 +66,8 @@
 
                         <!-- 
                           Bootstrap Offcanvas Trigger Button:
-                          - d-lg-none: Hidden on desktop displays (>=992px) where fixed sidebar is active.
-                          - data-bs-toggle="offcanvas" & data-bs-target="#mobileNavOffcanvas": Opens the offcanvas menu.
+                          - d-lg-none: Hides the hamburger button on large screens (>=992px) where the fixed sidebar is active.
+                          - data-bs-toggle="offcanvas": Triggers Bootstrap's slide-in drawer.
                         -->
                         <button class="notika-nav-link d-lg-none btn border-0 text-white" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas"
@@ -72,9 +79,12 @@
             </div>
         </div>
     </header>
-    <!-- End Modern Header -->
+    <!-- End Header -->
 
-    <!-- Mobile Offcanvas Navigation -->
+    <!-- =========================================================================
+         MOBILE OFFCANVAS NAVIGATION (Bootstrap 5 Component)
+         Side-drawer navigation menu for mobile devices (<992px).
+         ========================================================================= -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas" aria-labelledby="mobileNavOffcanvasLabel">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title d-flex align-items-center gap-2 text-white" id="mobileNavOffcanvasLabel">
@@ -103,7 +113,7 @@
 
                 <li class="sidebar-section-label">Explorar</li>
 
-                <!-- Type Dropdown -->
+                <!-- Type Category Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
@@ -119,7 +129,7 @@
                     </ul>
                 </li>
 
-                <!-- Generation Dropdown -->
+                <!-- Generation Category Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
@@ -139,9 +149,13 @@
             </ul>
         </div>
     </div>
-    <!-- End Mobile Offcanvas Navigation -->
+    <!-- End Mobile Offcanvas -->
 
-    <!-- Desktop Sidebar Navigation -->
+    <!-- =========================================================================
+         DESKTOP SIDEBAR NAVIGATION (Notika Admin Template Core Component)
+         Fixed vertical sidebar shown only on desktop displays (>=992px).
+         Hidden on mobile viewports using 'd-none d-lg-block'.
+         ========================================================================= -->
     <nav class="navbar navbar-expand-lg notika-navbar d-none d-lg-block" aria-label="Navegación principal">
         <div class="sidebar-inner">
             <a class="sidebar-brand" href="home.html">
@@ -207,122 +221,144 @@
         </div>
     </nav>
     <!-- End Desktop Sidebar Navigation -->
-    <!-- Start Status area -->
-    <div class="notika-status-area">
+
+    <!-- =========================================================================
+         MAIN CONTENT AREA: POKÉDEX GRID (9 Demo Items)
+         Uses Bootstrap Grid System:
+         - col-12: 1 Column on Mobile screens (<576px).
+         - col-sm-6 & col-md-6: 2 Columns on Small/Medium screens (576px - 991px).
+         - col-lg-4: 3 Columns on Large/Desktop screens (>=992px).
+         ========================================================================= -->
+    <div class="notika-status-area my-4">
         <div class="container">
+            <!-- Top Action Header Row with "Create New Element" Button -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-white fw-bold mb-0">Pokédex</h1>
+                <a href="new-pokemon.html" class="btn btn-primary m-0">
+                    <i class="fa-solid fa-plus me-1"></i> Crear nuevo elemento
+                </a>
+            </div>
+
+            <!-- Responsive Card Grid -->
             <div class="row">
+                <!-- Item 1: Bulbasaur -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0001.png" height="100" width="100" alt="Bulbasaur">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Bulbasaur</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">g</span>Planta</span></p>
                         </div>
-                        <div class="sparkline-bar-stats1"></div>
                     </a>
                 </div>
+
+                <!-- Item 2: Charmander -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0004.png" height="100" width="100" alt="Charmander">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Charmander</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">f</span>Fuego</span></p>
                         </div>
-                        <div class="sparkline-bar-stats2"></div>
                     </a>
                 </div>
+
+                <!-- Item 3: Squirtle -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0007.png" height="100" width="100" alt="Squirtle">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Squirtle</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">w</span>Agua</span></p>
                         </div>
-                        <div class="sparkline-bar-stats3"></div>
                     </a>
                 </div>
+
+                <!-- Item 4: Pikachu -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30 mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0025.png" height="100" width="100" alt="Pikachu">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Pikachu</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">l</span>Eléctrico</span></p>
                         </div>
-                        <div class="sparkline-bar-stats4"></div>
                     </a>
                 </div>
+
+                <!-- Item 5: Gengar -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30 mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0094.png" height="100" width="100" alt="Gengar">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Gengar</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">p</span>Psíquico</span></p>
                         </div>
-                        <div class="sparkline-bar-stats1"></div>
                     </a>
                 </div>
+
+                <!-- Item 6: Snorlax -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30 mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0143.png" height="100" width="100" alt="Snorlax">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Snorlax</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">c</span>Normal</span></p>
                         </div>
-                        <div class="sparkline-bar-stats2"></div>
                     </a>
                 </div>
+
+                <!-- Item 7: Dragonite -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30 mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0149.png" height="100" width="100" alt="Dragonite">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Dragonite</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">n</span>Dragón</span></p>
                         </div>
-                        <div class="sparkline-bar-stats3"></div>
                     </a>
                 </div>
+
+                <!-- Item 8: Mewtwo -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30 mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0150.png" height="100" width="100" alt="Mewtwo">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Mewtwo</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">p</span>Psíquico</span></p>
                         </div>
-                        <div class="sparkline-bar-stats4"></div>
                     </a>
                 </div>
+
+                <!-- Item 9: Eevee -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30 mg-t-30">
+                    <a href="pokemon.html" class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
                         <img src="images/0133.png" height="100" width="100" alt="Eevee">
                         <div class="Pokemon">
                             <h2><span class="Pokemon-Name">Eevee</span></h2>
                             <p><span class="Pokemon-Type"><span class="tcg-icon">c</span>Normal</span></p>
                         </div>
-                        <div class="sparkline-bar-stats1"></div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Status area-->
+    <!-- End Status Area Grid -->
 
-
-
-
-    <!-- Start Footer area-->
-    <footer class="footer-copyright-area mt-auto">
+    <!-- =========================================================================
+         FOOTER SECTION
+         Pushed to bottom of viewport using Bootstrap 'mt-auto'.
+         ========================================================================= -->
+    <footer class="footer-copyright-area mt-auto py-3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="footer-copy-right">
-                        <p>RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
-                    </div>
+                <div class="col-lg-12 text-center text-white">
+                    <p class="mb-0">RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- End Footer area-->
-    <!-- Bootstrap 5 JS Bundle & Custom Scripts -->
+
+    <!-- Bootstrap 5 JavaScript Bundle (Includes Popper.js for dropdowns & offcanvas) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
