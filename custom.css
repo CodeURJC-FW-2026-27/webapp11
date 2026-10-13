@@ -1,37 +1,54 @@
+/* =========================================================================
+   1. CUSTOM FONTS & GLOBAL BASE STYLES
+   ========================================================================= */
+
+/* Custom Font Definition for Pokémon TCG Font Icons */
 @font-face {
   font-family: 'EssentiarumTCG';
   src: url('fonts/EssentiarumTCG-COLR.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: swap; /* Improves loading performance by showing fallback text first */
 }
-body{
-    background-color: #101A2E;
+
+/* Base Body Color */
+body {
+    background-color: #101A2E; /* Dark Navy Background */
 }
-.nav-link{
+
+/* Global Nav Links Override */
+.nav-link {
     color: white !important;
 }
 
-.navbar{
-    background-color: #FF7A3D;
+/* Navigation Bar Branding Colors */
+.navbar {
+    background-color: #FF7A3D; /* Rotom Orange Accent */
 }
-.notika-header{
-    background-color: #E63946;
+
+.notika-header {
+    background-color: #E63946; /* Pokeball Red Header */
     border-bottom: 0;
 }
+
+/* Brand Logo Adjustments */
 .create-pokemon-brand > a {
     display: block;
     flex: 0 0 40px;
 }
+
 .create-pokemon-brand img {
     width: 40px;
     height: 40px;
     object-fit: contain;
 }
+
 .create-pokemon-brand .header-title {
     font-size: 1.25rem;
     line-height: 1.2;
 }
+
+/* Small Screens Header Branding Adjustments */
 @media (max-width: 576px) {
     .create-pokemon-brand > a {
         flex-basis: 32px;
@@ -47,59 +64,80 @@ body{
         line-height: 1;
     }
 }
-.footer-copyright-area{
+
+/* Footer Accent */
+.footer-copyright-area {
     background-color: #E63946;
 }
-.fa-solid{
+
+/* Font Awesome Icon Rules */
+.fa-solid {
     background-color: fixed;
     color: white !important;
 }
+
+/* Search Focus Highlight */
 .search-input-group input:focus {
     border-color: #FF7A3D !important; 
 }
-.notika-dropdown-header{
+
+.notika-dropdown-header {
     background: #FF7A3D; 
 }
-.wb-traffic-inner{
-    background:#a3e8f0;
-    color: inherit;
-    padding: 2.5rem 2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+
+/* =========================================================================
+   2. NOTIKA TEMPLATE CONTAINER OVERRIDES (.wb-traffic-inner)
+   Note: In the original Notika template, .wb-traffic-inner is designed as a
+   linear horizontal stat-bar (sparklines). We force `display: block !important`
+   to convert it into a standard fluid block container that respects internal grid rows.
+   ========================================================================= */
+.wb-traffic-inner {
+    background: #a3e8f0; /* Rotom Light Cyan Card Background */
+    color: #101A2E;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     border-radius: 12px;
-    align-items: center;
+    display: block !important; /* Critical override: prevents children from stretching in a single row */
 }
 
-.wb-traffic-inner .sparkline-bar-stats1,
-.wb-traffic-inner .sparkline-bar-stats2,
-.wb-traffic-inner .sparkline-bar-stats3,
-.wb-traffic-inner .sparkline-bar-stats4 {
-    display: none;
+/* Desktop Padding Expansion */
+@media (min-width: 768px) {
+    .wb-traffic-inner {
+        padding: 2.5rem 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
 }
 
-/* Permitir que el formulario ocupe el 100% del ancho del contenedor azul */
+/* Full Width Form behavior inside Notika Box */
 .wb-traffic-inner form {
     width: 100%;
     max-width: 100%;
     margin: 0;
 }
 
+/* Custom Icon Class for Type Glyph Fonts */
 .tcg-icon {
     font-family: 'EssentiarumTCG', sans-serif;
     line-height: 1;
     font-size: 1.25rem;
     vertical-align: middle;
 }
-.Pokemon{
+
+.Pokemon {
     margin-left: auto;
     text-align: right;
 }
+
 .Pokemon h2 {
     margin-bottom: 5px;
 }
+
 .Pokemon p {
     margin-bottom: 0;
 }
+
 .notika-dropdown-item:hover {
     color: #FF7A3D !important;
 }
@@ -108,6 +146,7 @@ body{
     justify-content: flex-start !important;
 }
 
+/* Global Button Customization */
 .btn-primary {
     color: #e9ecef;
     background-color: #FF7A3D !important;
@@ -115,7 +154,7 @@ body{
     border-width: 0.2em;
     border-color: #101A2E;
     margin-right: 0.2em;   
-    margin-bottom:  1rem;
+    margin-bottom: 0.5rem;
 }
 
 .notika-dropdown-item:hover img {
@@ -123,11 +162,58 @@ body{
     box-shadow: none !important;
     border-color: #e9ecef !important; 
 }
+
 .text-center {
     color: white !important;
 }
 
+/* =========================================================================
+   3. POKÉMON MAIN DETAILS CARD (.pokemon-card)
+   Responsive layout: Vertical stack on mobile devices, horizontal row on desktop (>=992px).
+   ========================================================================= */
+.pokemon-card {
+    width: 100%;
+    background-color: #0d6efd; /* Electric Blue Accent */
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+}
+
+.pokemon-content {
+    display: flex;
+    flex-direction: column; /* Mobile first: stacked vertically */
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.pokemon-text {
+    width: 100%;
+    color: white;
+}
+
+.pokemon-image-box {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.pokemon-image-box img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+
+/* =========================================================================
+   4. DESKTOP SIDEBAR MEDIA QUERIES (>=992px)
+   Reconfigures the layout when viewing on larger monitors.
+   ========================================================================= */
 @media (min-width: 992px) {
+    /* Shifts body content rightward to clear the fixed sidebar */
     body.has-desktop-sidebar {
         padding-left: 264px;
     }
@@ -136,6 +222,7 @@ body{
         display: none;
     }
 
+    /* Fixed Desktop Sidebar Construction */
     .has-desktop-sidebar .notika-navbar {
         position: fixed;
         inset: 0 auto 0 0;
@@ -237,71 +324,41 @@ body{
         background: #ff7a3d;
     }
 
+    /* Desktop layout for Pokémon main card (Side-by-side) */
     .pokemon-card {
-        width: 90%;
-        max-width: 1100px;
-        margin: 40px auto;
         padding: 30px;
-        background-color: #0d6efd;
-        border-radius: 12px;
     }
 
     .pokemon-content {
-        display: flex;
-        align-items: center;
+        flex-direction: row;
         justify-content: space-between;
         gap: 40px;
     }
 
     .pokemon-text {
         width: 50%;
-        color: white;
     }
 
     .pokemon-image-box {
         width: 42%;
-        aspect-ratio: 1 / 1;
-        background-color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-    }
-
-    .pokemon-image-box img {
-        width: 90%;
-        height: 90%;
-        object-fit: contain;
-    }
-
-    .pokemon-footer {
-        margin-top: 25px;
-        color: white;
-        padding: 15px 0;
-    }
-
-    .form-container {
-        width: 90%;
-        max-width: 700px;
-        margin: 40px auto;
-    }
-    .form-group {
-        margin-bottom: 15px;
+        max-width: none;
     }
 }
 
-/* =========================================================
-   ESTILOS ESPECÍFICOS Y RESPONSIVE DE LA TARJETA DE MOVIMIENTO
-   ========================================================= */
+/* =========================================================================
+   5. MOVE DETAILS CARD (.move-details-card)
+   Custom styles for displaying individual Pokémon moves (TCG / Game Boy Inspired)
+   ========================================================================= */
 .move-details-card {
     display: block !important;
 }
 
+/* Card Header: Title on left, Badges on right */
 .move-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows wrap on ultra-narrow viewports */
     gap: 1rem;
     border-bottom: 2px solid #101A2E;
     padding-bottom: 1rem;
@@ -324,10 +381,12 @@ body{
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
+/* Pill Badges for Type and Move Category */
 .type-pill {
-    background-color: #FFC107;
+    background-color: #FFC107; /* Electric Yellow */
     color: #101A2E;
     font-weight: 700;
     padding: 0.4rem 1rem;
@@ -339,7 +398,7 @@ body{
 }
 
 .category-pill {
-    background-color: #0D6EFD;
+    background-color: #0D6EFD; /* Special Category Blue */
     color: #FFFFFF;
     font-weight: 700;
     padding: 0.4rem 1rem;
@@ -347,10 +406,10 @@ body{
     border: 2px solid #101A2E;
 }
 
-/* Grid de estadísticas adaptable en varias filas si es necesario */
+/* CSS Grid for Stats (Power, Accuracy, PP). Automatically wraps items if container shrinks. */
 .move-stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -379,7 +438,7 @@ body{
     color: #101A2E;
 }
 
-/* Caja de descripción del efecto del movimiento */
+/* Description / Move Effect Box */
 .move-effect-box {
     background-color: #FFFFFF;
     border: 2px solid #101A2E;
@@ -405,7 +464,7 @@ body{
     line-height: 1.4;
 }
 
-/* Acciones */
+/* Action Control Buttons Container */
 .move-actions {
     display: flex;
     justify-content: center;
@@ -413,6 +472,9 @@ body{
     flex-wrap: wrap;
 }
 
+/* =========================================================================
+   6. MOBILE OFFCANVAS STYLING OVERRIDES
+   ========================================================================= */
 #mobileNavOffcanvas {
     background-color: #19283d !important;
 }

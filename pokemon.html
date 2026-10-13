@@ -2,7 +2,9 @@
 <html lang="es">
 
 <head>
+    <!-- Basic Metadata and Character Encoding -->
     <meta charset="utf-8">
+    <!-- Responsive Viewport Meta Tag: Ensures proper rendering and touch zooming on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Detalles del Pokémon | RotomWeb Dex</title>
     <meta name="description" content="Modern Notika Admin Template powered by Vite 7.1.5">
@@ -10,69 +12,72 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
-    <!-- Google Fonts (Roboto) -->
+    <!-- External Google Fonts (Roboto) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 Framework CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome 6 Icon Library (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Unified Template CSS -->
+    <!-- Custom and Template Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="custom.css">
 </head>
 
+<!-- 
+  BODY CLASSES EXPLANATION:
+  - d-flex flex-column min-vh-100: Bootstrap flexbox classes to ensure the body stretches full height, keeping footer at the bottom.
+  - has-desktop-sidebar: Custom template class that applies left padding on desktop screens (>=992px) to accommodate the fixed sidebar.
+-->
 <body class="d-flex flex-column min-vh-100 has-desktop-sidebar">
 
-    <!-- Modern Bootstrap 5 Header -->
-    <header class="notika-header">
+    <!-- =========================================================================
+         HEADER SECTION (Notika Template Style)
+         Top navigation bar containing branding, mobile menu toggle, and search trigger.
+         ========================================================================= -->
+    <header class="notika-header py-2">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Logo Section -->
-                <div class="col-lg-4 col-6">
-                    <div class="notika-brand">
+                <!-- Brand / Logo Area -->
+                <div class="col-8 col-lg-4">
+                    <div class="notika-brand d-flex align-items-center gap-2">
                         <a href="home.html">
-                            <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex">
+                            <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex" style="height: 36px;">
                         </a>
+                        <!-- Mobile-only brand text (Hidden on large desktop screens where sidebar shows) -->
+                        <span class="fs-5 text-white fw-bold d-inline-block d-lg-none">RotomWeb Dex</span>
                     </div>
                 </div>
 
-                <!-- Navigation Section -->
-                <div class="col-lg-8 col-6">
-                    <div class="notika-nav justify-content-end d-flex align-items-center gap-2 gap-lg-3">
-
-                        <!-- Search -->
-                        <div class="dropdown">
-                            <button class="notika-nav-link" type="button" data-bs-toggle="dropdown"
-                                data-bs-auto-close="outside" aria-label="Buscar">
-                                <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end notika-dropdown search-dropdown">
-                                <div class="search-input-group">
-                                    <input type="text" placeholder="Buscar..." class="form-control">
-                                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Mobile Menu Toggle -->
-                        <button class="notika-nav-link d-lg-none" type="button" data-bs-toggle="offcanvas"
+                <!-- Right Header Actions (Search & Mobile Offcanvas Menu Button) -->
+                <div class="col-4 col-lg-8">
+                    <div class="notika-nav justify-content-end d-flex align-items-center gap-2">
+                        <!-- 
+                          Bootstrap Offcanvas Trigger Button:
+                          - d-lg-none: Hidden on desktop displays (>=992px) where fixed sidebar is active.
+                          - data-bs-toggle="offcanvas" & data-bs-target="#mobileNavOffcanvas": Opens the offcanvas menu.
+                        -->
+                        <button class="notika-nav-link d-lg-none btn border-0 text-white" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas"
                             aria-label="Alternar navegación">
-                            <i aria-hidden="true" class="fa-solid fa-bars"></i>
+                            <i aria-hidden="true" class="fa-solid fa-bars fs-4"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    <!-- End Modern Header -->
+    <!-- End Header -->
 
-    <!-- Desktop Sidebar Navigation -->
+    <!-- =========================================================================
+         DESKTOP SIDEBAR NAVIGATION (Notika Admin Template Core Component)
+         Fixed side navbar displayed on large screens (>=992px).
+         Hidden on mobile devices via Bootstrap utility 'd-none d-lg-block'.
+         ========================================================================= -->
     <nav class="navbar navbar-expand-lg notika-navbar d-none d-lg-block" aria-label="Navegación principal">
         <div class="sidebar-inner">
             <a class="sidebar-brand" href="home.html">
@@ -100,7 +105,7 @@
 
                     <li class="sidebar-section-label">Explorar</li>
 
-                    <!-- Type Dropdown -->
+                    <!-- Type Filter Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
@@ -116,7 +121,7 @@
                         </ul>
                     </li>
 
-                    <!-- Generation Dropdown -->
+                    <!-- Generation Filter Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
@@ -137,9 +142,12 @@
             </div>
         </div>
     </nav>
-    <!-- End Desktop Sidebar Navigation -->
+    <!-- End Desktop Sidebar -->
 
-    <!-- Mobile Offcanvas Navigation -->
+    <!-- =========================================================================
+         MOBILE OFFCANVAS NAVIGATION (Bootstrap 5 Component)
+         Slide-in menu for smartphones and tablets (<992px).
+         ========================================================================= -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas" aria-labelledby="mobileNavOffcanvasLabel">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title d-flex align-items-center gap-2 text-white" id="mobileNavOffcanvasLabel">
@@ -152,7 +160,7 @@
             <ul class="navbar-nav w-100">
                 <li class="sidebar-section-label">Páginas</li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="home.html" aria-current="page">
+                    <a class="nav-link" href="home.html">
                         <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
                     </a>
                 </li>
@@ -162,14 +170,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pokemon.html">
+                    <a class="nav-link active" href="pokemon.html" aria-current="page">
                         <i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Detalles del Pokémon</span>
                     </a>
                 </li>
 
                 <li class="sidebar-section-label">Explorar</li>
 
-                <!-- Type Dropdown -->
+                <!-- Type Dropdown Mobile -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
@@ -185,7 +193,7 @@
                     </ul>
                 </li>
 
-                <!-- Generation Dropdown -->
+                <!-- Generation Dropdown Mobile -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
@@ -205,52 +213,71 @@
             </ul>
         </div>
     </div>
-    <!-- End Mobile Offcanvas Navigation -->
+    <!-- End Mobile Offcanvas -->
 
-    <!-- Pokemon Card -->
-    <div class="pokemon-card">
-        <div class="pokemon-content">
-            <!-- Text -->
-            <div class="pokemon-text">
-                <h2><strong>Pikachu</strong></h2>
-                <p>N.º 0025</p>
-                <p>Eléctrico</p>
-                <p>Primera generación</p>
-                <p>Altura: 0.4 m</p>
-                <p>Peso: 6.0 kg</p>
+    <!-- =========================================================================
+         SECTION 1: POKÉMON MAIN OVERVIEW CARD
+         Displays Pokémon details (text info and image) in a blue card.
+         ========================================================================= -->
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="pokemon-card">
+                    <div class="pokemon-content">
+                        <!-- Pokémon Text Details -->
+                        <div class="pokemon-text">
+                            <h2><strong>Pikachu</strong></h2>
+                            <p class="mb-1">N.º 0025</p>
+                            <p class="mb-1">Eléctrico</p>
+                            <p class="mb-1">Primera generación</p>
+                            <p class="mb-1">Altura: 0.4 m</p>
+                            <p class="mb-3">Peso: 6.0 kg</p>
 
-                <p>
-                    Posee bolsas en las mejillas donde almacena electricidad.
-                    Este inteligente habitante del bosque tuesta las bayas duras
-                    con una descarga eléctrica antes de consumirlas.
-                </p>
-            </div>
+                            <p class="mb-0">
+                                Posee bolsas en las mejillas donde almacena electricidad.
+                                Este inteligente habitante del bosque tuesta las bayas duras
+                                con una descarga eléctrica antes de consumirlas.
+                            </p>
+                        </div>
 
-            <!-- Image box-->
-            <div class="pokemon-image-box">
-                <img src="images/0025.png" alt="Pikachu">
-            </div>
+                        <!-- Pokémon Artwork Box -->
+                        <div class="pokemon-image-box">
+                            <img src="images/0025.png" alt="Pikachu">
+                        </div>
+                    </div>
 
-            <div class="d-flex justify-content-center gap-2 p-3">
-                <button type="button" class="btn btn-primary"> <i class="fa-solid fa-trash"></i> Borrar </button>
-                <button type="button" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Editar </button>
-                <a href="home.html" class="btn btn-primary" role="button"> <i class="fa-solid fa-arrow-left"></i> Volver </a>
+                    <!-- Action Buttons -->
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-trash me-1"></i> Borrar</button>
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square me-1"></i> Editar</button>
+                        <a href="home.html" class="btn btn-primary" role="button"><i class="fa-solid fa-arrow-left me-1"></i> Volver</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Movement Detail Card (TCG / Game Boy Style) -->
+    <!-- =========================================================================
+         SECTION 2: POKÉMON MOVE DETAILS CARD (TCG / Game Boy Style)
+         Uses .wb-traffic-inner (Notika Container Class) overridden in CSS to behave
+         as a responsive block container instead of a fixed horizontal row.
+         ========================================================================= -->
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-12">
+                <!-- 
+                  notika-shadow: Template class applying subtle shadow elevation.
+                  move-details-card: Custom class forcing block layout and overriding flex-wrap issues.
+                -->
                 <div class="wb-traffic-inner notika-shadow move-details-card">
-                    <!-- Header -->
+                    <!-- Move Title and Category/Type Badges -->
                     <div class="move-header">
                         <div class="move-title-group">
                             <i class="fa-solid fa-bolt text-warning fs-3"></i>
                             <h2>Bola Voltio</h2>
                         </div>
                         <div class="move-badges">
+                            <!-- Custom Type Badge with Icon Font -->
                             <span class="type-pill">
                                 <span class="tcg-icon">l</span> Eléctrico
                             </span>
@@ -260,7 +287,7 @@
                         </div>
                     </div>
 
-                    <!-- Stats -->
+                    <!-- Move Numerical Statistics (Grid layout adapting automatically) -->
                     <div class="move-stats-grid">
                         <div class="stat-card">
                             <span class="stat-label">Potencia</span>
@@ -276,30 +303,33 @@
                         </div>
                     </div>
 
-                    <!-- Effect -->
+                    <!-- Move Description & Effect Container -->
                     <div class="move-effect-box">
                         <span class="effect-label">Efecto del movimiento</span>
                         <p>Lanza una bola eléctrica. Cuanto mayor sea la Velocidad del usuario en comparación con la del objetivo, mayor será el daño causado.</p>
                     </div>
 
-                    <!-- Buttons -->
+                    <!-- Action Control Buttons -->
                     <div class="move-actions">
-                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Borrar</button>
-                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-                        <a href="home.html" class="btn btn-primary" role="button"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-trash me-1"></i> Borrar</button>
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square me-1"></i> Editar</button>
+                        <a href="home.html" class="btn btn-primary" role="button"><i class="fa-solid fa-arrow-left me-1"></i> Volver</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Create Movement Form -->
+    <!-- =========================================================================
+         SECTION 3: CREATE NEW MOVE FORM CONTAINER
+         Standard Bootstrap Form integrated inside Notika's cyan container (.wb-traffic-inner).
+         ========================================================================= -->
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="wb-traffic-inner notika-shadow">
                     <form>
-                        <!-- Name and Type -->
+                        <!-- Form Row 1: Name & Type -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="Name" class="form-label"><strong>Nombre:</strong></label>
@@ -312,7 +342,7 @@
                             </div> 
                         </div>
 
-                        <!-- Category and Power -->
+                        <!-- Form Row 2: Category & Power -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="Category" class="form-label"><strong>Categoría:</strong></label>
@@ -325,7 +355,7 @@
                             </div>  
                         </div>
 
-                        <!-- Precision & Number of movements -->
+                        <!-- Form Row 3: Accuracy & PP -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="Accuracy" class="form-label"><strong>Precisión:</strong></label>
@@ -338,7 +368,7 @@
                             </div>  
                         </div>
 
-                        <!-- Description -->
+                        <!-- Form Row 4: Description Textarea -->
                         <div class="mb-3">
                             <label for="Description" class="form-label"><strong>Descripción:</strong></label>
                             <textarea class="form-control" id="Description" rows="3" placeholder="Descripción del movimiento"></textarea>
@@ -347,7 +377,7 @@
                         <!-- Submit Button -->
                         <div class="d-flex justify-content-center mt-4">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa-solid fa-plus"></i> Crear
+                                <i class="fa-solid fa-plus me-1"></i> Crear
                             </button>
                         </div>
                     </form>
@@ -356,21 +386,21 @@
         </div>
     </div>
 
-    <!-- Start Footer area-->
-    <footer class="footer-copyright-area mt-auto">
+    <!-- =========================================================================
+         FOOTER SECTION
+         Pushed to bottom using Bootstrap mt-auto utility.
+         ========================================================================= -->
+    <footer class="footer-copyright-area mt-auto py-3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="footer-copy-right">
-                        <p>RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
-                    </div>
+                <div class="col-lg-12 text-center text-white">
+                    <p class="mb-0">RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- End Footer area-->
 
-    <!-- Bootstrap 5 JS Bundle -->
+    <!-- Bootstrap 5 JavaScript Bundle (Includes Popper.js for dropdowns and offcanvas) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
