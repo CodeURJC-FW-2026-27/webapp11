@@ -479,6 +479,10 @@ body {
     background-color: #19283d !important;
 }
 
+#mobileNavOffcanvas .offcanvas-logo {
+    size: 40px;
+}
+
 #mobileNavOffcanvas .sidebar-section-label {
     margin: 18px 12px 6px;
     color: #aab5c5;
