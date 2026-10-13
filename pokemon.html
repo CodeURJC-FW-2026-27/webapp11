@@ -112,10 +112,78 @@
     </nav>
     <!-- End Desktop Sidebar Navigation -->
 
-    <!-- Ficha de Pokémon -->
+    <!-- Mobile Offcanvas Navigation -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas" aria-labelledby="mobileNavOffcanvasLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2 text-white" id="mobileNavOffcanvasLabel">
+                <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex" style="height: 30px;">
+                <span>RotomWeb Dex</span>
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav w-100">
+                <li class="sidebar-section-label">Páginas</li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="home.html" aria-current="page">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="new-pokemon.html">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Crear Pokémon</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pokemon.html">
+                        <i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Detalles del Pokémon</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-section-label">Explorar</li>
+
+                <!-- Type Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">g</span> Planta</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">f</span> Fuego</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">w</span> Agua</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">l</span> Eléctrico</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">p</span> Psíquico</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">n</span> Dragón</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">c</span> Normal</a></li>
+                    </ul>
+                </li>
+
+                <!-- Generation Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Gen I (Kanto)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen II (Johto)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen III (Hoenn)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen IV (Sinnoh)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen V (Unova)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen VI (Kalos)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen VII (Alola)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen VIII (Galar)</a></li>
+                        <li><a class="dropdown-item" href="#">Gen IX (Paldea)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Mobile Offcanvas Navigation -->
+
+    <!-- Pokemon Card -->
     <div class="pokemon-card">
         <div class="pokemon-content">
-            <!-- Texto -->
+            <!-- Text -->
             <div class="pokemon-text">
                 <h2><strong>Pikachu</strong></h2>
                 <p>N.º 0025</p>
@@ -131,7 +199,7 @@
                 </p>
             </div>
 
-            <!-- Cuadrado blanco con imagen -->
+            <!-- Image box-->
             <div class="pokemon-image-box">
                 <img src="images/0025.png" alt="Pikachu">
             </div>
@@ -139,17 +207,17 @@
             <div class="d-flex justify-content-center gap-2 p-3">
                 <button type="button" class="btn btn-primary"> <i class="fa-solid fa-trash"></i> Borrar </button>
                 <button type="button" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Editar </button>
-                <a href="pokemon.html" class="btn btn-primary" role="button"> <i class="fa-solid fa-arrow-left"></i> Volver </a>
+                <a href="home.html" class="btn btn-primary" role="button"> <i class="fa-solid fa-arrow-left"></i> Volver </a>
             </div>
         </div>
     </div>
 
-    <!-- Tarjeta de Detalle del Movimiento (Estilo TCG / Game Boy) -->
+    <!-- Movement Detail Card (TCG / Game Boy Style) -->
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="wb-traffic-inner notika-shadow move-details-card">
-                    <!-- Cabecera -->
+                    <!-- Header -->
                     <div class="move-header">
                         <div class="move-title-group">
                             <i class="fa-solid fa-bolt text-warning fs-3"></i>
@@ -165,7 +233,7 @@
                         </div>
                     </div>
 
-                    <!-- Estadísticas -->
+                    <!-- Stats -->
                     <div class="move-stats-grid">
                         <div class="stat-card">
                             <span class="stat-label">Potencia</span>
@@ -181,30 +249,30 @@
                         </div>
                     </div>
 
-                    <!-- Efecto -->
+                    <!-- Effect -->
                     <div class="move-effect-box">
                         <span class="effect-label">Efecto del movimiento</span>
                         <p>Lanza una bola eléctrica. Cuanto mayor sea la Velocidad del usuario en comparación con la del objetivo, mayor será el daño causado.</p>
                     </div>
 
-                    <!-- Botones -->
+                    <!-- Buttons -->
                     <div class="move-actions">
                         <button type="button" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Borrar</button>
                         <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-                        <a href="pokemon.html" class="btn btn-primary" role="button"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+                        <a href="home.html" class="btn btn-primary" role="button"><i class="fa-solid fa-arrow-left"></i> Volver</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Formulario Crear Movimiento -->
+    <!-- Create Movement Form -->
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="wb-traffic-inner notika-shadow">
                     <form>
-                        <!-- Nombre & Tipo -->
+                        <!-- Name and Type -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="Name" class="form-label"><strong>Nombre:</strong></label>
@@ -217,7 +285,7 @@
                             </div> 
                         </div>
 
-                        <!-- Categoría & Poder -->
+                        <!-- Category and Power -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="Category" class="form-label"><strong>Categoría:</strong></label>
@@ -230,7 +298,7 @@
                             </div>  
                         </div>
 
-                        <!-- Precisión & Número de movimientos -->
+                        <!-- Precision & Number of movements -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="Accuracy" class="form-label"><strong>Precisión:</strong></label>
@@ -243,13 +311,13 @@
                             </div>  
                         </div>
 
-                        <!-- Descripción -->
+                        <!-- Description -->
                         <div class="mb-3">
                             <label for="Description" class="form-label"><strong>Descripción:</strong></label>
                             <textarea class="form-control" id="Description" rows="3" placeholder="Descripción del movimiento"></textarea>
                         </div>
 
-                        <!-- Botón de Envío -->
+                        <!-- Submit Button -->
                         <div class="d-flex justify-content-center mt-4">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa-solid fa-plus"></i> Crear
