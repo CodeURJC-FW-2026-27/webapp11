@@ -111,13 +111,13 @@ Entities have associated images to complement their visualization:
   5. [`README.md`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/README.md)
 
 #### Omar Pozo Adán (@OmarPozoAdan)
-* **Task Description:** Worked on... *(añadir un párrafo breve explicando qué hizo)*.
+* **Task Description:** Worked on web structure, implementation of sidebar for category visualization, fixing and debugging errors affecting web design on mobile view, as well as checking that all documents met the rules marked on the practice's description.
 * **Top 5 Commits:**
-  1. [Commit 1 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_1)
-  2. [Commit 2 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_2)
-  3. [Commit 3 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_3)
-  4. [Commit 4 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_4)
-  5. [Commit 5 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_5)
+  1. [Generation of a fixed navigation sidebar](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/54df5ad85e6a38ef09c87e65b2f7360ef54062dd)
+  2. [Standard unique navigation section and trigger buttons on mobile display](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/5dfd9e7a9256d65e636ef283eb8de67396165e12)
+  3. [Implementation of mobile navigation on the rest of pages and fixing of minor errors](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/b66303da4482b1df09e1b76dd635b8ad5ddcee74)
+  4. [MObile visibility fix on pokemon page](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/bf731aa341861d54fd66701f2bf55c4223e3650e)
+  5. [Copyright tag established in all HTML page footer](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/882470dc0f3ec25dc1d2f1ba63a44ef295f1c3f8)
 * **Top 5 Files:**
   1. [`home.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/home.html)
   2. [`custom.css`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/custom.css)
