@@ -66,7 +66,7 @@ Entities have associated images to complement their visualization:
 ### Member Contributions
 
 #### Adrián Molero Miñana (@S0cr4te5)
-* **Task Description:** Worked on... *(añadir un párrafo breve explicando qué hizo)*.
+* **Task Description:** Worked mainly on the home view, though I also reviewed and worked in new-pokemon, pokemon and gave the basic structure and design of the web. 
 * **Top 5 Commits:**
   1. [Added Home Page](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/5026281fdf01c7fe8e7ed02a67213d4627e1f4a8)
   2. [Unified CSS](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/a515cb49c809e0030d7bf155d584476c11bc7e4a)
