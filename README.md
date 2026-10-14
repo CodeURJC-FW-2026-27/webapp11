@@ -98,16 +98,16 @@ Entities have associated images to complement their visualization:
 #### Lucas Román Jiménez (@Lucas-Roman-Jimenez)
 * **Task Description:** Worked on... *(añadir un párrafo breve explicando qué hizo)*.
 * **Top 5 Commits:**
-  1. [Commit 1 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_1)
-  2. [Commit 2 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_2)
-  3. [Commit 3 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_3)
-  4. [Commit 4 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_4)
-  5. [Commit 5 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_5)
+  1. [Added Pokemon Page and modified the CSS file to adapt the buttons](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/80a2472a3bf5d4f50686bc04d624132caf32f7a6)
+  2. [new movement form](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/93cd62a5490b72ad0527c5eb8fea86accc0fbb63)
+  3. [Fixed display of pokemons](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/189165a026a47f23407aa51d605629a972c8cd61)
+  4. [Fixed minor issues with the buttons and the new movement form](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/fff31b0e0375a87e180a2cbf4e43446ccf45ad25)
+  5. [Filled information in pokemon.html](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/ae844bc0cea3d021cf191dab330a5a6f3b8dc1a7)
 * **Top 5 Files:**
-  1. [`new-pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/new-pokemon.html)
+  1. [`pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/pokemon.html)
   2. [`custom.css`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/custom.css)
   3. [`home.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/home.html)
-  4. [`pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/pokemon.html)
+  4. [`new-pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/new-pokemon.html)
   5. [`README.md`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/README.md)
 
 #### Omar Pozo Adán (@OmarPozoAdan)
