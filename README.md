@@ -96,7 +96,7 @@ Entities have associated images to complement their visualization:
   5. [`README.md`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/README.md)
 
 #### Lucas Román Jiménez (@Lucas-Roman-Jimenez)
-* **Task Description:** Worked on... *(añadir un párrafo breve explicando qué hizo)*.
+* **Task Description:** Worked on creating the Pokemon page, fixing most of the problems that occurred, as well as filling all the information relevant to the example of the Pokemon page.
 * **Top 5 Commits:**
   1. [Added Pokemon Page and modified the CSS file to adapt the buttons](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/80a2472a3bf5d4f50686bc04d624132caf32f7a6)
   2. [new movement form](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/93cd62a5490b72ad0527c5eb8fea86accc0fbb63)
