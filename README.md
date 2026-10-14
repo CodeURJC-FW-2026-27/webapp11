@@ -68,11 +68,11 @@ Entities have associated images to complement their visualization:
 #### Adrián Molero Miñana (@S0cr4te5)
 * **Task Description:** Worked on... *(añadir un párrafo breve explicando qué hizo)*.
 * **Top 5 Commits:**
-  1. [Commit 1 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_1)
-  2. [Commit 2 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_2)
-  3. [Commit 3 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_3)
-  4. [Commit 4 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_4)
-  5. [Commit 5 Title](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/COMMIT_HASH_5)
+  1. [Added Home Page](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/5026281fdf01c7fe8e7ed02a67213d4627e1f4a8)
+  2. [Unified CSS](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/a515cb49c809e0030d7bf155d584476c11bc7e4a)
+  3. [Mobile capabilities added to the home page](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/2ea96c0135a662758a143e46ff0998e3813e478f)
+  4. [Enhance navbar styles and add Pokémon cards to home page](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/ce17b226ecc633583bd80aaa7971116324db7a74)
+  5. [Filtering and categorization](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/b1d25b42aacf19f3a2d06393a92829d8a0c91e9b)
 * **Top 5 Files:**
   1. [`home.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/home.html)
   2. [`custom.css`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/custom.css)
