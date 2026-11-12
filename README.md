@@ -52,8 +52,8 @@ Entities have associated images to complement their visualization:
 
 ### Screenshots
 
-#### Main Page (`home.html`)
-![Main Page](images/home.png)
+#### Main Page (`index.html`)
+![Main Page](images/index.png)
 
 #### Details Page (`pokemon-details.html`)
 ![Details Page](images/details.png)
