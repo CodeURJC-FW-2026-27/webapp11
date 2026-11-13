@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 const client = new MongoClient('mongodb://localhost:27017');
 const db = client.db('pokedex');
 const pokemons = db.collection('pokemons');
-const abilities = db.collection('abilities');
+
 
 const router = express.Router();
 export default router;
