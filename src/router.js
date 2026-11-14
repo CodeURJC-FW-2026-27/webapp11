@@ -31,9 +31,6 @@ export default router;
 
 router.get('/', async (req, res) => {
     try {
-        if (await pokemons.countDocuments() === 0) {
-            await initDb();
-        }
         const pokemonList = await pokemons.find({}).toArray();
         res.render('index', {
             pokemons: pokemonList
