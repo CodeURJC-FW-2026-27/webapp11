@@ -10,11 +10,9 @@ const pokemons = db.collection('pokemons');
 async function initDb() {
     try {
         if (await pokemons.countDocuments() === 0) {
-
             let currentSourceFilePath = import.meta.url;
             let absoluteDataFilePath = new URL('../data/pokemons.json', currentSourceFilePath);
             const pokemonsAsString = await readFile(absoluteDataFilePath, 'utf8');
-
             const pokemonsAsObjects = JSON.parse(pokemonsAsString);
 
             await pokemons.insertMany(pokemonsAsObjects);
@@ -99,3 +97,11 @@ router.get('/', async (req, res) => {
 
 router.get('/index', (req, res) => res.redirect('/'));
 router.get('/index.html', (req, res) => res.redirect('/'));
+
+
+router.get('/pokemon/:id', async (req, res) => {
+    const pokemon = await pokemons.findOne({ pokedexNumber: parseInt(req.params.id) })
+    res.render('pokemon', {
+        pokemon: pokemon
+    });
+});

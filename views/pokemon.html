@@ -11,23 +11,21 @@
                 <div class="pokemon-content">
                     <!-- Pokémon Text Details -->
                     <div class="pokemon-text">
-                        <h2><strong>Pikachu</strong></h2>
-                        <p class="mb-1">N.º 0025</p>
-                        <p class="mb-1">Eléctrico</p>
-                        <p class="mb-1">Primera generación</p>
-                        <p class="mb-1">Altura: 0.4 m</p>
-                        <p class="mb-3">Peso: 6.0 kg</p>
+                        <h2><strong>{{pokemon.name}}</strong></h2>
+                        <p class="mb-1">N.º {{pokemon.formattedNumber}}</p>
+                        <p class="mb-1"><span class="tcg-icon me-1">{{pokemon.typeIcon}}</span>{{pokemon.typeLabel}}</p>
+                        <p class="mb-1">Generación {{pokemon.generation}}</p>
+                        <p class="mb-1">Altura: {{pokemon.height}} m</p>
+                        <p class="mb-3">Peso: {{pokemon.weight}} kg</p>
 
                         <p class="mb-0">
-                            Posee bolsas en las mejillas donde almacena electricidad.
-                            Este inteligente habitante del bosque tuesta las bayas duras
-                            con una descarga eléctrica antes de consumirlas.
+                            {{pokemon.description}}
                         </p>
                     </div>
 
                     <!-- Pokémon Artwork Box -->
                     <div class="pokemon-image-box">
-                        <img src="/images/0025.png" alt="Pikachu">
+                        <img src="/images/{{pokemon.image}}" alt="{{pokemon.name}}">
                     </div>
                 </div>
 
