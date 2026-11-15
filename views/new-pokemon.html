@@ -1,332 +1,112 @@
-<!DOCTYPE html>
-<html lang="es">
+{{>header}}
 
-<head>
-    <!-- Basic Metadata -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crear Pokémon | RotomWeb Dex</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Custom and Template Stylesheets -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="custom.css">
-</head>
-
-<body class="d-flex flex-column min-vh-100 has-desktop-sidebar">
-
-    <!-- Modern Bootstrap 5 Header -->
-    <header class="notika-header">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Logo Section -->
-                <div class="col-lg-4 col-6">
-                    <div class="notika-brand">
-                        <a href="index.html">
-                            <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Navigation Action Section -->
-                <div class="col-lg-8 col-6">
-                    <div class="notika-nav justify-content-end d-flex align-items-center gap-2 gap-lg-3">
-
-                        <!-- Search Box -->
-                        <div class="dropdown">
-                            <button class="notika-nav-link" type="button" data-bs-toggle="dropdown"
-                                data-bs-auto-close="outside" aria-label="Buscar">
-                                <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end notika-dropdown search-dropdown">
-                                <div class="search-input-group">
-                                    <input type="text" placeholder="Buscar..." class="form-control">
-                                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                                </div>
-                            </div>
+<!-- =========================================================================
+     MAIN CONTENT AREA: CREATE POKÉMON FORM
+     ========================================================================= -->
+<div class="container my-auto">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="wb-traffic-inner notika-shadow d-block">
+                <h2 class="fw-bold mb-4 text-dark">Crear Nuevo Pokémon</h2>
+                
+                <form>
+                    <!-- Row 1: Name & Pokedex Number -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="pokemon-name" class="form-label"><strong>Nombre:</strong></label>
+                            <input type="text" id="pokemon-name" name="name" class="form-control" placeholder="Ej. Pikachu" required>
                         </div>
 
-                        <!-- Mobile Offcanvas Trigger Button -->
-                        <button class="notika-nav-link d-lg-none btn border-0 text-white" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#mobileNavOffcanvas" aria-controls="mobileNavOffcanvas"
-                            aria-label="Alternar navegación">
-                            <i aria-hidden="true" class="fa-solid fa-bars fs-4"></i>
+                        <div class="col-md-6 mb-3">
+                            <label for="pokedex-number" class="form-label"><strong>Número de la Pokédex:</strong></label>
+                            <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1" placeholder="Ej. 25" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Type Select & Generation Select -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="pokemon-type" class="form-label"><strong>Tipo:</strong></label>
+                            <select id="pokemon-type" name="type" class="form-select" required>
+                                <option value="" selected disabled>Selecciona un tipo</option>
+                                <option value="normal">Normal</option>
+                                <option value="fire">Fuego</option>
+                                <option value="water">Agua</option>
+                                <option value="grass">Planta</option>
+                                <option value="electric">Eléctrico</option>
+                                <option value="ice">Hielo</option>
+                                <option value="fighting">Lucha</option>
+                                <option value="poison">Veneno</option>
+                                <option value="ground">Tierra</option>
+                                <option value="flying">Volador</option>
+                                <option value="psychic">Psíquico</option>
+                                <option value="bug">Bicho</option>
+                                <option value="rock">Roca</option>
+                                <option value="ghost">Fantasma</option>
+                                <option value="dragon">Dragón</option>
+                                <option value="dark">Siniestro</option>
+                                <option value="steel">Acero</option>
+                                <option value="fairy">Hada</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="pokemon-generation" class="form-label"><strong>Generación:</strong></label>
+                            <select id="pokemon-generation" name="generation" class="form-select" required>
+                                <option value="" selected disabled>Selecciona una generación</option>
+                                <option value="1">Generación I</option>
+                                <option value="2">Generación II</option>
+                                <option value="3">Generación III</option>
+                                <option value="4">Generación IV</option>
+                                <option value="5">Generación V</option>
+                                <option value="6">Generación VI</option>
+                                <option value="7">Generación VII</option>
+                                <option value="8">Generación VIII</option>
+                                <option value="9">Generación IX</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Height & Weight (Decimals) -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="pokemon-height" class="form-label"><strong>Altura (m):</strong></label>
+                            <input type="number" id="pokemon-height" name="height" class="form-control" min="0" step="0.1" placeholder="Ej. 0.4" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="pokemon-weight" class="form-label"><strong>Peso (kg):</strong></label>
+                            <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0" step="0.1" placeholder="Ej. 6.0" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Description Textarea -->
+                    <div class="mb-3">
+                        <label for="pokemon-description" class="form-label"><strong>Descripción:</strong></label>
+                        <textarea id="pokemon-description" name="description" class="form-control" rows="4" placeholder="Escribe una descripción del Pokémon..." required></textarea>
+                    </div>
+
+                    <!-- Row 5: Image File Upload Input -->
+                    <div class="mb-3">
+                        <label for="pokemon-image" class="form-label"><strong>Imagen:</strong></label>
+                        <input type="file" id="pokemon-image" name="image" class="form-control" accept="image/*" required>
+                    </div>
+
+                    <!-- Form Action Control Buttons (Save & Cancel) -->
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Guardar
                         </button>
+
+                        <a href="/" class="btn btn-primary" role="button">
+                            <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- End Header -->
-
-    <!-- Mobile Offcanvas Navigation -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas" aria-labelledby="mobileNavOffcanvasLabel">
-        <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title d-flex align-items-center gap-2 text-white" id="mobileNavOffcanvasLabel">
-                <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex" class="offcanvas-logo">
-            </h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav w-100">
-                <li class="sidebar-section-label">Páginas</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="new-pokemon.html" aria-current="page">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Crear Pokémon</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pokemon.html">
-                        <i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Detalles del Pokémon</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-section-label">Explorar</li>
-
-                <!-- Type Dropdown Mobile -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">g</span> Planta</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">f</span> Fuego</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">w</span> Agua</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">l</span> Eléctrico</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">p</span> Psíquico</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">n</span> Dragón</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="tcg-icon">c</span> Normal</a></li>
-                    </ul>
-                </li>
-
-                <!-- Generation Dropdown Mobile -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Gen I (Kanto)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen II (Johto)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen III (Hoenn)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen IV (Sinnoh)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen V (Unova)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen VI (Kalos)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen VII (Alola)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen VIII (Galar)</a></li>
-                        <li><a class="dropdown-item" href="#">Gen IX (Paldea)</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- End Mobile Offcanvas -->
-
-    <!-- Desktop Sidebar Navigation -->
-    <nav class="navbar navbar-expand-lg notika-navbar d-none d-lg-block" aria-label="Navegación principal">
-        <div class="sidebar-inner">
-            <a class="sidebar-brand" href="index.html">
-                <img src="images/pokeball-icon-594337-512.png" alt="">
-                <span>RotomWeb Dex</span>
-            </a>
-            <div class="navbar-collapse">
-                <ul class="navbar-nav w-100">
-                    <li class="sidebar-section-label">Páginas</li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="new-pokemon.html" aria-current="page">
-                            <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Crear Pokémon</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pokemon.html">
-                            <i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Detalles del Pokémon</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-section-label">Explorar</li>
-
-                    <!-- Type Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">g</span> Planta</a></li>
-                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">f</span> Fuego</a></li>
-                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">w</span> Agua</a></li>
-                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">l</span> Eléctrico</a></li>
-                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">p</span> Psíquico</a></li>
-                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">n</span> Dragón</a></li>
-                            <li><a class="dropdown-item" href="#"><span class="tcg-icon">c</span> Normal</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Generation Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Gen I (Kanto)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen II (Johto)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen III (Hoenn)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen IV (Sinnoh)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen V (Unova)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen VI (Kalos)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen VII (Alola)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen VIII (Galar)</a></li>
-                            <li><a class="dropdown-item" href="#">Gen IX (Paldea)</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- End Desktop Sidebar Navigation -->
-
-    <!-- =========================================================================
-         MAIN CONTENT AREA: CREATE POKÉMON FORM
-         Uses specific Bootstrap form controls (text, number, select, file, textarea)
-         integrated inside Notika's cyan container (.wb-traffic-inner).
-         ========================================================================= -->
-    <div class="container my-auto">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="wb-traffic-inner notika-shadow d-block">
-                    <h2 class="fw-bold mb-4 text-dark">Crear Nuevo Pokémon</h2>
-                    
-                    <form>
-                        <!-- Row 1: Name & Pokedex Number -->
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="pokemon-name" class="form-label"><strong>Nombre:</strong></label>
-                                <input type="text" id="pokemon-name" name="name" class="form-control" placeholder="Ej. Pikachu" required>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="pokedex-number" class="form-label"><strong>Número de la Pokédex:</strong></label>
-                                <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1" placeholder="Ej. 25" required>
-                            </div>
-                        </div>
-
-                        <!-- Row 2: Type Select & Generation Select -->
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="pokemon-type" class="form-label"><strong>Tipo:</strong></label>
-                                <select id="pokemon-type" name="type" class="form-select" required>
-                                    <option value="" selected disabled>Selecciona un tipo</option>
-                                    <option value="normal">Normal</option>
-                                    <option value="fire">Fuego</option>
-                                    <option value="water">Agua</option>
-                                    <option value="grass">Planta</option>
-                                    <option value="electric">Eléctrico</option>
-                                    <option value="ice">Hielo</option>
-                                    <option value="fighting">Lucha</option>
-                                    <option value="poison">Veneno</option>
-                                    <option value="ground">Tierra</option>
-                                    <option value="flying">Volador</option>
-                                    <option value="psychic">Psíquico</option>
-                                    <option value="bug">Bicho</option>
-                                    <option value="rock">Roca</option>
-                                    <option value="ghost">Fantasma</option>
-                                    <option value="dragon">Dragón</option>
-                                    <option value="dark">Siniestro</option>
-                                    <option value="steel">Acero</option>
-                                    <option value="fairy">Hada</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="pokemon-generation" class="form-label"><strong>Generación:</strong></label>
-                                <select id="pokemon-generation" name="generation" class="form-select" required>
-                                    <option value="" selected disabled>Selecciona una generación</option>
-                                    <option value="1">Generación I</option>
-                                    <option value="2">Generación II</option>
-                                    <option value="3">Generación III</option>
-                                    <option value="4">Generación IV</option>
-                                    <option value="5">Generación V</option>
-                                    <option value="6">Generación VI</option>
-                                    <option value="7">Generación VII</option>
-                                    <option value="8">Generación VIII</option>
-                                    <option value="9">Generación IX</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Row 3: Height & Weight (Decimals) -->
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="pokemon-height" class="form-label"><strong>Altura (m):</strong></label>
-                                <input type="number" id="pokemon-height" name="height" class="form-control" min="0" step="0.1" placeholder="Ej. 0.4" required>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="pokemon-weight" class="form-label"><strong>Peso (kg):</strong></label>
-                                <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0" step="0.1" placeholder="Ej. 6.0" required>
-                            </div>
-                        </div>
-
-                        <!-- Row 4: Description Textarea -->
-                        <div class="mb-3">
-                            <label for="pokemon-description" class="form-label"><strong>Descripción:</strong></label>
-                            <textarea id="pokemon-description" name="description" class="form-control" rows="4" placeholder="Escribe una descripción del Pokémon..." required></textarea>
-                        </div>
-
-                        <!-- Row 5: Image File Upload Input -->
-                        <div class="mb-3">
-                            <label for="pokemon-image" class="form-label"><strong>Imagen:</strong></label>
-                            <input type="file" id="pokemon-image" name="image" class="form-control" accept="image/*" required>
-                        </div>
-
-                        <!-- Form Action Control Buttons (Save & Cancel) -->
-                        <div class="d-flex justify-content-center gap-2 mt-4">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa-solid fa-floppy-disk me-1"></i> Guardar
-                            </button>
-
-                            <a href="index.html" class="btn btn-primary" role="button">
-                                <i class="fa-solid fa-xmark me-1"></i> Cancelar
-                            </a>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- End Create Pokemon Area -->
+</div>
+<!-- End Create Pokemon Area -->
 
-    <!-- Footer Area -->
-    <footer class="footer-copyright-area mt-auto py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center text-white">
-                    <p class="mb-0">RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+{{>footer}}

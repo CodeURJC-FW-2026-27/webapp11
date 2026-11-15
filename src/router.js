@@ -78,6 +78,8 @@ router.get('/', async (req, res) => {
         if (!isNaN(genFilter)) filterParams += `&gen=${genFilter}`;
 
         res.render('index', {
+            pageTitle: 'Pokédex',
+            isHome: true,
             pokemons: pokemonList,
             hasPokemons: pokemonList.length > 0,
             pages: pages,

@@ -1,318 +1,71 @@
-<!DOCTYPE html>
-<html lang="es">
+{{>header}}
 
-<head>
-    <!-- Basic Metadata and Character Encoding -->
-    <meta charset="utf-8">
-    <!-- Responsive Viewport Meta Tag: Ensures proper rendering and touch scaling on mobile screens -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pokédex | RotomWeb Dex</title>
-    <meta name="description" content="Modern Notika Admin Template powered by Vite 7.1.5">
+<!-- =========================================================================
+     MAIN CONTENT AREA: POKÉDEX GRID
+     ========================================================================= -->
+<div class="notika-status-area my-4">
+    <div class="container">
+        <!-- Active Filter Banner -->
+        {{#hasActiveFilter}}
+        <div class="d-flex justify-content-between align-items-center mb-3 text-white">
+            <span>Mostrando resultados filtrados {{#searchQuery}}para
+                <strong>"{{searchQuery}}"</strong>{{/searchQuery}}</span>
+            <a href="/" class="btn btn-sm btn-primary">Ver todos</a>
+        </div>
+        {{/hasActiveFilter}}
 
-    <!-- External Google Fonts (Roboto) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <!-- Empty State Message -->
+        {{^hasPokemons}}
+        <div class="wb-traffic-inner notika-shadow text-center">
+            <p class="mb-0 fw-bold text-dark">No se encontraron Pokémon que coincidan con tu búsqueda.</p>
+        </div>
+        {{/hasPokemons}}
 
-    <!-- Bootstrap 5 Framework CSS (CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Font Awesome 6 Icon Library (CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Custom and Template Stylesheets -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="custom.css">
-</head>
-
-<!-- 
-  BODY CLASSES EXPLANATION:
-  - d-flex flex-column min-vh-100: Bootstrap flexbox utilities forcing full viewport height to push the footer to the bottom.
-  - has-desktop-sidebar: Custom template class adding left padding on desktop devices (>=992px) for the fixed sidebar.
--->
-
-<body class="d-flex flex-column min-vh-100 has-desktop-sidebar">
-
-    <!-- =========================================================================
-         HEADER SECTION (Notika Template Top Navigation Bar)
-         Contains branding logo, search bar toggle, and mobile menu trigger.
-         ========================================================================= -->
-    <header class="notika-header">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Branding Logo Column -->
-                <div class="col-lg-4 col-6">
-                    <div class="notika-brand">
-                        <a href="/">
-                            <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex">
-                        </a>
+        <!-- Responsive Card Grid -->
+        <div class="row">
+            {{#pokemons}}
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <a href="/pokemon/{{pokedexNumber}}"
+                    class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
+                    <img src="/images/{{image}}" height="100" width="100" alt="{{name}}">
+                    <div class="Pokemon">
+                        <h2><span class="Pokemon-Name">{{name}}</span></h2>
+                        <p><span class="Pokemon-Type"><span class="tcg-icon">{{typeIcon}}</span>{{typeLabel}}</span>
+                        </p>
                     </div>
-                </div>
-
-                <!-- Navigation Action Controls (Search Dropdown & Mobile Menu Button) -->
-                <div class="col-lg-8 col-6">
-                    <div class="notika-nav justify-content-end d-flex align-items-center gap-2 gap-lg-3">
-
-                        <!-- Search Box Dropdown Toggle -->
-                        <div class="dropdown">
-                            <button class="notika-nav-link" type="button" data-bs-toggle="dropdown"
-                                data-bs-auto-close="outside" aria-label="Buscar">
-                                <i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end notika-dropdown search-dropdown">
-                                <form action="/" method="GET" class="search-input-group">
-                                    <input type="text" name="search" value="{{searchQuery}}" placeholder="Buscar..."
-                                        class="form-control">
-                                    <button type="submit" class="btn border-0 p-0 search-icon" aria-label="Buscar">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- 
-                          Bootstrap Offcanvas Trigger Button:
-                          - d-lg-none: Hides the hamburger button on large screens (>=992px) where the fixed sidebar is active.
-                          - data-bs-toggle="offcanvas": Triggers Bootstrap's slide-in drawer.
-                        -->
-                        <button class="notika-nav-link d-lg-none btn border-0 text-white" type="button"
-                            data-bs-toggle="offcanvas" data-bs-target="#mobileNavOffcanvas"
-                            aria-controls="mobileNavOffcanvas" aria-label="Alternar navegación">
-                            <i aria-hidden="true" class="fa-solid fa-bars fs-4"></i>
-                        </button>
-                    </div>
-                </div>
+                </a>
             </div>
+            {{/pokemons}}
         </div>
-    </header>
-    <!-- End Header -->
 
-    <!-- =========================================================================
-         MOBILE OFFCANVAS NAVIGATION (Bootstrap 5 Component)
-         Side-drawer navigation menu for mobile devices (<992px).
-         ========================================================================= -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavOffcanvas"
-        aria-labelledby="mobileNavOffcanvasLabel">
-        <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title d-flex align-items-center gap-2 text-white" id="mobileNavOffcanvasLabel">
-                <img src="images/pokeball-icon-594337-512.png" alt="RotomWeb Dex" class="offcanvas-logo">
-            </h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                aria-label="Cerrar"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav w-100">
-                <li class="sidebar-section-label">Páginas</li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/" aria-current="page">
-                        <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="new-pokemon.html">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Crear Pokémon</span>
-                    </a>
+        <!-- Pagination Controls -->
+        {{#hasPokemons}}
+        <nav aria-label="Paginación de Pokédex" class="mt-4">
+            <ul class="pagination notika-pagination justify-content-center gap-2">
+
+                <!-- Previous Page Link -->
+                <li class="page-item {{^hasPrev}}disabled{{/hasPrev}}">
+                    <a class="page-link" href="/?page={{prevPage}}{{filterParams}}" aria-label="Anterior">&lt;</a>
                 </li>
 
-                <li class="sidebar-section-label">Explorar</li>
-
-                <!-- Type Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/?type=grass"><span class="tcg-icon">g</span> Planta</a></li>
-                            <li><a class="dropdown-item" href="/?type=fire"><span class="tcg-icon">f</span> Fuego</a></li>
-                            <li><a class="dropdown-item" href="/?type=water"><span class="tcg-icon">w</span> Agua</a></li>
-                            <li><a class="dropdown-item" href="/?type=electric"><span class="tcg-icon">l</span> Eléctrico</a></li>
-                            <li><a class="dropdown-item" href="/?type=psychic"><span class="tcg-icon">p</span> Psíquico</a></li>
-                            <li><a class="dropdown-item" href="/?type=dragon"><span class="tcg-icon">n</span> Dragón</a></li>
-                            <li><a class="dropdown-item" href="/?type=normal"><span class="tcg-icon">c</span> Normal</a></li>
-                            <li><a class="dropdown-item" href="/?type=ghost"><span class="tcg-icon">p</span> Fantasma</a></li>
-                        </ul>
-                    </li>
-
-                <!-- Generation Category Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/?gen=1">Gen I (Kanto)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=2">Gen II (Johto)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=3">Gen III (Hoenn)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=4">Gen IV (Sinnoh)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=5">Gen V (Unova)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=6">Gen VI (Kalos)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=7">Gen VII (Alola)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=8">Gen VIII (Galar)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=9">Gen IX (Paldea)</a></li>
-                    </ul>
+                <!-- Page Numbers -->
+                {{#pages}}
+                <li class="page-item {{#active}}active{{/active}}">
+                    <a class="page-link" href="/?page={{number}}{{filterParams}}">{{number}}</a>
                 </li>
+                {{/pages}}
+
+                <!-- Next Page Link -->
+                <li class="page-item {{^hasNext}}disabled{{/hasNext}}">
+                    <a class="page-link" href="/?page={{nextPage}}{{filterParams}}" aria-label="Siguiente">&gt;</a>
+                </li>
+
             </ul>
-        </div>
+        </nav>
+        {{/hasPokemons}}
+
     </div>
-    <!-- End Mobile Offcanvas -->
+</div>
+<!-- End Status Area Grid -->
 
-    <!-- =========================================================================
-         DESKTOP SIDEBAR NAVIGATION (Notika Admin Template Core Component)
-         Fixed vertical sidebar shown only on desktop displays (>=992px).
-         Hidden on mobile viewports using 'd-none d-lg-block'.
-         ========================================================================= -->
-    <nav class="navbar navbar-expand-lg notika-navbar d-none d-lg-block" aria-label="Navegación principal">
-        <div class="sidebar-inner">
-            <a class="sidebar-brand" href="/">
-                <img src="images/pokeball-icon-594337-512.png" alt="">
-                <span>RotomWeb Dex</span>
-            </a>
-            <div class="navbar-collapse">
-                <ul class="navbar-nav w-100">
-                    <li class="sidebar-section-label">Páginas</li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/" aria-current="page">
-                            <i class="fa-solid fa-house" aria-hidden="true"></i><span>Pokédex</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="new-pokemon.html">
-                            <i class="fa-solid fa-plus" aria-hidden="true"></i><span>Crear Pokémon</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-section-label">Explorar</li>
-
-                    <!-- Type Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/?type=grass"><span class="tcg-icon">g</span> Planta</a></li>
-                            <li><a class="dropdown-item" href="/?type=fire"><span class="tcg-icon">f</span> Fuego</a></li>
-                            <li><a class="dropdown-item" href="/?type=water"><span class="tcg-icon">w</span> Agua</a></li>
-                            <li><a class="dropdown-item" href="/?type=electric"><span class="tcg-icon">l</span> Eléctrico</a></li>
-                            <li><a class="dropdown-item" href="/?type=psychic"><span class="tcg-icon">p</span> Psíquico</a></li>
-                            <li><a class="dropdown-item" href="/?type=dragon"><span class="tcg-icon">n</span> Dragón</a></li>
-                            <li><a class="dropdown-item" href="/?type=normal"><span class="tcg-icon">c</span> Normal</a></li>
-                            <li><a class="dropdown-item" href="/?type=ghost"><span class="tcg-icon">p</span> Fantasma</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Generation Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/?gen=1">Gen I (Kanto)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=2">Gen II (Johto)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=3">Gen III (Hoenn)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=4">Gen IV (Sinnoh)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=5">Gen V (Unova)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=6">Gen VI (Kalos)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=7">Gen VII (Alola)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=8">Gen VIII (Galar)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=9">Gen IX (Paldea)</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- End Desktop Sidebar Navigation -->
-
-    <!-- =========================================================================
-         MAIN CONTENT AREA: POKÉDEX GRID (9 Demo Items)
-         Uses Bootstrap Grid System:
-         - col-12: 1 Column on Mobile screens (<576px).
-         - col-sm-6 & col-md-6: 2 Columns on Small/Medium screens (576px - 991px).
-         - col-lg-4: 3 Columns on Large/Desktop screens (>=992px).
-         ========================================================================= -->
-    <div class="notika-status-area my-4">
-        <div class="container">
-            <!-- Active Filter Banner -->
-            {{#hasActiveFilter}}
-            <div class="d-flex justify-content-between align-items-center mb-3 text-white">
-                <span>Mostrando resultados filtrados {{#searchQuery}}para
-                    <strong>"{{searchQuery}}"</strong>{{/searchQuery}}</span>
-                <a href="/" class="btn btn-sm btn-primary">Ver todos</a>
-            </div>
-            {{/hasActiveFilter}}
-
-            <!-- Empty State Message -->
-            {{^hasPokemons}}
-            <div class="wb-traffic-inner notika-shadow text-center">
-                <p class="mb-0 fw-bold text-dark">No se encontraron Pokémon que coincidan con tu búsqueda.</p>
-            </div>
-            {{/hasPokemons}}
-            <!-- Responsive Card Grid -->
-            <div class="row">
-                {{#pokemons}}
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <a href="/pokemon/{{pokedexNumber}}"
-                        class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 text-decoration-none">
-                        <img src="images/{{image}}" height="100" width="100" alt="{{name}}">
-                        <div class="Pokemon">
-                            <h2><span class="Pokemon-Name">{{name}}</span></h2>
-                            <p><span class="Pokemon-Type"><span class="tcg-icon">{{typeIcon}}</span>{{typeLabel}}</span>
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                {{/pokemons}}
-            </div>
-
-            <!-- Pagination Controls -->
-            {{#hasPokemons}}
-            <nav aria-label="Paginación de Pokédex" class="mt-4">
-                <ul class="pagination notika-pagination justify-content-center gap-2">
-
-                    <!-- Previous Page Link -->
-                    <li class="page-item {{^hasPrev}}disabled{{/hasPrev}}">
-                        <a class="page-link" href="/?page={{prevPage}}{{filterParams}}" aria-label="Anterior">&lt;</a>
-                    </li>
-
-                    <!-- Page Numbers -->
-                    {{#pages}}
-                    <li class="page-item {{#active}}active{{/active}}">
-                        <a class="page-link" href="/?page={{number}}{{filterParams}}">{{number}}</a>
-                    </li>
-                    {{/pages}}
-
-                    <!-- Next Page Link -->
-                    <li class="page-item {{^hasNext}}disabled{{/hasNext}}">
-                        <a class="page-link" href="/?page={{nextPage}}{{filterParams}}" aria-label="Siguiente">&gt;</a>
-                    </li>
-
-                </ul>
-            </nav>
-            {{/hasPokemons}}
-
-        </div>
-    </div>
-    <!-- End Status Area Grid -->
-
-    <!-- =========================================================================
-         FOOTER SECTION
-         Pushed to bottom of viewport using Bootstrap 'mt-auto'.
-         ========================================================================= -->
-    <footer class="footer-copyright-area mt-auto py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center text-white">
-                    <p class="mb-0">RotomWeb Dex &copy; 2026 - Fundamentos de la Web</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap 5 JavaScript Bundle (Includes Popper.js for dropdowns & offcanvas) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+{{>footer}}

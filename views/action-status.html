@@ -1,0 +1,33 @@
+    <!-- =========================================================================
+         STATUS MESSAGE CARD (Shared Mustache Partial for Confirmation & Error)
+         ========================================================================= -->
+    <div class="container my-auto py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="wb-traffic-inner notika-shadow text-center p-4">
+                    <div class="mb-3">
+                        {{#isError}}
+                        <i class="fa-solid fa-circle-exclamation text-danger fa-4x"></i>
+                        {{/isError}}
+                        {{^isError}}
+                        <i class="fa-solid fa-circle-check text-success fa-4x"></i>
+                        {{/isError}}
+                    </div>
+                    <h3 class="fw-bold mb-3 text-dark">{{title}}</h3>
+                    <p class="text-secondary mb-4 fs-5">{{message}}</p>
+                    <div class="d-flex justify-content-center flex-wrap gap-2">
+                        {{#actionUrl}}
+                        <a href="{{actionUrl}}" class="btn btn-primary">
+                            <i class="fa-solid fa-arrow-right me-1"></i> {{actionText}}
+                        </a>
+                        {{/actionUrl}}
+                        {{#backUrl}}
+                        <a href="{{backUrl}}" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-arrow-left me-1"></i> {{backText}}
+                        </a>
+                        {{/backUrl}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
