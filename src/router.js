@@ -31,12 +31,41 @@ export default router;
 
 router.get('/', async (req, res) => {
     try {
-        const pokemonList = await pokemons.find({}).toArray();
+        const limit = 6; // Requirement: 6 elements per page
+        const currentPage = Math.max(1, parseInt(req.query.page) || 1);
+
+        // Count total documents to calculate how many pages exist
+        const totalPokemons = await pokemons.countDocuments({});
+        const totalPages = Math.max(1, Math.ceil(totalPokemons / limit));
+        const safePage = Math.min(currentPage, totalPages);
+        const skip = (safePage - 1) * limit;
+
+        // Fetch only the 6 Pokémon for the requested page
+        const pokemonList = await pokemons
+            .find({})
+            .skip(skip)
+            .limit(limit)
+            .toArray();
+
+        // Build the array of page numbers for Mustache
+        const pages = [];
+        for (let i = 1; i <= totalPages; i++) {
+            pages.push({
+                number: i,
+                active: i === safePage
+            });
+        }
+
         res.render('index', {
-            pokemons: pokemonList
+            pokemons: pokemonList,
+            pages: pages,
+            hasPrev: safePage > 1,
+            prevPage: safePage - 1,
+            hasNext: safePage < totalPages,
+            nextPage: safePage + 1
         });
     } catch (error) {
-        console.error('Error al consultar pokemons en MongoDB:', error);
+        console.error('Error querying pokemons in MongoDB:', error);
         res.status(500).send('Error interno del servidor');
     }
 });

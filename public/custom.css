@@ -526,3 +526,47 @@ body {
     color: #101a2e;
     background-color: #ff7a3d;
 }
+
+/* =========================================================================
+   7. CUSTOM PAGINATION (.notika-pagination)
+   Matches RotomWeb Dex dark navy, light cyan, and Rotom orange palette
+   ========================================================================= */
+.notika-pagination .page-link {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px !important;
+    border: 2px solid #101A2E;
+    background-color: #a3e8f0; /* Rotom Light Cyan (same as cards) */
+    color: #101A2E;            /* Dark Navy text */
+    font-weight: 800;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.notika-pagination .page-link:hover {
+    background-color: #FF7A3D; /* Rotom Orange (same as .btn-primary) */
+    border-color: #101A2E;
+    color: #101A2E;
+    transform: translateY(-2px);
+}
+
+.notika-pagination .page-item.active .page-link {
+    background-color: #FF7A3D; /* Rotom Orange active state */
+    border-color: #101A2E;
+    color: #101A2E;
+}
+
+.notika-pagination .page-item.disabled .page-link {
+    background-color: #19283d; /* Same as sidebar dark tone */
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #6c7a89;
+    pointer-events: none;
+}
+
+.notika-pagination .page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 122, 61, 0.35);
+}

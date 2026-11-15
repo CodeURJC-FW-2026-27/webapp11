@@ -235,6 +235,31 @@
                 </div>
                 {{/pokemons}}
             </div>
+
+            <!-- Pagination Controls -->
+            <nav aria-label="Paginación de Pokédex" class="mt-4">
+                <ul class="pagination notika-pagination justify-content-center gap-2">
+                    
+                    <!-- Previous Page Link -->
+                    <li class="page-item {{^hasPrev}}disabled{{/hasPrev}}">
+                        <a class="page-link" href="/?page={{prevPage}}" aria-label="Anterior">&lt;</a>
+                    </li>
+
+                    <!-- Page Numbers -->
+                    {{#pages}}
+                    <li class="page-item {{#active}}active{{/active}}">
+                        <a class="page-link" href="/?page={{number}}">{{number}}</a>
+                    </li>
+                    {{/pages}}
+
+                    <!-- Next Page Link -->
+                    <li class="page-item {{^hasNext}}disabled{{/hasNext}}">
+                        <a class="page-link" href="/?page={{nextPage}}" aria-label="Siguiente">&gt;</a>
+                    </li>
+
+                </ul>
+            </nav>
+
         </div>
     </div>
     <!-- End Status Area Grid -->
