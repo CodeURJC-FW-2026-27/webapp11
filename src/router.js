@@ -33,16 +33,31 @@ router.get('/', async (req, res) => {
     try {
         const limit = 6; // Requirement: 6 elements per page
         const currentPage = Math.max(1, parseInt(req.query.page) || 1);
+        const searchQuery = (req.query.search || '').trim();
+        const typeFilter = (req.query.type || '').trim();
+        const genFilter = parseInt(req.query.gen);
 
-        // Count total documents to calculate how many pages exist
-        const totalPokemons = await pokemons.countDocuments({});
+        // Build MongoDB filter query combining search, type, and generation
+        const filter = {};
+        if (searchQuery) {
+            filter.name = { $regex: searchQuery, $options: 'i' };
+        }
+        if (typeFilter) {
+            filter.type = typeFilter;
+        }
+        if (!isNaN(genFilter)) {
+            filter.generation = genFilter;
+        }
+
+        // Count matching documents to calculate total pages for the current filter
+        const totalPokemons = await pokemons.countDocuments(filter);
         const totalPages = Math.max(1, Math.ceil(totalPokemons / limit));
         const safePage = Math.min(currentPage, totalPages);
         const skip = (safePage - 1) * limit;
 
-        // Fetch only the 6 Pokémon for the requested page
+        // Fetch only the 6 matching Pokémon for the requested page
         const pokemonList = await pokemons
-            .find({})
+            .find(filter)
             .skip(skip)
             .limit(limit)
             .toArray();
@@ -56,13 +71,23 @@ router.get('/', async (req, res) => {
             });
         }
 
+        // Preserve active filters across pagination links
+        let filterParams = '';
+        if (searchQuery) filterParams += `&search=${searchQuery}`;
+        if (typeFilter) filterParams += `&type=${typeFilter}`;
+        if (!isNaN(genFilter)) filterParams += `&gen=${genFilter}`;
+
         res.render('index', {
             pokemons: pokemonList,
+            hasPokemons: pokemonList.length > 0,
             pages: pages,
             hasPrev: safePage > 1,
             prevPage: safePage - 1,
             hasNext: safePage < totalPages,
-            nextPage: safePage + 1
+            nextPage: safePage + 1,
+            searchQuery: searchQuery,
+            hasActiveFilter: Boolean(searchQuery || typeFilter || !isNaN(genFilter)),
+            filterParams: filterParams
         });
     } catch (error) {
         console.error('Error querying pokemons in MongoDB:', error);
