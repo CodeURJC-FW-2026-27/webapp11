@@ -1,0 +1,82 @@
+<!-- =========================================================================
+     REUSABLE FORM ERROR PARTIAL (views/form-error.html)
+     Shared Mustache partial to render an error occurring during form processing.
+     Can target ANY form across the application.
+     
+     Accepted context variables:
+     - formName: (String, optional) Name/path of the form (e.g. "Crear Pokémon", "Nuevo Movimiento")
+     - title: (String, optional) Main error heading
+     - errorType: (String, optional) Category or kind of error (e.g. "Conflicto 409", "Rango Inválido 422")
+     - badgeClass: (String, optional) Bootstrap badge class (default: "bg-danger text-white")
+     - iconClass: (String, optional) FontAwesome icon class (default: "fa-circle-exclamation")
+     - iconColor: (String, optional) Hex color for icon (default: "#dc3545")
+     - message: (String, optional) Main explanatory paragraph
+     - errorDetails: (Array of Strings, optional) Detailed bullet points explaining specific field errors
+     - actionUrl: (String) Redirection link leading to the correct form page to retry/fix
+     - actionText: (String, optional) Label for the primary redirect button (default: "Volver al formulario")
+     - backUrl: (String, optional) Fallback redirection link (default: "/")
+     - backText: (String, optional) Label for secondary button (default: "Ir al inicio (Pokédex)")
+     ========================================================================= -->
+<div class="wb-traffic-inner notika-shadow text-center p-4">
+
+    <!-- Error Status Icon -->
+    <div class="mb-3">
+        <i class="fa-solid {{#iconClass}}{{iconClass}}{{/iconClass}}{{^iconClass}}fa-circle-exclamation{{/iconClass}} fa-4x"
+           style="color: {{#iconColor}}{{iconColor}}{{/iconColor}}{{^iconColor}}#dc3545{{/iconColor}} !important;"></i>
+    </div>
+
+    <!-- Target Form Identification Badge -->
+    {{#formName}}
+    <div class="mb-2">
+        <span class="badge bg-secondary fs-6 px-3 py-1 text-white">
+            <i class="fa-solid fa-file-lines me-1" style="color: white !important;"></i>
+            {{formName}}
+        </span>
+    </div>
+    {{/formName}}
+
+    <!-- Error Main Heading -->
+    <h3 class="fw-bold mb-2 text-dark">{{#title}}{{title}}{{/title}}{{^title}}Error al procesar el formulario{{/title}}</h3>
+
+    <!-- Error Type Badge (Explains the kind of error) -->
+    <div class="mb-3">
+        <span class="badge {{#badgeClass}}{{badgeClass}}{{/badgeClass}}{{^badgeClass}}bg-danger text-white{{/badgeClass}} fs-6 px-3 py-2">
+            <i class="fa-solid fa-triangle-exclamation me-1" style="color: currentColor !important;"></i>
+            {{#errorType}}{{errorType}}{{/errorType}}{{^errorType}}Error de Validación en Formulario{{/errorType}}
+        </span>
+    </div>
+
+    <!-- Detailed Explanation Box -->
+    <div class="alert alert-light border border-danger text-start p-3 mb-4 shadow-sm" style="color: #212529 !important; background-color: #ffffff !important;">
+        <p class="mb-2 fw-semibold text-danger">
+            <i class="fa-solid fa-circle-info me-1" style="color: #dc3545 !important;"></i>
+            ¿Por qué ha ocurrido este error?
+        </p>
+        <p class="text-secondary mb-2">
+            {{#message}}{{message}}{{/message}}{{^message}}No se pudieron procesar los datos enviados a través del formulario debido a las siguientes incidencias:{{/message}}
+        </p>
+        {{#errorDetails.0}}
+        <ul class="text-secondary mb-0 ps-3">
+            {{#errorDetails}}
+            <li>{{.}}</li>
+            {{/errorDetails}}
+        </ul>
+        {{/errorDetails.0}}
+    </div>
+
+    <!-- Action / Redirection Buttons -->
+    <div class="d-flex justify-content-center flex-wrap gap-2">
+        <!-- Primary Button: Redirect to the correct form page -->
+        <a href="{{#actionUrl}}{{{actionUrl}}}{{/actionUrl}}{{^actionUrl}}javascript:history.back(){{/actionUrl}}" class="btn btn-primary">
+            <i class="fa-solid fa-arrow-rotate-left me-1" style="color: white !important;"></i>
+            {{#actionText}}{{actionText}}{{/actionText}}{{^actionText}}Volver al formulario{{/actionText}}
+        </a>
+
+        <!-- Secondary Button: Return to Home / Pokédex -->
+        <a href="{{#backUrl}}{{{backUrl}}}{{/backUrl}}{{^backUrl}}/{{/backUrl}}" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-house me-1" style="color: currentColor !important;"></i>
+            {{#backText}}{{backText}}{{/backText}}{{^backText}}Ir al inicio (Pokédex){{/backText}}
+        </a>
+    </div>
+
+</div>
