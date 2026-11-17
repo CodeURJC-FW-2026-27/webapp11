@@ -7,17 +7,6 @@ const client = new MongoClient('mongodb://localhost:27017');
 const db = client.db('pokedex');
 const pokemons = db.collection('pokemons');
 
-const POKEMON_TYPES = [
-    { value: 'grass', label: 'Planta', icon: 'g' },
-    { value: 'fire', label: 'Fuego', icon: 'f' },
-    { value: 'water', label: 'Agua', icon: 'w' },
-    { value: 'electric', label: 'Eléctrico', icon: 'l' },
-    { value: 'psychic', label: 'Psíquico', icon: 'p' },
-    { value: 'dragon', label: 'Dragón', icon: 'n' },
-    { value: 'normal', label: 'Normal', icon: 'c' },
-    { value: 'ghost', label: 'Fantasma', icon: 'p' }
-];
-
 const POKEMON_GENERATIONS = [
     { value: 1, label: 'Gen I (Kanto)' },
     { value: 2, label: 'Gen II (Johto)' },
@@ -122,9 +111,11 @@ router.get('/', async (req, res) => {
 
 
         // Mark the currently active type and generation for the sidebar menu
-        const typesWithActive = POKEMON_TYPES.map(t => ({
-            ...t,
-            active: t.value === typeFilter
+        const typesWithActive = Object.entries(pokemonTypes).map(([value, info]) => ({
+            value,
+            label: info.label,
+            icon: info.icon,
+            active: value === typeFilter
         }));
 
         const generationsWithActive = POKEMON_GENERATIONS.map(g => ({
@@ -133,7 +124,7 @@ router.get('/', async (req, res) => {
         }));
 
         // Find human-readable labels for the active filter banner
-        const activeTypeObj = POKEMON_TYPES.find(t => t.value === typeFilter);
+        const activeTypeObj = pokemonTypes[typeFilter];
         const activeGenObj = POKEMON_GENERATIONS.find(g => g.value === genFilter);
 
 
