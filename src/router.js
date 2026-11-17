@@ -6,6 +6,30 @@ import { readFile } from 'fs/promises';
 const client = new MongoClient('mongodb://localhost:27017');
 const db = client.db('pokedex');
 const pokemons = db.collection('pokemons');
+
+const POKEMON_TYPES = [
+    { value: 'grass', label: 'Planta', icon: 'g' },
+    { value: 'fire', label: 'Fuego', icon: 'f' },
+    { value: 'water', label: 'Agua', icon: 'w' },
+    { value: 'electric', label: 'Eléctrico', icon: 'l' },
+    { value: 'psychic', label: 'Psíquico', icon: 'p' },
+    { value: 'dragon', label: 'Dragón', icon: 'n' },
+    { value: 'normal', label: 'Normal', icon: 'c' },
+    { value: 'ghost', label: 'Fantasma', icon: 'p' }
+];
+
+const POKEMON_GENERATIONS = [
+    { value: 1, label: 'Gen I (Kanto)' },
+    { value: 2, label: 'Gen II (Johto)' },
+    { value: 3, label: 'Gen III (Hoenn)' },
+    { value: 4, label: 'Gen IV (Sinnoh)' },
+    { value: 5, label: 'Gen V (Unova)' },
+    { value: 6, label: 'Gen VI (Kalos)' },
+    { value: 7, label: 'Gen VII (Alola)' },
+    { value: 8, label: 'Gen VIII (Galar)' },
+    { value: 9, label: 'Gen IX (Paldea)' }
+];
+
 const upload = multer({ dest: './public/images/' });
 const pokemonTypes = {
     normal:   { label: 'Normal', icon: 'c' },
@@ -96,7 +120,26 @@ router.get('/', async (req, res) => {
         if (typeFilter) filterParams += `&type=${typeFilter}`;
         if (!isNaN(genFilter)) filterParams += `&gen=${genFilter}`;
 
+
+        // Mark the currently active type and generation for the sidebar menu
+        const typesWithActive = POKEMON_TYPES.map(t => ({
+            ...t,
+            active: t.value === typeFilter
+        }));
+
+        const generationsWithActive = POKEMON_GENERATIONS.map(g => ({
+            ...g,
+            active: g.value === genFilter
+        }));
+
+        // Find human-readable labels for the active filter banner
+        const activeTypeObj = POKEMON_TYPES.find(t => t.value === typeFilter);
+        const activeGenObj = POKEMON_GENERATIONS.find(g => g.value === genFilter);
+
+
         res.render('index', {
+            types: typesWithActive,
+            generations: generationsWithActive,
             pageTitle: 'Pokédex',
             isHome: true,
             pokemons: pokemonList,
@@ -107,6 +150,10 @@ router.get('/', async (req, res) => {
             hasNext: safePage < totalPages,
             nextPage: safePage + 1,
             searchQuery: searchQuery,
+            typeFilter: typeFilter,
+            activeTypeLabel: activeTypeObj ? activeTypeObj.label : '',
+            genFilter: !isNaN(genFilter) ? genFilter : '',
+            activeGenLabel: activeGenObj ? activeGenObj.label : '',
             hasActiveFilter: Boolean(searchQuery || typeFilter || !isNaN(genFilter)),
             filterParams: filterParams
         });
