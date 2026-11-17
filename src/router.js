@@ -105,3 +105,88 @@ router.get('/pokemon/:id', async (req, res) => {
         pokemon: pokemon
     });
 });
+
+// Demonstration cases data for the error showcase
+const demoCases = {
+    case1: {
+        iconClass: 'fa-circle-exclamation text-danger',
+        formName: 'Formulario: Crear Nuevo Pokémon (/new-pokemon.html)',
+        title: 'Error al registrar el Pokémon',
+        badgeClass: 'bg-danger text-white',
+        errorType: 'Conflicto de Duplicidad y Validación (HTTP 409)',
+        message: 'No se pudo procesar la solicitud de creación de Pokémon debido a inconsistencias en los campos enviados:',
+        errorDetails: [
+            '<strong>Número de Pokédex duplicado:</strong> El número introducido (<strong>#25</strong>) ya está registrado en la base de datos (asignado a Pikachu). Cada Pokémon debe contar con un número identificativo único.',
+            '<strong>Campos obligatorios incompletos:</strong> El tipo elemental y la generación deben ser seleccionados obligatoriamente.',
+            '<strong>Rango numérico:</strong> La altura y el peso deben ser valores positivos mayores a 0.'
+        ],
+        hasErrorDetails: true,
+        actionUrl: '/new-pokemon.html',
+        actionText: 'Volver al formulario de creación',
+        backUrl: '/',
+        backText: 'Ir al inicio (Pokédex)'
+    },
+    case2: {
+        iconClass: 'fa-circle-exclamation text-danger',
+        formName: 'Formulario: Crear Movimiento (/pokemon/25)',
+        title: 'Error al añadir movimiento a Pikachu',
+        badgeClass: 'bg-warning text-dark',
+        errorType: 'Valores Fuera de Rango (HTTP 422 - Unprocessable Entity)',
+        message: 'Los valores numéricos introducidos para las estadísticas del movimiento no cumplen con las especificaciones del juego:',
+        errorDetails: [
+            '<strong>Precisión fuera de rango:</strong> El valor indicado (<strong>120%</strong>) debe encontrarse en el rango de <strong>30%</strong> a <strong>100%</strong>.',
+            '<strong>Número de movimientos (PP) inválido:</strong> Se han configurado <strong>200 PP</strong>, cuando el límite reglamentario máximo es <strong>160</strong>.',
+            '<strong>Poder fuera de escala:</strong> El poder del ataque debe ser un entero entre <strong>0</strong> y <strong>5050</strong>.'
+        ],
+        hasErrorDetails: true,
+        actionUrl: '/pokemon/25',
+        actionText: 'Volver a la ficha de Pikachu (#0025)',
+        backUrl: '/',
+        backText: 'Ir al inicio (Pokédex)'
+    },
+    case3: {
+        iconClass: 'fa-file-circle-xmark text-danger',
+        formName: 'Formulario: Subida de Ilustración de Pokémon',
+        title: 'Error al procesar el archivo de imagen',
+        badgeClass: 'bg-danger text-white',
+        errorType: 'Formato o Tamaño No Permitido (HTTP 415 - Unsupported Media)',
+        message: 'El archivo adjunto no cumple con los requisitos del servidor para ilustraciones oficiales:',
+        errorDetails: [
+            '<strong>Extensión no soportada:</strong> El archivo subido (<strong>documento.pdf</strong>) no es una imagen válida. Formatos permitidos: <strong>.png, .jpg, .webp</strong>.',
+            '<strong>Tamaño de archivo excedido:</strong> El archivo pesa <strong>12.4 MB</strong>, superando el límite máximo permitido de <strong>5 MB</strong>.'
+        ],
+        hasErrorDetails: true,
+        actionUrl: '/new-pokemon.html',
+        actionText: 'Reintentar subida en el formulario',
+        backUrl: '/',
+        backText: 'Ir al inicio (Pokédex)'
+    },
+    case4: {
+        iconClass: 'fa-magnifying-glass-chart text-danger',
+        formName: 'Formulario: Operación sobre Pokémon Desconocido',
+        title: 'Pokémon no encontrado',
+        badgeClass: 'bg-danger text-white',
+        errorType: 'Recurso No Encontrado (HTTP 404 - Not Found)',
+        message: 'Se ha intentado procesar una acción o formulario vinculada a un elemento que no existe:',
+        errorDetails: [
+            '<strong>Identificador inexistente:</strong> El número de Pokédex solicitado (<strong>#9999</strong>) no se encuentra registrado en la base de datos.',
+            '<strong>Referencia huérfana:</strong> No es posible asociar movimientos ni editar una entidad que ha sido eliminada o nunca ha existido.'
+        ],
+        hasErrorDetails: true,
+        actionUrl: '/',
+        actionText: 'Volver a la Pokédex principal',
+        backUrl: '/new-pokemon.html',
+        backText: 'Registrar un nuevo Pokémon'
+    }
+};
+
+router.get('/error', (req, res) => {
+    res.render('error', {
+        pageTitle: 'Errores en Formularios',
+        isDynamic: false,
+        ...demoCases
+    });
+});
+
+router.get('/error.html', (req, res) => res.redirect('/error'));
+

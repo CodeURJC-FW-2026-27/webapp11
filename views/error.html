@@ -27,7 +27,7 @@
                  ===================================================================== -->
             <div class="text-center mb-4">
                 <h2 class="text-white fw-bold mb-2">
-                    <i class="fa-solid fa-triangle-exclamation text-warning me-2" style="color: #ffc107 !important;"></i>
+                    <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>
                     Detección de Errores en Formularios
                 </h2>
                 <p class="text-white-50 mb-3">
@@ -41,232 +41,74 @@
                         <button class="nav-link active px-3 py-2 fw-semibold" id="tab-case-1" data-bs-toggle="pill"
                             data-bs-target="#demo-case-1" type="button" role="tab" aria-controls="demo-case-1"
                             aria-selected="true" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-plus me-1" style="color: white !important;"></i> 1. Crear Pokémon
+                            <i class="fa-solid fa-plus me-1 text-white"></i> 1. Crear Pokémon
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link px-3 py-2 fw-semibold" id="tab-case-2" data-bs-toggle="pill"
                             data-bs-target="#demo-case-2" type="button" role="tab" aria-controls="demo-case-2"
                             aria-selected="false" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-bolt me-1" style="color: white !important;"></i> 2. Nuevo Movimiento
+                            <i class="fa-solid fa-bolt me-1 text-white"></i> 2. Nuevo Movimiento
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link px-3 py-2 fw-semibold" id="tab-case-3" data-bs-toggle="pill"
                             data-bs-target="#demo-case-3" type="button" role="tab" aria-controls="demo-case-3"
                             aria-selected="false" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-image me-1" style="color: white !important;"></i> 3. Subida de Imagen
+                            <i class="fa-solid fa-image me-1 text-white"></i> 3. Subida de Imagen
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link px-3 py-2 fw-semibold" id="tab-case-4" data-bs-toggle="pill"
                             data-bs-target="#demo-case-4" type="button" role="tab" aria-controls="demo-case-4"
                             aria-selected="false" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-magnifying-glass me-1" style="color: white !important;"></i> 4. Recurso Inexistente
+                            <i class="fa-solid fa-magnifying-glass me-1 text-white"></i> 4. Recurso Inexistente
                         </button>
                     </li>
                 </ul>
             </div>
 
-            <!-- Tab Content Panes -->
+            <!-- Tab Content Panes (Reusing the 'form-error' partial for each demonstration case) -->
             <div class="tab-content" id="errorDemoTabsContent">
 
                 <!-- -------------------------------------------------------------
                      DEMONSTRATION CASE 1: POKÉMON CREATION FORM
                      Error: Duplicity conflict (pokedexNumber #25 already taken) & validation
-                     Redirects to: /new-pokemon.html
                      ------------------------------------------------------------- -->
                 <div class="tab-pane fade show active" id="demo-case-1" role="tabpanel" aria-labelledby="tab-case-1">
-                    <div class="wb-traffic-inner notika-shadow text-center p-4">
-                        <div class="mb-3">
-                            <i class="fa-solid fa-circle-exclamation text-danger fa-4x" style="color: #dc3545 !important;"></i>
-                        </div>
-                        <div class="mb-2">
-                            <span class="badge bg-secondary fs-6 px-3 py-1 text-white">
-                                <i class="fa-solid fa-file-lines me-1" style="color: white !important;"></i>
-                                Formulario: Crear Nuevo Pokémon (/new-pokemon.html)
-                            </span>
-                        </div>
-                        <h3 class="fw-bold mb-2 text-dark">Error al registrar el Pokémon</h3>
-                        <div class="mb-3">
-                            <span class="badge bg-danger fs-6 px-3 py-2 text-white">
-                                <i class="fa-solid fa-triangle-exclamation me-1" style="color: white !important;"></i>
-                                Conflicto de Duplicidad y Validación (HTTP 409)
-                            </span>
-                        </div>
-                        <div class="alert alert-light border border-danger text-start p-3 mb-4 shadow-sm" style="color: #212529 !important; background-color: #ffffff !important;">
-                            <p class="mb-2 fw-semibold text-danger">
-                                <i class="fa-solid fa-circle-info me-1" style="color: #dc3545 !important;"></i>
-                                ¿Por qué ha ocurrido este error?
-                            </p>
-                            <p class="text-secondary mb-2">
-                                No se pudo procesar la solicitud de creación de Pokémon debido a inconsistencias en los campos enviados:
-                            </p>
-                            <ul class="text-secondary mb-0 ps-3">
-                                <li><strong>Número de Pokédex duplicado:</strong> El número introducido (<strong>#25</strong>) ya está registrado en la base de datos (asignado a Pikachu). Cada Pokémon debe contar con un número identificativo único.</li>
-                                <li><strong>Campos obligatorios incompletos:</strong> El tipo elemental y la generación deben ser seleccionados obligatoriamente.</li>
-                                <li><strong>Rango numérico:</strong> La altura y el peso deben ser valores positivos mayores a 0.</li>
-                            </ul>
-                        </div>
-                        <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <a href="/new-pokemon.html" class="btn btn-primary">
-                                <i class="fa-solid fa-arrow-rotate-left me-1" style="color: white !important;"></i>
-                                Volver al formulario de creación
-                            </a>
-                            <a href="/" class="btn btn-outline-secondary">
-                                <i class="fa-solid fa-house me-1" style="color: currentColor !important;"></i>
-                                Ir al inicio (Pokédex)
-                            </a>
-                        </div>
-                    </div>
+                    {{#case1}}
+                    {{>form-error}}
+                    {{/case1}}
                 </div>
 
                 <!-- -------------------------------------------------------------
                      DEMONSTRATION CASE 2: POKÉMON MOVE FORM
                      Error: Out-of-range numerical values (Accuracy > 100%, PP > 160)
-                     Redirects to: /pokemon/25 (the specific Pokémon's detail page)
                      ------------------------------------------------------------- -->
                 <div class="tab-pane fade" id="demo-case-2" role="tabpanel" aria-labelledby="tab-case-2">
-                    <div class="wb-traffic-inner notika-shadow text-center p-4">
-                        <div class="mb-3">
-                            <i class="fa-solid fa-circle-exclamation text-danger fa-4x" style="color: #dc3545 !important;"></i>
-                        </div>
-                        <div class="mb-2">
-                            <span class="badge bg-secondary fs-6 px-3 py-1 text-white">
-                                <i class="fa-solid fa-file-lines me-1" style="color: white !important;"></i>
-                                Formulario: Crear Movimiento (/pokemon/25)
-                            </span>
-                        </div>
-                        <h3 class="fw-bold mb-2 text-dark">Error al añadir movimiento a Pikachu</h3>
-                        <div class="mb-3">
-                            <span class="badge bg-warning text-dark fs-6 px-3 py-2">
-                                <i class="fa-solid fa-sliders me-1"></i>
-                                Valores Fuera de Rango (HTTP 422 - Unprocessable Entity)
-                            </span>
-                        </div>
-                        <div class="alert alert-light border border-danger text-start p-3 mb-4 shadow-sm" style="color: #212529 !important; background-color: #ffffff !important;">
-                            <p class="mb-2 fw-semibold text-danger">
-                                <i class="fa-solid fa-circle-info me-1" style="color: #dc3545 !important;"></i>
-                                ¿Por qué ha ocurrido este error?
-                            </p>
-                            <p class="text-secondary mb-2">
-                                Los valores numéricos introducidos para las estadísticas del movimiento no cumplen con las especificaciones del juego:
-                            </p>
-                            <ul class="text-secondary mb-0 ps-3">
-                                <li><strong>Precisión fuera de rango:</strong> El valor indicado (<strong>120%</strong>) debe encontrarse en el rango de <strong>30%</strong> a <strong>100%</strong>.</li>
-                                <li><strong>Número de movimientos (PP) inválido:</strong> Se han configurado <strong>200 PP</strong>, cuando el límite reglamentario máximo es <strong>160</strong>.</li>
-                                <li><strong>Poder fuera de escala:</strong> El poder del ataque debe ser un entero entre <strong>0</strong> y <strong>5050</strong>.</li>
-                            </ul>
-                        </div>
-                        <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <a href="/pokemon/25" class="btn btn-primary">
-                                <i class="fa-solid fa-arrow-rotate-left me-1" style="color: white !important;"></i>
-                                Volver a la ficha de Pikachu (#0025)
-                            </a>
-                            <a href="/" class="btn btn-outline-secondary">
-                                <i class="fa-solid fa-house me-1" style="color: currentColor !important;"></i>
-                                Ir al inicio (Pokédex)
-                            </a>
-                        </div>
-                    </div>
+                    {{#case2}}
+                    {{>form-error}}
+                    {{/case2}}
                 </div>
 
                 <!-- -------------------------------------------------------------
                      DEMONSTRATION CASE 3: FILE / MEDIA UPLOAD FORM
                      Error: Unsupported media type (PDF instead of image) & size > 5MB
-                     Redirects to: /new-pokemon.html
                      ------------------------------------------------------------- -->
                 <div class="tab-pane fade" id="demo-case-3" role="tabpanel" aria-labelledby="tab-case-3">
-                    <div class="wb-traffic-inner notika-shadow text-center p-4">
-                        <div class="mb-3">
-                            <i class="fa-solid fa-file-circle-xmark text-danger fa-4x" style="color: #dc3545 !important;"></i>
-                        </div>
-                        <div class="mb-2">
-                            <span class="badge bg-secondary fs-6 px-3 py-1 text-white">
-                                <i class="fa-solid fa-file-lines me-1" style="color: white !important;"></i>
-                                Formulario: Subida de Ilustración de Pokémon
-                            </span>
-                        </div>
-                        <h3 class="fw-bold mb-2 text-dark">Error al procesar el archivo de imagen</h3>
-                        <div class="mb-3">
-                            <span class="badge bg-danger fs-6 px-3 py-2 text-white">
-                                <i class="fa-solid fa-ban me-1" style="color: white !important;"></i>
-                                Formato o Tamaño No Permitido (HTTP 415 - Unsupported Media)
-                            </span>
-                        </div>
-                        <div class="alert alert-light border border-danger text-start p-3 mb-4 shadow-sm" style="color: #212529 !important; background-color: #ffffff !important;">
-                            <p class="mb-2 fw-semibold text-danger">
-                                <i class="fa-solid fa-circle-info me-1" style="color: #dc3545 !important;"></i>
-                                ¿Por qué ha ocurrido este error?
-                            </p>
-                            <p class="text-secondary mb-2">
-                                El archivo adjunto no cumple con los requisitos del servidor para ilustraciones oficiales:
-                            </p>
-                            <ul class="text-secondary mb-0 ps-3">
-                                <li><strong>Extensión no soportada:</strong> El archivo subido (<strong>documento.pdf</strong>) no es una imagen válida. Formatos permitidos: <strong>.png, .jpg, .webp</strong>.</li>
-                                <li><strong>Tamaño de archivo excedido:</strong> El archivo pesa <strong>12.4 MB</strong>, superando el límite máximo permitido de <strong>5 MB</strong>.</li>
-                            </ul>
-                        </div>
-                        <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <a href="/new-pokemon.html" class="btn btn-primary">
-                                <i class="fa-solid fa-upload me-1" style="color: white !important;"></i>
-                                Reintentar subida en el formulario
-                            </a>
-                            <a href="/" class="btn btn-outline-secondary">
-                                <i class="fa-solid fa-house me-1" style="color: currentColor !important;"></i>
-                                Ir al inicio (Pokédex)
-                            </a>
-                        </div>
-                    </div>
+                    {{#case3}}
+                    {{>form-error}}
+                    {{/case3}}
                 </div>
 
                 <!-- -------------------------------------------------------------
                      DEMONSTRATION CASE 4: NOT FOUND / INVALID RESOURCE FORM
                      Error: HTTP 404 (Target Pokemon ID #9999 does not exist)
-                     Redirects to: / (Pokédex main page)
                      ------------------------------------------------------------- -->
                 <div class="tab-pane fade" id="demo-case-4" role="tabpanel" aria-labelledby="tab-case-4">
-                    <div class="wb-traffic-inner notika-shadow text-center p-4">
-                        <div class="mb-3">
-                            <i class="fa-solid fa-magnifying-glass-chart text-danger fa-4x" style="color: #dc3545 !important;"></i>
-                        </div>
-                        <div class="mb-2">
-                            <span class="badge bg-secondary fs-6 px-3 py-1 text-white">
-                                <i class="fa-solid fa-file-lines me-1" style="color: white !important;"></i>
-                                Formulario: Operación sobre Pokémon Desconocido
-                            </span>
-                        </div>
-                        <h3 class="fw-bold mb-2 text-dark">Pokémon no encontrado</h3>
-                        <div class="mb-3">
-                            <span class="badge bg-danger fs-6 px-3 py-2 text-white">
-                                <i class="fa-solid fa-circle-question me-1" style="color: white !important;"></i>
-                                Recurso No Encontrado (HTTP 404 - Not Found)
-                            </span>
-                        </div>
-                        <div class="alert alert-light border border-danger text-start p-3 mb-4 shadow-sm" style="color: #212529 !important; background-color: #ffffff !important;">
-                            <p class="mb-2 fw-semibold text-danger">
-                                <i class="fa-solid fa-circle-info me-1" style="color: #dc3545 !important;"></i>
-                                ¿Por qué ha ocurrido este error?
-                            </p>
-                            <p class="text-secondary mb-2">
-                                Se ha intentado procesar una acción o formulario vinculada a un elemento que no existe:
-                            </p>
-                            <ul class="text-secondary mb-0 ps-3">
-                                <li><strong>Identificador inexistente:</strong> El número de Pokédex solicitado (<strong>#9999</strong>) no se encuentra registrado en la base de datos.</li>
-                                <li><strong>Referencia huérfana:</strong> No es posible asociar movimientos ni editar una entidad que ha sido eliminada o nunca ha existido.</li>
-                            </ul>
-                        </div>
-                        <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <a href="/" class="btn btn-primary">
-                                <i class="fa-solid fa-house me-1" style="color: white !important;"></i>
-                                Volver a la Pokédex principal
-                            </a>
-                            <a href="/new-pokemon.html" class="btn btn-outline-secondary">
-                                <i class="fa-solid fa-plus me-1" style="color: currentColor !important;"></i>
-                                Registrar un nuevo Pokémon
-                            </a>
-                        </div>
-                    </div>
+                    {{#case4}}
+                    {{>form-error}}
+                    {{/case4}}
                 </div>
 
             </div>
