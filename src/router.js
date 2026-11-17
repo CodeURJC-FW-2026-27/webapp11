@@ -22,23 +22,23 @@ const POKEMON_GENERATIONS = [
 const upload = multer({ dest: './public/images/' });
 const pokemonTypes = {
     normal:   { label: 'Normal', icon: 'c' },
-    fire:     { label: 'Fuego', icon: 'f' },
+    fire:     { label: 'Fuego', icon: 'r' },
     water:    { label: 'Agua', icon: 'w' },
     grass:    { label: 'Planta', icon: 'g' },
     electric: { label: 'Eléctrico', icon: 'l' },
-    ice:      { label: 'Hielo', icon: 'i' },
-    fighting: { label: 'Lucha', icon: 'r' },
+    ice:      { label: 'Hielo', icon: 'w' },
+    fighting: { label: 'Lucha', icon: 'f' },
     poison:   { label: 'Veneno', icon: 'p' },
-    ground:   { label: 'Tierra', icon: 't' },
-    flying:   { label: 'Volador', icon: 'v' },
+    ground:   { label: 'Tierra', icon: 'f' },
+    flying:   { label: 'Volador', icon: 'c' },
     psychic:  { label: 'Psíquico', icon: 'p' },
-    bug:      { label: 'Bicho', icon: 'b' },
-    rock:     { label: 'Roca', icon: 'r' },
+    bug:      { label: 'Bicho', icon: 'g' },
+    rock:     { label: 'Roca', icon: 'f' },
     ghost:    { label: 'Fantasma', icon: 'p' },
     dragon:   { label: 'Dragón', icon: 'n' },
     dark:     { label: 'Siniestro', icon: 'd' },
-    steel:    { label: 'Acero', icon: 'a' },
-    fairy:    { label: 'Hada', icon: 'h' }
+    steel:    { label: 'Acero', icon: 'm' },
+    fairy:    { label: 'Hada', icon: 'y' }
 };
 
 async function initDb() {
