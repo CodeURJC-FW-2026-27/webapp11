@@ -191,7 +191,7 @@ router.get('/error', (req, res) => {
 
 router.get('/form-error.html', (req, res) => res.redirect('/form-error'));
 
-async function validatePokemon(pokemon, originalPokedexNumber) {
+async function validatePokemon(pokemon, originalId) {
     let errors = [];
 
     // Required fields
@@ -234,23 +234,26 @@ async function validatePokemon(pokemon, originalPokedexNumber) {
     // Check duplicate Pokedex number
     if (Number.isInteger(pokemon.pokedexNumber) && pokemon.pokedexNumber > 0) {
         const existingNumber = await pokemons.findOne({
-            pokedexNumber: pokemon.pokedexNumber
+            pokedexNumber: pokemon.pokedexNumber,
+            _id: { $ne: originalId ?? null }
         });
 
-        if (existingNumber &&
-            existingNumber.pokedexNumber !== originalPokedexNumber) {
+        if (existingNumber) {
             errors.push("Ya existe un Pokémon con ese número de Pokédex");
         }
     }
 
     // Check duplicate name
     if (pokemon.name?.trim()) {
+        const escapedName = pokemon.name.trim()
+            .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
         const existingName = await pokemons.findOne({
-            name: pokemon.name.trim()
+            name: { $regex: `^${escapedName}$`, $options: 'i' },
+            _id: { $ne: originalId ?? null }
         });
 
-        if (existingName &&
-            existingName.pokedexNumber !== originalPokedexNumber) {
+        if (existingName) {
             errors.push("Ya existe un Pokémon con ese nombre");
         }
     }
