@@ -66,7 +66,12 @@
                 <!-- Move Title and Category/Type Badges -->
                 <div class="move-header">
                     <div class="move-title-group">
+                        {{#image}}
+                        <img src="/uploads/{{image}}" alt="{{name}}" width="40" height="40" class="rounded">
+                        {{/image}}
+                        {{^image}}
                         <i class="{{iconClass}} fs-3"></i>
+                        {{/image}}
                         <h2>{{name}}</h2>
                     </div>
                     <div class="move-badges">
@@ -133,7 +138,7 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="wb-traffic-inner notika-shadow">
-                <form action="/NewAbility" method="POST">
+                <form action="/NewAbility" method="POST enctype=multipart/form-data">
                     <input type="hidden" name="pokemon_id" value="{{pokemon.pokedexNumber}}">
 
                     <!-- Form Row 1: Name & Type -->
@@ -184,6 +189,11 @@
                     <div class="mb-3">
                         <label for="Description" class="form-label"><strong>Descripción:</strong></label>
                         <textarea class="form-control" id="Description" name="description" rows="3" placeholder="Descripción del movimiento"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ability-image" class="form-label"><strong>Imagen del movimiento:</strong></label>
+                        <input type="file" class="form-control" id="ability-image" name="image" accept="image/*">
                     </div>
 
                     <!-- Submit Button -->

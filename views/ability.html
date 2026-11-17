@@ -14,7 +14,7 @@
                     Editando estadísticas del movimiento para <strong>{{pokemon.name}}</strong> (#{{pokemon.formattedNumber}}).
                 </p>
 
-                <form action="/EditAbility/{{pokemon.pokedexNumber}}/{{ability.id}}" method="POST">
+                <form action="/EditAbility/{{pokemon.pokedexNumber}}/{{ability.id}}" method="POST" enctype="multipart/form-data">
                     <!-- Row 1: Name & Type -->
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -63,6 +63,16 @@
                     <div class="mb-3">
                         <label for="ability-description" class="form-label"><strong>Descripción:</strong></label>
                         <textarea id="ability-description" name="description" class="form-control" rows="3" placeholder="Descripción del movimiento..." required>{{ability.description}}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ability-image" class="form-label"><strong>Imagen del movimiento (opcional, mantiene la actual si no subes ninguna):</strong></label>
+                        {{#ability.image}}
+                        <div class="mb-2">
+                            <img src="/uploads/{{ability.image}}" alt="{{ability.name}}" width="50" height="50" class="rounded border p-1 bg-white">
+                        </div>
+                        {{/ability.image}}
+                        <input type="file" id="ability-image" name="image" class="form-control" accept="image/*">
                     </div>
 
                     <!-- Form Action Control Buttons (Save & Cancel) -->
