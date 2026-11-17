@@ -620,6 +620,7 @@ router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
         isEdit: true
     });
 });
+
 router.post('/pokemon/:id/delete', async (req, res) => {
     const id = parseInt(req.params.id);
     await pokemons.deleteOne({ pokedexNumber: id });
@@ -630,4 +631,21 @@ router.post('/pokemon/:id/delete', async (req, res) => {
         actionUrl: '/',
         actionText: 'Volver a la Pokédex'
      });
+});
+router.post('/pokemon/:pokemon_id/ability/:ability_id/delete', async (req, res) => {
+    const pokemonId = Number(req.params.pokemon_id);
+    const abilityId = String(req.params.ability_id);
+
+    await pokemons.updateOne(
+        { pokedexNumber: pokemonId },
+        { $pull: { abilities: { id: abilityId } } }
+    );
+
+    res.render('confirmation', {
+        pageTitle: 'Movimiento Eliminado',
+        title: '¡Movimiento eliminado con éxito!',
+        message: 'El movimiento ha sido eliminado correctamente del Pokémon.',
+        actionUrl: `/pokemon/${pokemonId}`,
+        actionText: 'Volver a la ficha del Pokémon'
+    });
 });

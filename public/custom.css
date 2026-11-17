@@ -472,6 +472,12 @@ body {
     flex-wrap: wrap;
 }
 
+.move-actions form {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+}
+
 /* =========================================================================
    6. MOBILE OFFCANVAS STYLING OVERRIDES
    ========================================================================= */
