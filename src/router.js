@@ -174,6 +174,15 @@ router.get('/pokemon/:id', async (req, res) => {
     });
 });
 
+router.get('/new-pokemon', (req, res) => {
+    res.render('new-pokemon', {
+        pageTitle: 'Crear Pokémon',
+        isNew: true,
+        isEdit: false,
+        formAction: '/NewPokemon'
+    });
+});
+
 // Demonstration cases data for the error showcase
 const demoCases = {
     case1: {
