@@ -379,3 +379,122 @@ router.post('/NewAbility', async (req, res) => {
 
     res.render('confirmation', { pokemon });
 });
+
+router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
+    let pokemonId = Number(req.params.id);
+
+    let pokemon = await pokemons.findOne({
+        pokedexNumber: pokemonId
+    });
+
+    if (!pokemon) {
+        return res.status(404).render('form-error', {
+            errors: ["El Pokémon no existe"]
+        });
+    }
+
+    let editPokemon = {
+        name: req.body.name,
+        pokedexNumber: Number(req.body.pokedexNumber),
+        formattedNumber: String(req.body.pokedexNumber).padStart(4, '0'),
+        type: req.body.type,
+        typeLabel: pokemon.typeLabel,
+        typeIcon: pokemon.typeIcon,
+        generation: Number(req.body.generation),
+        height: Number(req.body.height),
+        weight: Number(req.body.weight),
+        description: req.body.description,
+        image: req.file ? req.file.filename : pokemon.image,
+        abilities: pokemon.abilities
+    };
+
+    // Validate Pokémon
+    let errors = await validatePokemon(editPokemon, pokemon._id);
+
+    if (errors.length > 0) {
+        console.log("Errores:", errors);
+        return res.status(400).render('form-error', { errors });
+    }
+
+    // Update Pokémon
+    await pokemons.updateOne(
+        { _id: pokemon._id },
+        { $set: editPokemon }
+    );
+
+    res.render('confirmation', { pokemon: editPokemon });
+});
+
+router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
+    let pokemonId = Number(req.params.pokemon_id);
+    let abilityId = req.params.ability_id;
+
+    // Get Pokémon
+    let pokemon = await pokemons.findOne({
+        pokedexNumber: pokemonId
+    });
+
+    if (!pokemon) {
+        return res.status(404).render('form-error', {
+            errors: ["El Pokémon no existe"]
+        });
+    }
+
+    // Get original ability
+    let originalAbility = pokemon.abilities.find(
+        ability => String(ability.id) === abilityId
+    );
+
+    if (!originalAbility) {
+        return res.status(404).render('form-error', {
+            errors: ["El movimiento no existe"]
+        });
+    }
+
+    // Build edited ability
+    let editAbility = {
+        id: originalAbility.id,
+        name: req.body.name,
+        type: req.body.type,
+        typeLabel: originalAbility.typeLabel,
+        typeIcon: originalAbility.typeIcon,
+        category: req.body.category,
+        power: Number(req.body.power),
+        accuracy: Number(req.body.accuracy),
+        pp: Number(req.body.pp),
+        description: req.body.description,
+        iconClass: originalAbility.iconClass,
+        image: originalAbility.image
+    };
+
+    // Validate ability
+    let errors = await validateAbility(
+        pokemonId,
+        editAbility,
+        abilityId
+    );
+
+    if (errors.length > 0) {
+        console.log("Errores:", errors);
+        return res.status(400).render('form-error', { errors });
+    }
+
+    // Update ability in MongoDB
+    await pokemons.updateOne(
+        {
+            pokedexNumber: pokemonId,
+            "abilities.id": originalAbility.id
+        },
+        {
+            $set: {
+                "abilities.$": editAbility
+            }
+        }
+    );
+
+    pokemon = await pokemons.findOne({
+        pokedexNumber: pokemonId
+    });
+
+    res.render('confirmation', { pokemon });
+});
