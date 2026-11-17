@@ -44,28 +44,30 @@
      SECTION 2: POKÉMON MOVE DETAILS CARD (TCG / Game Boy Style)
      Uses .wb-traffic-inner (Notika Container Class) overridden in CSS to behave
      as a responsive block container instead of a fixed horizontal row.
+     Dynamic with Mustache variables for move details (name, type, category, power, accuracy, PP, effect).
      ========================================================================= -->
 <div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-12">
+           {#pokemon.abilities}
             <!-- 
               notika-shadow: Template class applying subtle shadow elevation.
               move-details-card: Custom class forcing block layout and overriding flex-wrap issues.
             -->
-            <div class="wb-traffic-inner notika-shadow move-details-card">
+            <div class="wb-traffic-inner notika-shadow move-details-card mb-4">
                 <!-- Move Title and Category/Type Badges -->
                 <div class="move-header">
                     <div class="move-title-group">
-                        <i class="fa-solid fa-bolt text-warning fs-3"></i>
-                        <h2>Bola Voltio</h2>
+                        <i class="{{move.icon}} fs-3"></i>
+                        <h2>{{move.name}}</h2>
                     </div>
                     <div class="move-badges">
                         <!-- Custom Type Badge with Icon Font -->
                         <span class="type-pill">
-                            <span class="tcg-icon">l</span> Eléctrico
+                            <span class="tcg-icon">l</span> {{move.type}} {{move.label}} 
                         </span>
                         <span class="category-pill">
-                            Especial
+                            {{move.category}}
                         </span>
                     </div>
                 </div>
@@ -74,22 +76,22 @@
                 <div class="move-stats-grid">
                     <div class="stat-card">
                         <span class="stat-label">Potencia</span>
-                        <span class="stat-value">60</span>
+                        <span class="stat-value">{{move.power}}</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-label">Precisión</span>
-                        <span class="stat-value">100%</span>
+                        <span class="stat-value">{{move.accuracy}}%</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-label">PP</span>
-                        <span class="stat-value">10</span>
+                        <span class="stat-value">{{move.pp}}</span>
                     </div>
                 </div>
 
                 <!-- Move Description & Effect Container -->
                 <div class="move-effect-box">
                     <span class="effect-label">Efecto del movimiento</span>
-                    <p>Lanza una bola eléctrica. Cuanto mayor sea la Velocidad del usuario en comparación con la del objetivo, mayor será el daño causado.</p>
+                    <p>{{move.effect}}</p>
                 </div>
 
                 <!-- Action Control Buttons -->
@@ -99,6 +101,13 @@
                     <a href="/" class="btn btn-primary" role="button"><i class="fa-solid fa-arrow-left me-1"></i> Volver</a>
                 </div>
             </div>
+              {/pokemon.abilities}
+
+             {^pokemon.abilities}
+            <div class="wb-traffic-inner notika-shadow move-details-card"> 
+                <p class="mb-0 fw-bold text-dark">Este Pokémon no tiene movimientos registrados.</p>
+            </div>
+            {/pokemon.abilities}
         </div>
     </div>
 </div>
