@@ -7,7 +7,9 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="wb-traffic-inner notika-shadow d-block">
-                <h2 class="fw-bold mb-4 text-dark">Crear Nuevo Pokémon</h2>
+                <h2 class="fw-bold mb-4 text-dark">
+                    {{#isEdit}}Editar Pokémon{{/isEdit}}{{^isEdit}}Crear Nuevo Pokémon{{/isEdit}}
+                </h2>
                 
                 <form action="{{formAction}}" method="POST" enctype="multipart/form-data" >
                     <!-- Row 1: Name & Pokedex Number -->
@@ -29,41 +31,19 @@
                             <label for="pokemon-type" class="form-label"><strong>Tipo:</strong></label>
                             <select id="pokemon-type" name="type" class="form-select" required>
                                 <option value="" disabled {{^isEdit}}selected{{/isEdit}}>Selecciona un tipo</option>
-                                <option value="normal" {{#isNormal}}selected{{/isNormal}}>Normal</option>
-                                <option value="fire" {{#isFire}}selected{{/isFire}}>Fuego</option>
-                                <option value="water" {{#isWater}}selected{{/isWater}}>Agua</option>
-                                <option value="grass" {{#isGrass}}selected{{/isGrass}}>Planta</option>
-                                <option value="electric" {{#isElectric}}selected{{/isElectric}}>Eléctrico</option>
-                                <option value="ice" {{#isIce}}selected{{/isIce}}>Hielo</option>
-                                <option value="fighting" {{#isFighting}}selected{{/isFighting}}>Lucha</option>
-                                <option value="poison" {{#isPoison}}selected{{/isPoison}}>Veneno</option>
-                                <option value="ground" {{#isGround}}selected{{/isGround}}>Tierra</option>
-                                <option value="flying" {{#isFlying}}selected{{/isFlying}}>Volador</option>
-                                <option value="psychic" {{#isPsychic}}selected{{/isPsychic}}>Psíquico</option>
-                                <option value="bug" {{#isBug}}selected{{/isBug}}>Bicho</option>
-                                <option value="rock" {{#isRock}}selected{{/isRock}}>Roca</option>
-                                <option value="ghost" {{#isGhost}}selected{{/isGhost}}>Fantasma</option>
-                                <option value="dragon" {{#isDragon}}selected{{/isDragon}}>Dragón</option>
-                                <option value="dark" {{#isDark}}selected{{/isDark}}>Siniestro</option>
-                                <option value="steel" {{#isSteel}}selected{{/isSteel}}>Acero</option>
-                                <option value="fairy" {{#isFairy}}selected{{/isFairy}}>Hada</option>
+                                {{#types}}
+                                <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
+                                {{/types}}
                             </select>
-
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="pokemon-generation" class="form-label"><strong>Generación:</strong></label>
                             <select id="pokemon-generation" name="generation" class="form-select" required>
                                 <option value="" disabled {{^isEdit}}selected{{/isEdit}}>Selecciona una generación</option>
-                                <option value="1" {{#isGen1}}selected{{/isGen1}}>Generación I</option>
-                                <option value="2" {{#isGen2}}selected{{/isGen2}}>Generación II</option>
-                                <option value="3" {{#isGen3}}selected{{/isGen3}}>Generación III</option>
-                                <option value="4" {{#isGen4}}selected{{/isGen4}}>Generación IV</option>
-                                <option value="5" {{#isGen5}}selected{{/isGen5}}>Generación V</option>
-                                <option value="6" {{#isGen6}}selected{{/isGen6}}>Generación VI</option>
-                                <option value="7" {{#isGen7}}selected{{/isGen7}}>Generación VII</option>
-                                <option value="8" {{#isGen8}}selected{{/isGen8}}>Generación VIII</option>
-                                <option value="9" {{#isGen9}}selected{{/isGen9}}>Generación IX</option>
+                                {{#generations}}
+                                <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
+                                {{/generations}}
                             </select>
                         </div>
                     </div>
