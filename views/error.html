@@ -6,71 +6,75 @@
      Can target ANY form across the application.
      Features a demonstration showcase for testing multiple error scenarios.
      ========================================================================= -->
-<div class="container my-auto py-5">
+<div class="container error-page-container py-4 py-md-5">
+    {{#isDynamic}}
+    <!-- =====================================================================
+         1. DYNAMIC ERROR MODE
+         Rendered when specific error data is supplied by an Express controller.
+         Reuses the generic 'form-error' partial for any form.
+         ===================================================================== -->
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8">
-
-            {{#isDynamic}}
-            <!-- =====================================================================
-                 1. DYNAMIC ERROR MODE
-                 Rendered when specific error data is supplied by an Express controller.
-                 Reuses the generic 'form-error' partial for any form.
-                 ===================================================================== -->
+        <div class="col-12 col-xl-9">
             {{>form-error}}
-            {{/isDynamic}}
+        </div>
+    </div>
+    {{/isDynamic}}
 
-            {{^isDynamic}}
-            <!-- =====================================================================
-                 2. DEMONSTRATIONS SHOWCASE MODE
-                 Demonstrates how the error page and reusable partial adapt to
-                 different forms across the application (Creation, Moves, Uploads, 404).
-                 ===================================================================== -->
-            <div class="text-center mb-4">
-                <h2 class="text-white fw-bold mb-2">
-                    <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>
-                    Detección de Errores en Formularios
-                </h2>
-                <p class="text-white-50 mb-3">
-                    El sistema de errores es adaptable a cualquier formulario de la aplicación.
-                    Haz clic en los casos a continuación para visualizar las demostraciones de cada tipo de error:
-                </p>
+    {{^isDynamic}}
+    <!-- =====================================================================
+         2. DEMONSTRATIONS SHOWCASE MODE
+         Demonstrates how the error page and reusable partial adapt to
+         different forms across the application (Creation, Moves, Uploads, 404).
+         ===================================================================== -->
+    <div class="error-showcase-header text-center mb-4">
+        <span class="error-kicker"><i class="fa-solid fa-shield-halved me-2"></i>Panel de pruebas</span>
+        <h1 class="error-showcase-title">Detección de errores en formularios</h1>
+        <p class="error-showcase-copy">
+            El sistema adapta el mismo diseño a cada tipo de operación. Selecciona un caso para ver su detalle.
+        </p>
+    </div>
 
-                <!-- Bootstrap 5 Navigation Pills for Error Demonstrations -->
-                <ul class="nav nav-pills justify-content-center gap-2 mb-4" id="errorDemoTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active px-3 py-2 fw-semibold" id="tab-case-1" data-bs-toggle="pill"
-                            data-bs-target="#demo-case-1" type="button" role="tab" aria-controls="demo-case-1"
-                            aria-selected="true" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-plus me-1 text-white"></i> 1. Crear Pokémon
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link px-3 py-2 fw-semibold" id="tab-case-2" data-bs-toggle="pill"
-                            data-bs-target="#demo-case-2" type="button" role="tab" aria-controls="demo-case-2"
-                            aria-selected="false" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-bolt me-1 text-white"></i> 2. Nuevo Movimiento
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link px-3 py-2 fw-semibold" id="tab-case-3" data-bs-toggle="pill"
-                            data-bs-target="#demo-case-3" type="button" role="tab" aria-controls="demo-case-3"
-                            aria-selected="false" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-image me-1 text-white"></i> 3. Subida de Imagen
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link px-3 py-2 fw-semibold" id="tab-case-4" data-bs-toggle="pill"
-                            data-bs-target="#demo-case-4" type="button" role="tab" aria-controls="demo-case-4"
-                            aria-selected="false" style="border: 2px solid #FF7A3D;">
-                            <i class="fa-solid fa-magnifying-glass me-1 text-white"></i> 4. Recurso Inexistente
-                        </button>
-                    </li>
-                </ul>
+    <div class="row g-4 align-items-start">
+        <!-- Bootstrap 5 Navigation Pills for Error Demonstrations -->
+        <aside class="col-12 col-lg-4">
+            <div class="error-tabs-card" role="tablist" aria-label="Casos de error">
+                <button class="error-tab active" id="tab-case-1" data-bs-toggle="pill"
+                    data-bs-target="#demo-case-1" type="button" role="tab" aria-controls="demo-case-1"
+                    aria-selected="true">
+                    <span class="error-tab-icon"><i class="fa-solid fa-plus"></i></span>
+                    <span class="error-tab-text"><strong>Crear Pokémon</strong><small>Duplicidad y validación</small></span>
+                    <i class="fa-solid fa-chevron-right error-tab-arrow"></i>
+                </button>
+
+                <button class="error-tab" id="tab-case-2" data-bs-toggle="pill"
+                    data-bs-target="#demo-case-2" type="button" role="tab" aria-controls="demo-case-2"
+                    aria-selected="false">
+                    <span class="error-tab-icon"><i class="fa-solid fa-bolt"></i></span>
+                    <span class="error-tab-text"><strong>Nuevo movimiento</strong><small>Valores fuera de rango</small></span>
+                    <i class="fa-solid fa-chevron-right error-tab-arrow"></i>
+                </button>
+
+                <button class="error-tab" id="tab-case-3" data-bs-toggle="pill"
+                    data-bs-target="#demo-case-3" type="button" role="tab" aria-controls="demo-case-3"
+                    aria-selected="false">
+                    <span class="error-tab-icon"><i class="fa-solid fa-image"></i></span>
+                    <span class="error-tab-text"><strong>Subida de imagen</strong><small>Formato o tamaño</small></span>
+                    <i class="fa-solid fa-chevron-right error-tab-arrow"></i>
+                </button>
+
+                <button class="error-tab" id="tab-case-4" data-bs-toggle="pill"
+                    data-bs-target="#demo-case-4" type="button" role="tab" aria-controls="demo-case-4"
+                    aria-selected="false">
+                    <span class="error-tab-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="error-tab-text"><strong>Recurso inexistente</strong><small>Error HTTP 404</small></span>
+                    <i class="fa-solid fa-chevron-right error-tab-arrow"></i>
+                </button>
             </div>
+        </aside>
 
-            <!-- Tab Content Panes (Reusing the 'form-error' partial for each demonstration case) -->
+        <!-- Tab Content Panes (Reusing the 'form-error' partial for each demonstration case) -->
+        <main class="col-12 col-lg-8">
             <div class="tab-content" id="errorDemoTabsContent">
-
                 <!-- -------------------------------------------------------------
                      DEMONSTRATION CASE 1: POKÉMON CREATION FORM
                      Error: Duplicity conflict (pokedexNumber #25 already taken) & validation
@@ -110,12 +114,10 @@
                     {{>form-error}}
                     {{/case4}}
                 </div>
-
             </div>
-            {{/isDynamic}}
-
-        </div>
+        </main>
     </div>
+    {{/isDynamic}}
 </div>
 
 {{>footer}}

@@ -576,3 +576,324 @@ body {
 .notika-pagination .page-link:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 122, 61, 0.35);
 }
+
+/* =========================================================================
+   8. ERROR PAGE & SHOWCASE
+   ========================================================================= */
+.error-page-container {
+    max-width: 1180px;
+}
+
+.error-showcase-header {
+    max-width: 720px;
+    margin-inline: auto;
+}
+
+.error-kicker {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #ff9b73;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.error-showcase-title {
+    margin: 0 0 0.65rem;
+    color: #ffffff;
+    font-size: clamp(1.65rem, 4vw, 2.35rem);
+    font-weight: 800;
+}
+
+.error-showcase-copy {
+    max-width: 620px;
+    margin: 0 auto;
+    color: #bdc7d4;
+    line-height: 1.55;
+}
+
+.error-tabs-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: #19283d;
+}
+
+.error-tab {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 16px;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 72px;
+    padding: 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    color: #e9eef5;
+    text-align: left;
+    transition: 0.18s ease;
+}
+
+.error-tab:hover,
+.error-tab:focus-visible {
+    border-color: rgba(255, 122, 61, 0.45);
+    background: rgba(255, 122, 61, 0.08);
+    outline: none;
+}
+
+.error-tab.active {
+    border-color: #ff7a3d;
+    background: #ff7a3d;
+    color: #101a2e;
+}
+
+.error-tab-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.error-tab.active .error-tab-icon {
+    background: #101a2e;
+}
+
+.error-tab-text {
+    min-width: 0;
+}
+
+.error-tab-text strong,
+.error-tab-text small {
+    display: block;
+}
+
+.error-tab-text strong {
+    margin-bottom: 0.15rem;
+    font-size: 0.95rem;
+}
+
+.error-tab-text small {
+    color: #bdc7d4;
+}
+
+.error-tab.active .error-tab-text small {
+    color: #4f3024;
+}
+
+.error-tab-arrow {
+    opacity: 0.65;
+}
+
+.error-card {
+    width: 100%;
+    padding: 1.25rem;
+    border: 1px solid rgba(16, 26, 46, 0.12);
+    border-radius: 14px;
+    background: #a3e8f0;
+    color: #101a2e;
+}
+
+.error-card-header {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(16, 26, 46, 0.16);
+}
+
+.error-status-icon {
+    display: grid;
+    place-items: center;
+    grid-row: 1 / span 2;
+    width: 68px;
+    height: 68px;
+    border: 3px solid #101a2e;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.error-status-icon i {
+    color: #d83a3a !important;
+    font-size: 2rem;
+}
+
+.error-heading {
+    min-width: 0;
+}
+
+.error-form-name {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #526174;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.error-heading h2 {
+    margin: 0;
+    color: #101a2e;
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    font-weight: 800;
+    line-height: 1.18;
+}
+
+.error-type-badge {
+    grid-column: 2;
+    justify-self: start;
+    max-width: 100%;
+    margin-top: 0.6rem;
+    padding: 0.55rem 0.75rem;
+    white-space: normal;
+    text-align: left;
+}
+
+.error-explanation {
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(16, 26, 46, 0.12);
+    border-radius: 10px;
+    background: #ffffff;
+    color: #263449;
+}
+
+.error-explanation h3 {
+    margin: 0 0 0.55rem;
+    color: #b52b2b;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.error-explanation h3 i {
+    color: #b52b2b !important;
+}
+
+.error-explanation p {
+    margin-bottom: 0.65rem;
+    line-height: 1.55;
+}
+
+.error-details {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.error-details li {
+    margin-bottom: 0.45rem;
+    line-height: 1.45;
+}
+
+.error-details li:last-child {
+    margin-bottom: 0;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.15rem;
+}
+
+.error-primary-action,
+.error-secondary-action {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    font-weight: 700;
+}
+
+.error-primary-action {
+    border-color: #101a2e;
+    background: #ff7a3d;
+    color: #101a2e;
+}
+
+.error-primary-action i,
+.error-secondary-action i {
+    color: inherit !important;
+}
+
+.error-primary-action:hover,
+.error-primary-action:focus {
+    border-color: #101a2e;
+    background: #ea6630;
+    color: #101a2e;
+}
+
+.error-secondary-action {
+    border-color: #101a2e;
+    background: transparent;
+    color: #101a2e;
+}
+
+.error-secondary-action:hover,
+.error-secondary-action:focus {
+    background: #101a2e;
+    color: #ffffff;
+}
+
+@media (min-width: 992px) {
+    .error-card {
+        padding: 1.5rem;
+    }
+
+    .error-card-header {
+        grid-template-columns: 76px minmax(0, 1fr) auto;
+    }
+
+    .error-status-icon {
+        grid-row: 1 / span 2;
+        width: 76px;
+        height: 76px;
+    }
+
+    .error-type-badge {
+        grid-column: 3;
+        grid-row: 1;
+        align-self: start;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .error-card {
+        padding: 1rem;
+    }
+
+    .error-card-header {
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 0.75rem;
+    }
+
+    .error-status-icon {
+        width: 54px;
+        height: 54px;
+    }
+
+    .error-status-icon i {
+        font-size: 1.5rem;
+    }
+
+    .error-type-badge {
+        grid-column: 1 / -1;
+    }
+
+    .error-actions {
+        flex-direction: column;
+    }
+
+    .error-actions .btn {
+        width: 100%;
+    }
+}

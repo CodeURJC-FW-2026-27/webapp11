@@ -17,74 +17,54 @@
      - backUrl: (String) Fallback redirection link
      - backText: (String) Label for secondary button
      ========================================================================= -->
-<div class="wb-traffic-inner notika-shadow text-center p-4">
-
+<article class="error-card notika-shadow">
     <!-- Error Status Icon -->
-    <div class="mb-3">
-        <i class="fa-solid {{iconClass}} fa-4x"></i>
-    </div>
+    <header class="error-card-header">
+        <div class="error-status-icon" aria-hidden="true">
+            <i class="fa-solid {{iconClass}}"></i>
+        </div>
 
-    <!-- Target Form Identification Badge -->
-    {{#formName}}
-    <div class="mb-2">
-        <span class="badge bg-secondary fs-6 px-3 py-1 text-white">
-            <i class="fa-solid fa-file-lines me-1 text-white"></i>
-            {{{formName}}}
-        </span>
-    </div>
-    {{/formName}}
+        <!-- Target Form Identification Badge and Error Main Heading -->
+        <div class="error-heading">
+            {{#formName}}
+            <!-- Target Form Identification Badge -->
+            <span class="error-form-name">
+                <i class="fa-solid fa-file-lines me-1" aria-hidden="true"></i>
+                {{{formName}}}
+            </span>
+            {{/formName}}
+            <!-- Error Main Heading -->
+            <h2>{{title}}</h2>
+        </div>
 
-    <!-- Error Main Heading -->
-    <h3 class="fw-bold mb-2 text-dark">{{title}}</h3>
-
-    <!-- Error Type Badge (Explains the kind of error) -->
-    <div class="mb-3">
-        <span class="badge {{badgeClass}} fs-6 px-3 py-2">
+        <!-- Error Type Badge (Explains the kind of error) -->
+        <span class="badge {{badgeClass}} error-type-badge">
             <i class="fa-solid fa-triangle-exclamation me-1"></i>
             {{errorType}}
         </span>
-    </div>
+    </header>
 
     <!-- Detailed Explanation Box -->
-    <div class="alert alert-light border border-danger text-start p-3 mb-4 shadow-sm bg-white text-dark">
-        <p class="mb-2 fw-semibold text-danger">
-            <i class="fa-solid fa-circle-info me-1 text-danger"></i>
-            ¿Por qué ha ocurrido este error?
-        </p>
-        <p class="text-secondary mb-2">
-            {{message}}
-        </p>
+    <div class="error-explanation">
+        <h3><i class="fa-solid fa-circle-info me-2"></i>¿Por qué ha ocurrido este error?</h3>
+        <p>{{message}}</p>
         {{#hasErrorDetails}}
-        <ul class="text-secondary mb-0 ps-3">
-            {{#errorDetails}}
-            <li>{{{.}}}</li>
-            {{/errorDetails}}
+        <ul class="error-details">
+            {{#errorDetails}}<li>{{{.}}}</li>{{/errorDetails}}
         </ul>
-        {{/hasErrorDetails}}
-        {{^hasErrorDetails}}
-        {{#errorDetails.length}}
-        <ul class="text-secondary mb-0 ps-3">
-            {{#errorDetails}}
-            <li>{{{.}}}</li>
-            {{/errorDetails}}
-        </ul>
-        {{/errorDetails.length}}
         {{/hasErrorDetails}}
     </div>
 
     <!-- Action / Redirection Buttons -->
-    <div class="d-flex justify-content-center flex-wrap gap-2">
+    <footer class="error-actions">
         <!-- Primary Button: Redirect to the correct form page -->
-        <a href="{{{actionUrl}}}" class="btn btn-primary">
-            <i class="fa-solid fa-arrow-rotate-left me-1 text-white"></i>
-            {{actionText}}
+        <a href="{{{actionUrl}}}" class="btn error-primary-action">
+            <i class="fa-solid fa-arrow-rotate-left me-2"></i>{{actionText}}
         </a>
 
         <!-- Secondary Button: Return to Home / Pokédex -->
-        <a href="{{{backUrl}}}" class="btn btn-outline-secondary">
-            <i class="fa-solid fa-house me-1"></i>
-            {{backText}}
+        <a href="{{{backUrl}}}" class="btn error-secondary-action">
+            <i class="fa-solid fa-house me-2"></i>{{backText}}
         </a>
-    </div>
-
-</div>
+    </footer>
+</article>
