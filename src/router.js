@@ -43,16 +43,44 @@ const pokemonTypes = {
 
 async function initDb() {
     try {
+        const fs = await import('node:fs/promises');
+
+        // Create uploads folder
+        await fs.mkdir('./uploads', { recursive: true });
+
+        // Initialize database if empty
         if (await pokemons.countDocuments() === 0) {
             let currentSourceFilePath = import.meta.url;
             let absoluteDataFilePath = new URL('../data/pokemons.json', currentSourceFilePath);
+
             const pokemonsAsString = await readFile(absoluteDataFilePath, 'utf8');
             const pokemonsAsObjects = JSON.parse(pokemonsAsString);
 
             await pokemons.insertMany(pokemonsAsObjects);
         }
+
+        // Copy initial Pokémon images
+        const images = await fs.readdir(new URL('../data/images/', import.meta.url));
+
+        for (const image of images) {
+            const source = new URL(`../data/images/${image}`, import.meta.url);
+            const destination = `./uploads/${image}`;
+
+            try {
+                await fs.copyFile(
+                    source,
+                    destination,
+                    fs.constants.COPYFILE_EXCL
+                );
+            } catch (error) {
+                if (error.code !== 'EEXIST') {
+                    throw error;
+                }
+            }
+        }
+
     } catch (error) {
-        console.log('Error al inicializar la base de datos');
+        console.error('Error al inicializar la base de datos:', error);
     }
 }
 
