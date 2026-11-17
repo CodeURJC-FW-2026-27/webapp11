@@ -1,3 +1,30 @@
 {{>header}}
-{{>action-status}}
+
+<!-- =========================================================================
+     CONFIRMATION PAGE (views/confirmation.html)
+     Vertical, centered, spacious layout using Bootstrap flexbox utilities.
+     ========================================================================= -->
+<div class="container my-auto py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="wb-traffic-inner notika-shadow d-flex flex-column align-items-center text-center p-4 p-md-5">
+                <div class="mb-3">
+                    <i class="fa-solid fa-circle-check text-success" style="font-size: 4.5rem;"></i>
+                </div>
+                <h2 class="fw-bold text-dark mb-3">{{title}}</h2>
+                <p class="text-dark fs-5 mb-4" style="max-width: 480px; line-height: 1.5;">
+                    {{message}}
+                </p>
+
+                <div>
+                    <a href="{{actionUrl}}" class="btn btn-primary px-4 py-2 fs-6">
+                        <i class="fa-solid fa-arrow-left me-2"></i>{{actionText}}
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 {{>footer}}
