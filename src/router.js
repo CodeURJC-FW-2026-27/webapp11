@@ -19,7 +19,7 @@ const POKEMON_GENERATIONS = [
     { value: 9, label: 'Gen IX (Paldea)' }
 ];
 
-const upload = multer({ dest: './public/images/' });
+const upload = multer({ dest: './uploads/' });
 const pokemonTypes = {
     normal:   { label: 'Normal', icon: 'c' },
     fire:     { label: 'Fuego', icon: 'r' },
