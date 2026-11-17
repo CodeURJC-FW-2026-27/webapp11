@@ -375,7 +375,14 @@ router.post('/NewPokemon', upload.single('image'), async (req, res) => {
 
     await pokemons.insertOne(pokemon);
 
-    res.render('confirmation', { pokemon });
+    res.render('confirmation', {
+        pageTitle: 'Pokémon Registrado',
+        title: '¡Pokémon creado con éxito!',
+        message: `El Pokémon "${pokemon.name}" (#${pokemon.formattedNumber}) ha sido registrado correctamente en la Pokédex.`,
+        actionUrl: `/pokemon/${pokemon.pokedexNumber}`,
+        actionText: 'Ver Pokémon',
+        pokemon
+    });
 });
 
 async function validateAbility(pokemonId, ability, originalAbilityId) {
@@ -441,15 +448,19 @@ async function validateAbility(pokemonId, ability, originalAbilityId) {
 router.post('/NewAbility', async (req, res) => {
     let pokemonId = Number(req.body.pokemon_id);
 
+    let selectedType = pokemonTypes[req.body.type?.toLowerCase()];
     let ability = {
-        id: req.body.id,
+        id: req.body.id || String(Date.now()),
         name: req.body.name,
         type: req.body.type,
+        typeLabel: selectedType?.label || req.body.type,
+        typeIcon: selectedType?.icon || '',
         category: req.body.category,
         power: Number(req.body.power),
         accuracy: Number(req.body.accuracy),
         pp: Number(req.body.pp),
-        description: req.body.description
+        description: req.body.description,
+        iconClass: 'fa-solid fa-bolt text-warning'
     };
 
     let errors = await validateAbility(pokemonId, ability);
@@ -468,7 +479,14 @@ router.post('/NewAbility', async (req, res) => {
         pokedexNumber: pokemonId
     });
 
-    res.render('confirmation', { pokemon });
+    res.render('confirmation', {
+        pageTitle: 'Movimiento Añadido',
+        title: '¡Movimiento añadido con éxito!',
+        message: `El movimiento "${ability.name}" ha sido añadido correctamente a la ficha de ${pokemon ? pokemon.name : 'Pokémon'}.`,
+        actionUrl: `/pokemon/${pokemonId}`,
+        actionText: 'Volver a la ficha del Pokémon',
+        pokemon
+    });
 });
 
 router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
@@ -515,7 +533,14 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
         { $set: editPokemon }
     );
 
-    res.render('confirmation', { pokemon: editPokemon });
+    res.render('confirmation', {
+        pageTitle: 'Pokémon Actualizado',
+        title: '¡Pokémon actualizado con éxito!',
+        message: `Los datos del Pokémon "${editPokemon.name}" (#${editPokemon.formattedNumber}) se han actualizado correctamente.`,
+        actionUrl: `/pokemon/${editPokemon.pokedexNumber}`,
+        actionText: 'Ver Pokémon',
+        pokemon: editPokemon
+    });
 });
 
 router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
@@ -589,7 +614,14 @@ router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
         pokedexNumber: pokemonId
     });
 
-    res.render('confirmation', { pokemon });
+    res.render('confirmation', {
+        pageTitle: 'Movimiento Actualizado',
+        title: '¡Movimiento actualizado con éxito!',
+        message: `El movimiento "${editAbility.name}" ha sido actualizado correctamente en la ficha de ${pokemon ? pokemon.name : 'Pokémon'}.`,
+        actionUrl: `/pokemon/${pokemonId}`,
+        actionText: 'Volver a la ficha del Pokémon',
+        pokemon
+    });
 });
 
 router.get('/pokemon/:id/edit', async (req, res) => {

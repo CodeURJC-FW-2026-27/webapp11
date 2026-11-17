@@ -1,0 +1,79 @@
+{{>header}}
+
+<!-- =========================================================================
+     MAIN CONTENT AREA: EDIT MOVE / ABILITY FORM
+     ========================================================================= -->
+<div class="container my-auto py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="wb-traffic-inner notika-shadow d-block">
+                <h2 class="fw-bold mb-3 text-dark">
+                    Editar Movimiento: {{ability.name}}
+                </h2>
+                <p class="text-secondary mb-4">
+                    Editando estadísticas del movimiento para <strong>{{pokemon.name}}</strong> (#{{pokemon.formattedNumber}}).
+                </p>
+
+                <form action="/EditAbility/{{pokemon.pokedexNumber}}/{{ability.id}}" method="POST">
+                    <!-- Row 1: Name & Type -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="ability-name" class="form-label"><strong>Nombre:</strong></label>
+                            <input type="text" id="ability-name" name="name" class="form-control" placeholder="Ej. Rayo" value="{{ability.name}}" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="ability-type" class="form-label"><strong>Tipo:</strong></label>
+                            <input type="text" id="ability-type" name="type" class="form-control" placeholder="Ej. Eléctrico, Normal..." value="{{ability.type}}" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Category & Power -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="ability-category" class="form-label"><strong>Categoría:</strong></label>
+                            <input type="text" id="ability-category" name="category" class="form-control" placeholder="Ej. Físico, Especial, Estado" value="{{ability.category}}" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="ability-power" class="form-label"><strong>Poder:</strong></label>
+                            <input type="number" id="ability-power" name="power" class="form-control" min="0" max="5050" placeholder="0-5050" value="{{ability.power}}" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Accuracy & PP -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="ability-accuracy" class="form-label"><strong>Precisión:</strong></label>
+                            <input type="number" id="ability-accuracy" name="accuracy" class="form-control" min="30" max="100" placeholder="30-100" value="{{ability.accuracy}}" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="ability-pp" class="form-label"><strong>Número de movimientos (PP):</strong></label>
+                            <input type="number" id="ability-pp" name="pp" class="form-control" min="1" max="160" placeholder="1-160" value="{{ability.pp}}" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Description Textarea -->
+                    <div class="mb-3">
+                        <label for="ability-description" class="form-label"><strong>Descripción:</strong></label>
+                        <textarea id="ability-description" name="description" class="form-control" rows="3" placeholder="Descripción del movimiento..." required>{{ability.description}}</textarea>
+                    </div>
+
+                    <!-- Form Action Control Buttons (Save & Cancel) -->
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Guardar
+                        </button>
+
+                        <a href="/pokemon/{{pokemon.pokedexNumber}}" class="btn btn-primary" role="button">
+                            <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{>footer}}
