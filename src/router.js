@@ -7,6 +7,26 @@ const client = new MongoClient('mongodb://localhost:27017');
 const db = client.db('pokedex');
 const pokemons = db.collection('pokemons');
 const upload = multer({ dest: './public/images/' });
+const pokemonTypes = {
+    normal:   { label: 'Normal', icon: 'c' },
+    fire:     { label: 'Fuego', icon: 'f' },
+    water:    { label: 'Agua', icon: 'w' },
+    grass:    { label: 'Planta', icon: 'g' },
+    electric: { label: 'Eléctrico', icon: 'l' },
+    ice:      { label: 'Hielo', icon: 'i' },
+    fighting: { label: 'Lucha', icon: 'r' },
+    poison:   { label: 'Veneno', icon: 'p' },
+    ground:   { label: 'Tierra', icon: 't' },
+    flying:   { label: 'Volador', icon: 'v' },
+    psychic:  { label: 'Psíquico', icon: 'p' },
+    bug:      { label: 'Bicho', icon: 'b' },
+    rock:     { label: 'Roca', icon: 'r' },
+    ghost:    { label: 'Fantasma', icon: 'p' },
+    dragon:   { label: 'Dragón', icon: 'n' },
+    dark:     { label: 'Siniestro', icon: 'd' },
+    steel:    { label: 'Acero', icon: 'a' },
+    fairy:    { label: 'Hada', icon: 'h' }
+};
 
 async function initDb() {
     try {
@@ -262,11 +282,16 @@ async function validatePokemon(pokemon, originalId) {
 }
 
 router.post('/NewPokemon', upload.single('image'), async (req, res) => {
+    
+    let selectedType = pokemonTypes[req.body.type];
+
     let pokemon = {
         name: req.body.name,
         pokedexNumber: Number(req.body.pokedexNumber),
         formattedNumber: String(req.body.pokedexNumber).padStart(4, '0'),
         type: req.body.type,
+        typeLabel: selectedType?.label || '',
+        typeIcon: selectedType?.icon || '',
         generation: Number(req.body.generation),
         height: Number(req.body.height),
         weight: Number(req.body.weight),
@@ -393,13 +418,15 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
         });
     }
 
+    let selectedType = pokemonTypes[req.body.type];
+
     let editPokemon = {
         name: req.body.name,
         pokedexNumber: Number(req.body.pokedexNumber),
         formattedNumber: String(req.body.pokedexNumber).padStart(4, '0'),
         type: req.body.type,
-        typeLabel: pokemon.typeLabel,
-        typeIcon: pokemon.typeIcon,
+        typeLabel: selectedType?.label || '',
+        typeIcon: selectedType?.icon || '',
         generation: Number(req.body.generation),
         height: Number(req.body.height),
         weight: Number(req.body.weight),
