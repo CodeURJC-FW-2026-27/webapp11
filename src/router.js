@@ -178,7 +178,15 @@ router.get('/', async (req, res) => {
         });
     } catch (error) {
         console.error('Error querying pokemons in MongoDB:', error);
-        res.status(500).send('Error interno del servidor');
+        renderError(res, 500, {
+            formName: 'Página principal (Pokédex)',
+            title: 'Error interno del servidor',
+            errorType: 'Error Interno del Servidor (HTTP 500)',
+            message: 'Ocurrió un error inesperado al cargar la lista de Pokémon.',
+            errors: ['No se pudo conectar con la base de datos o la consulta falló'],
+            actionUrl: '/',
+            actionText: 'Reintentar'
+        });
     }
 });
 
@@ -314,7 +322,7 @@ router.get('/error', (req, res) => {
     });
 });
 
-function renderFormError(res, statusCode, { formName, title, errorType, message, errors, actionUrl, actionText }) {
+function renderError(res, statusCode, { formName, title, errorType, message, errors, actionUrl, actionText }) {
     return res.status(statusCode).render('error', {
         pageTitle: title,
         isDynamic: true,
@@ -437,7 +445,7 @@ router.post('/NewPokemon', upload.single('image'), async (req, res) => {
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return renderFormError(res, 400, {
+        return renderError(res, 400, {
             formName: 'Formulario: Crear Nuevo Pokémon (/new-pokemon)',
             title: 'Error al registrar el Pokémon',
             errorType: 'Error de Validación (HTTP 400)',
@@ -542,7 +550,7 @@ router.post('/NewAbility', async (req, res) => {
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return renderFormError(res, 400, {
+        return renderError(res, 400, {
             formName: `Formulario: Crear Movimiento (/pokemon/${pokemonId})`,
             title: 'Error al añadir el movimiento',
             errorType: 'Error de Validación (HTTP 400)',
@@ -580,7 +588,7 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
     });
 
     if (!pokemon) {
-        return renderFormError(res, 404, {
+        return renderError(res, 404, {
             formName: `Formulario: Editar Pokémon (/pokemon/${pokemonId}/edit)`,
             title: 'Pokémon no encontrado',
             errorType: 'Recurso No Encontrado (HTTP 404)',
@@ -613,7 +621,7 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return renderFormError(res, 400, {
+        return renderError(res, 400, {
             formName: `Formulario: Editar Pokémon (/pokemon/${pokemonId}/edit)`,
             title: 'Error al actualizar el Pokémon',
             errorType: 'Error de Validación (HTTP 400)',
@@ -650,7 +658,7 @@ router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
     });
 
     if (!pokemon) {
-        return renderFormError(res, 404, {
+        return renderError(res, 404, {
             formName: `Formulario: Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
             title: 'Pokémon no encontrado',
             errorType: 'Recurso No Encontrado (HTTP 404)',
@@ -667,7 +675,7 @@ router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
     );
 
     if (!originalAbility) {
-        return renderFormError(res, 404, {
+        return renderError(res, 404, {
             formName: `Formulario: Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
             title: 'Movimiento no encontrado',
             errorType: 'Recurso No Encontrado (HTTP 404)',
@@ -704,7 +712,7 @@ router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return renderFormError(res, 400, {
+        return renderError(res, 400, {
             formName: `Formulario: Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
             title: 'Error al actualizar el movimiento',
             errorType: 'Error de Validación (HTTP 400)',
@@ -750,7 +758,7 @@ router.get('/pokemon/:id/edit', async (req, res) => {
     });
 
     if (!pokemon) {
-        return renderFormError(res, 404, {
+        return renderError(res, 404, {
             formName: `Editar Pokémon (/pokemon/${pokemonId}/edit)`,
             title: 'Pokémon no encontrado',
             errorType: 'Recurso No Encontrado (HTTP 404)',
@@ -792,7 +800,7 @@ router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
     });
 
     if (!pokemon) {
-        return renderFormError(res, 404, {
+        return renderError(res, 404, {
             formName: `Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
             title: 'Pokémon no encontrado',
             errorType: 'Recurso No Encontrado (HTTP 404)',
@@ -808,7 +816,7 @@ router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
     );
 
     if (!ability) {
-        return renderFormError(res, 404, {
+        return renderError(res, 404, {
             formName: `Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
             title: 'Movimiento no encontrado',
             errorType: 'Recurso No Encontrado (HTTP 404)',
