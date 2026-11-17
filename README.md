@@ -124,3 +124,27 @@ Entities have associated images to complement their visualization:
   3. [`pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/pokemon.html)
   4. [`new-pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/new-pokemon.html)
   5. [`README.md`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/README.md)
+
+## Práctica 2
+
+### Screenshots
+
+---
+
+### Member Contributions
+
+#### Marcos Vidal Castillo (@Marcos-VC)
+* **Task Description:** In charge of pagination, search, categories and filters, helped with mustache templates to avoid dupped code, fixed some errors in other funtionalities..
+* **Top 5 Commits:**
+  1. [working pagination](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/c8240dff897ee83d6dbeba8f72bc08dbedec8a1f)
+  2. [searching bar + filters](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/bf08d316c8a7532eb93cba73327097224f82f74a)
+  3. [better filters](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/f87e44abc992548fed60090341adfa27733400ad)
+  4. [fix edit pokemon link](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/0d57270c8be1d3a48a2efd4d08c323f30aaccc0d)
+  5. [category fix](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/e58973916040da6f0de2c5f1aa53f1e6e664887c)
+* **Top 5 Files:**
+  1. [`home.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/home.html)
+  2. [`pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/pokemon.html)
+  3. [`new-pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/new-pokemon.html)
+  4. [`custom.css`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/custom.css)
+  5. [`README.md`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/README.md)
+
