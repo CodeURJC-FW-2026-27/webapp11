@@ -217,23 +217,17 @@ async function validatePokemon(pokemon, originalPokedexNumber) {
     }
 
     // Generation: integer between 1 and 9
-    if (!Number.isInteger(pokemon.generation) ||
-        pokemon.generation < 1 ||
-        pokemon.generation > 9) {
+    if (!Number.isInteger(pokemon.generation) || pokemon.generation < 1 || pokemon.generation > 9) {
         errors.push("La generación debe estar entre 1 y 9");
     }
 
     // Height: between 0.1 and 100
-    if (!Number.isFinite(pokemon.height) ||
-        pokemon.height < 0.1 ||
-        pokemon.height > 100) {
+    if (!Number.isFinite(pokemon.height) || pokemon.height < 0.1 || pokemon.height > 100) {
         errors.push("La altura debe estar entre 0.1 y 100 metros");
     }
 
     // Weight: between 0.1 and 1000
-    if (!Number.isFinite(pokemon.weight) ||
-        pokemon.weight < 0.1 ||
-        pokemon.weight > 1000) {
+    if (!Number.isFinite(pokemon.weight) || pokemon.weight < 0.1 || pokemon.weight > 1000) {
         errors.push("El peso debe estar entre 0.1 y 1000 kg");
     }
 
@@ -286,6 +280,99 @@ router.post('/NewPokemon', upload.single('image'), async (req, res) => {
     }
 
     await pokemons.insertOne(pokemon);
+
+    res.render('confirmation', { pokemon });
+});
+
+async function validateAbility(pokemonId, ability, originalAbilityId) {
+    let errors = [];
+
+    // Required fields
+    if (!ability.name?.trim()) {
+        errors.push("El nombre del movimiento es obligatorio");
+    }
+
+    if (!ability.type?.trim()) {
+        errors.push("El tipo del movimiento es obligatorio");
+    }
+
+    if (!ability.category?.trim()) {
+        errors.push("La categoría del movimiento es obligatoria");
+    }
+
+    if (!ability.description?.trim()) {
+        errors.push("La descripción del movimiento es obligatoria");
+    }
+
+    // Power: integer between 0 and 5050
+    if (!Number.isInteger(ability.power) || ability.power < 0 || ability.power > 5050) {
+        errors.push("La potencia debe estar entre 0 y 5050");
+    }
+
+    // Accuracy: integer between 30 and 100
+    if (!Number.isInteger(ability.accuracy) || ability.accuracy < 30 || ability.accuracy > 100) {
+        errors.push("La precisión debe estar entre 30 y 100");
+    }
+
+    // PP: integer between 1 and 160
+    if (!Number.isInteger(ability.pp) || ability.pp < 1 || ability.pp > 160) {
+        errors.push("Los PP deben estar entre 1 y 160");
+    }
+
+    // Check if Pokémon exists
+    const pokemon = await pokemons.findOne({
+        pokedexNumber: Number(pokemonId)
+    });
+
+    if (!pokemon) {
+        errors.push("El Pokémon no existe");
+        return errors;
+    }
+
+    // Check duplicated ability name
+    if (ability.name?.trim()) {
+        const existingAbility = pokemon.abilities?.find(item =>
+            item.name?.trim().toLowerCase() === ability.name.trim().toLowerCase() &&
+            String(item.id) !== String(originalAbilityId)
+        );
+
+        if (existingAbility) {
+            errors.push("Ya existe un movimiento con ese nombre en este Pokémon");
+        }
+    }
+
+    return errors;
+}
+
+router.post('/NewAbility', async (req, res) => {
+    let pokemonId = Number(req.body.pokemon_id);
+
+    let ability = {
+        id: req.body.id,
+        name: req.body.name,
+        type: req.body.type,
+        category: req.body.category,
+        power: Number(req.body.power),
+        accuracy: Number(req.body.accuracy),
+        pp: Number(req.body.pp),
+        description: req.body.description
+    };
+
+    let errors = await validateAbility(pokemonId, ability);
+
+    if (errors.length > 0) {
+        console.log("Errores:", errors);
+        return res.render('form-error', { errors });
+    }
+
+    await pokemons.updateOne(
+        { pokedexNumber: pokemonId },
+        { $push: { abilities: ability } }
+    );
+
+    let pokemon = await pokemons.findOne({
+        pokedexNumber: pokemonId
+    });
 
     res.render('confirmation', { pokemon });
 });
