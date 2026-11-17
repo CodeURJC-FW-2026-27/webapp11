@@ -24,7 +24,12 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="ability-type" class="form-label"><strong>Tipo:</strong></label>
-                            <input type="text" id="ability-type" name="type" class="form-control" placeholder="Ej. Eléctrico, Normal..." value="{{ability.type}}" required>
+                            <select id="ability-type" name="type" class="form-select" required>
+                                <option value="" disabled>Selecciona un tipo</option>
+                                {{#types}}
+                                <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
+                                {{/types}}
+                            </select>
                         </div>
                     </div>
 

@@ -155,9 +155,14 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/pokemon/:id', async (req, res) => {
-    const pokemon = await pokemons.findOne({ pokedexNumber: parseInt(req.params.id) })
+    const pokemon = await pokemons.findOne({ pokedexNumber: parseInt(req.params.id) });
+    const types = Object.entries(pokemonTypes).map(([value, info]) => ({
+        value,
+        label: info.label
+    }));
     res.render('pokemon', {
-        pokemon: pokemon
+        pokemon: pokemon,
+        types: types
     });
 });
 
@@ -570,12 +575,13 @@ router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
     }
 
     // Build edited ability
+    let selectedType = pokemonTypes[req.body.type?.toLowerCase()];
     let editAbility = {
         id: originalAbility.id,
         name: req.body.name,
         type: req.body.type,
-        typeLabel: originalAbility.typeLabel,
-        typeIcon: originalAbility.typeIcon,
+        typeLabel: selectedType?.label || originalAbility.typeLabel,
+        typeIcon: selectedType?.icon || originalAbility.typeIcon,
         category: req.body.category,
         power: Number(req.body.power),
         accuracy: Number(req.body.accuracy),
@@ -683,10 +689,18 @@ router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
         });
     }
 
+    const types = Object.entries(pokemonTypes).map(([value, info]) => ({
+        value,
+        label: info.label,
+        selected: (ability.type || '').toLowerCase() === value || (ability.typeLabel || '').toLowerCase() === info.label.toLowerCase()
+    }));
+
     res.render('ability', {
+        pageTitle: `Editar ${ability.name}`,
         pokemon,
         ability,
-        isEdit: true
+        isEdit: true,
+        types
     });
 });
 
