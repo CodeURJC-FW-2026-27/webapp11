@@ -214,17 +214,18 @@ router.get('/form-error.html', (req, res) => res.redirect('/form-error'));
 async function validatePokemon(pokemon, originalId) {
     let errors = [];
 
-    // Required fields
-    if (!pokemon.name?.trim()) {
-        errors.push("El nombre del Pokémon es obligatorio");
+    // Name must start with an uppercase letter
+    if (pokemon.name && !/^[A-ZÁÉÍÓÚÑ]/.test(pokemon.name.trim())) {
+        errors.push("El nombre del Pokémon debe comenzar por mayúscula");
     }
 
     if (!pokemon.type) {
         errors.push("El tipo del Pokémon es obligatorio");
     }
 
-    if (!pokemon.description?.trim()) {
-        errors.push("La descripción es obligatoria");
+    // Description must contain between 10 and 500 characters
+    if (pokemon.description && (pokemon.description.trim().length < 10 || pokemon.description.trim().length > 500)) {
+        errors.push("La descripción debe tener entre 10 y 500 caracteres");
     }
 
     if (!pokemon.image) {
