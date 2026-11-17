@@ -183,27 +183,26 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/pokemon/:id', async (req, res) => {
-    const pokemon = await pokemons.findOne({
-        pokedexNumber: parseInt(req.params.id)
-    });
-
+    const pokemon = await pokemons.findOne({ pokedexNumber: parseInt(req.params.id) });
     if (!pokemon) {
-        return res.status(404).send('El Pokémon no existe');
+        return res.status(404).render('error', {
+            pageTitle: 'Error 404 - Pokémon no encontrado',
+            isDynamic: true,
+            iconClass: 'fa-magnifying-glass-chart text-danger',
+            title: 'Pokémon no encontrado',
+            badgeClass: 'bg-danger text-white',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'El Pokémon solicitado no existe en la base de datos.',
+            actionUrl: '/',
+            actionText: 'Volver a la Pokédex',
+            backUrl: '/new-pokemon',
+            backText: 'Registrar un nuevo Pokémon'
+        });
     }
-
     const types = Object.entries(pokemonTypes).map(([value, info]) => ({
         value,
         label: info.label
     }));
-
-    // Set image URL for each ability
-    pokemon.abilities = (pokemon.abilities || []).map(ability => ({
-        ...ability,
-        imageUrl: ability.imageUploaded
-            ? `/uploads/${ability.image}`
-            : `/images/${ability.image || 'abilities.svg'}`
-    }));
-
     res.render('pokemon', {
         pokemon: pokemon,
         types: types
@@ -315,6 +314,25 @@ router.get('/error', (req, res) => {
     });
 });
 
+function renderFormError(res, statusCode, { formName, title, errorType, message, errors, actionUrl, actionText }) {
+    return res.status(statusCode).render('error', {
+        pageTitle: title,
+        isDynamic: true,
+        iconClass: 'fa-circle-exclamation text-danger',
+        formName,
+        title,
+        badgeClass: 'bg-danger text-white',
+        errorType,
+        message,
+        hasErrorDetails: Array.isArray(errors) && errors.length > 0,
+        errorDetails: errors || [],
+        actionUrl,
+        actionText,
+        backUrl: '/',
+        backText: 'Volver a la Pokédex'
+    });
+}
+
 async function validatePokemon(pokemon, originalId) {
     let errors = [];
 
@@ -419,7 +437,15 @@ router.post('/NewPokemon', upload.single('image'), async (req, res) => {
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return res.render('form-error', { errors });
+        return renderFormError(res, 400, {
+            formName: 'Formulario: Crear Nuevo Pokémon (/new-pokemon)',
+            title: 'Error al registrar el Pokémon',
+            errorType: 'Error de Validación (HTTP 400)',
+            message: 'No se pudo registrar el Pokémon debido a los siguientes errores:',
+            errors,
+            actionUrl: '/new-pokemon',
+            actionText: 'Volver al formulario de creación'
+        });
     }
 
     await pokemons.insertOne(pokemon);
@@ -494,7 +520,7 @@ async function validateAbility(pokemonId, ability, originalAbilityId) {
     return errors;
 }
 
-router.post('/NewAbility', upload.single('image'), async (req, res) => {
+router.post('/NewAbility', async (req, res) => {
     let pokemonId = Number(req.body.pokemon_id);
 
     let selectedType = pokemonTypes[req.body.type?.toLowerCase()];
@@ -509,15 +535,22 @@ router.post('/NewAbility', upload.single('image'), async (req, res) => {
         accuracy: Number(req.body.accuracy),
         pp: Number(req.body.pp),
         description: req.body.description,
-        iconClass: 'fa-solid fa-bolt text-warning',
-        image: req.file ? req.file.filename : 'abilities.svg'
+        iconClass: 'fa-solid fa-bolt text-warning'
     };
 
     let errors = await validateAbility(pokemonId, ability);
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return res.render('form-error', { errors });
+        return renderFormError(res, 400, {
+            formName: `Formulario: Crear Movimiento (/pokemon/${pokemonId})`,
+            title: 'Error al añadir el movimiento',
+            errorType: 'Error de Validación (HTTP 400)',
+            message: 'No se pudo añadir el movimiento debido a los siguientes errores:',
+            errors,
+            actionUrl: Number.isFinite(pokemonId) ? `/pokemon/${pokemonId}` : '/',
+            actionText: Number.isFinite(pokemonId) ? 'Volver a la ficha del Pokémon' : 'Volver a la Pokédex'
+        });
     }
 
     await pokemons.updateOne(
@@ -547,8 +580,14 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
     });
 
     if (!pokemon) {
-        return res.status(404).render('form-error', {
-            errors: ["El Pokémon no existe"]
+        return renderFormError(res, 404, {
+            formName: `Formulario: Editar Pokémon (/pokemon/${pokemonId}/edit)`,
+            title: 'Pokémon no encontrado',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'No se puede editar el Pokémon porque no existe en la base de datos.',
+            errors: ['El Pokémon solicitado no existe'],
+            actionUrl: '/',
+            actionText: 'Volver a la Pokédex'
         });
     }
 
@@ -574,7 +613,15 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return res.status(400).render('form-error', { errors });
+        return renderFormError(res, 400, {
+            formName: `Formulario: Editar Pokémon (/pokemon/${pokemonId}/edit)`,
+            title: 'Error al actualizar el Pokémon',
+            errorType: 'Error de Validación (HTTP 400)',
+            message: 'No se pudieron guardar los cambios debido a los siguientes errores:',
+            errors,
+            actionUrl: `/pokemon/${pokemonId}/edit`,
+            actionText: 'Volver al formulario de edición'
+        });
     }
 
     // Update Pokémon
@@ -593,8 +640,7 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
     });
 });
 
-router.post('/EditAbility/:pokemon_id/:ability_id', upload.single('image'), async (req, res) => {
-router.post('/EditAbility/:pokemon_id/:ability_id', upload.single('image'), async (req, res) => {
+router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
     let pokemonId = Number(req.params.pokemon_id);
     let abilityId = req.params.ability_id;
 
@@ -604,8 +650,14 @@ router.post('/EditAbility/:pokemon_id/:ability_id', upload.single('image'), asyn
     });
 
     if (!pokemon) {
-        return res.status(404).render('form-error', {
-            errors: ["El Pokémon no existe"]
+        return renderFormError(res, 404, {
+            formName: `Formulario: Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
+            title: 'Pokémon no encontrado',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'No se puede editar el movimiento porque el Pokémon no existe.',
+            errors: ['El Pokémon solicitado no existe'],
+            actionUrl: '/',
+            actionText: 'Volver a la Pokédex'
         });
     }
 
@@ -615,8 +667,14 @@ router.post('/EditAbility/:pokemon_id/:ability_id', upload.single('image'), asyn
     );
 
     if (!originalAbility) {
-        return res.status(404).render('form-error', {
-            errors: ["El movimiento no existe"]
+        return renderFormError(res, 404, {
+            formName: `Formulario: Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
+            title: 'Movimiento no encontrado',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'El movimiento que intentas editar no existe en este Pokémon.',
+            errors: ['El movimiento no existe'],
+            actionUrl: `/pokemon/${pokemonId}`,
+            actionText: 'Volver a la ficha del Pokémon'
         });
     }
 
@@ -634,8 +692,7 @@ router.post('/EditAbility/:pokemon_id/:ability_id', upload.single('image'), asyn
         pp: Number(req.body.pp),
         description: req.body.description,
         iconClass: originalAbility.iconClass,
-        image: req.file ? req.file.filename : originalAbility.image,
-        imageUploaded: req.file ? true : (originalAbility.imageUploaded || false)
+        image: originalAbility.image
     };
 
     // Validate ability
@@ -647,7 +704,15 @@ router.post('/EditAbility/:pokemon_id/:ability_id', upload.single('image'), asyn
 
     if (errors.length > 0) {
         console.log("Errores:", errors);
-        return res.status(400).render('form-error', { errors });
+        return renderFormError(res, 400, {
+            formName: `Formulario: Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
+            title: 'Error al actualizar el movimiento',
+            errorType: 'Error de Validación (HTTP 400)',
+            message: 'No se pudieron guardar los cambios del movimiento debido a los siguientes errores:',
+            errors,
+            actionUrl: `/ability/${pokemonId}/${abilityId}/edit`,
+            actionText: 'Volver a editar el movimiento'
+        });
     }
 
     // Update ability in MongoDB
@@ -685,8 +750,14 @@ router.get('/pokemon/:id/edit', async (req, res) => {
     });
 
     if (!pokemon) {
-        return res.status(404).render('form-error', {
-            errors: ["El Pokémon no existe"]
+        return renderFormError(res, 404, {
+            formName: `Editar Pokémon (/pokemon/${pokemonId}/edit)`,
+            title: 'Pokémon no encontrado',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'El Pokémon que intentas editar no existe en la base de datos.',
+            errors: ['El Pokémon no existe'],
+            actionUrl: '/',
+            actionText: 'Volver a la Pokédex'
         });
     }
 
@@ -721,8 +792,14 @@ router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
     });
 
     if (!pokemon) {
-        return res.status(404).render('form-error', {
-            errors: ["El Pokémon no existe"]
+        return renderFormError(res, 404, {
+            formName: `Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
+            title: 'Pokémon no encontrado',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'El Pokémon asociado al movimiento no existe.',
+            errors: ['El Pokémon no existe'],
+            actionUrl: '/',
+            actionText: 'Volver a la Pokédex'
         });
     }
 
@@ -731,8 +808,14 @@ router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
     );
 
     if (!ability) {
-        return res.status(404).render('form-error', {
-            errors: ["El movimiento no existe"]
+        return renderFormError(res, 404, {
+            formName: `Editar Movimiento (/ability/${pokemonId}/${abilityId}/edit)`,
+            title: 'Movimiento no encontrado',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'El movimiento que intentas editar no existe en este Pokémon.',
+            errors: ['El movimiento no existe'],
+            actionUrl: `/pokemon/${pokemonId}`,
+            actionText: 'Volver a la ficha del Pokémon'
         });
     }
 
