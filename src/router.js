@@ -512,10 +512,44 @@ router.get('/pokemon/:id/edit', async (req, res) => {
         });
     }
 
+    
     res.render('new-pokemon', {
         pokemon,
-        isEdit: true
+        isEdit: true,
+        formAction: `/EditPokemon/${pokemonId}`,
+
+        // Pokémon types
+        isNormal: pokemon.type === 'normal',
+        isFire: pokemon.type === 'fire',
+        isWater: pokemon.type === 'water',
+        isGrass: pokemon.type === 'grass',
+        isElectric: pokemon.type === 'electric',
+        isIce: pokemon.type === 'ice',
+        isFighting: pokemon.type === 'fighting',
+        isPoison: pokemon.type === 'poison',
+        isGround: pokemon.type === 'ground',
+        isFlying: pokemon.type === 'flying',
+        isPsychic: pokemon.type === 'psychic',
+        isBug: pokemon.type === 'bug',
+        isRock: pokemon.type === 'rock',
+        isGhost: pokemon.type === 'ghost',
+        isDragon: pokemon.type === 'dragon',
+        isDark: pokemon.type === 'dark',
+        isSteel: pokemon.type === 'steel',
+        isFairy: pokemon.type === 'fairy',
+
+        // Pokémon generations
+        isGen1: pokemon.generation === 1,
+        isGen2: pokemon.generation === 2,
+        isGen3: pokemon.generation === 3,
+        isGen4: pokemon.generation === 4,
+        isGen5: pokemon.generation === 5,
+        isGen6: pokemon.generation === 6,
+        isGen7: pokemon.generation === 7,
+        isGen8: pokemon.generation === 8,
+        isGen9: pokemon.generation === 9
     });
+
 });
 
 router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {

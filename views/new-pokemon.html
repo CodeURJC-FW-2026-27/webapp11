@@ -9,17 +9,17 @@
             <div class="wb-traffic-inner notika-shadow d-block">
                 <h2 class="fw-bold mb-4 text-dark">Crear Nuevo Pokémon</h2>
                 
-                <form action="/NewPokemon" method="POST" enctype="multipart/form-data" >
+                <form action="{{formAction}}" method="POST" enctype="multipart/form-data" >
                     <!-- Row 1: Name & Pokedex Number -->
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="pokemon-name" class="form-label"><strong>Nombre:</strong></label>
-                            <input type="text" id="pokemon-name" name="name" class="form-control" placeholder="Ej. Pikachu" required>
+                            <input type="text" id="pokemon-name" name="name" class="form-control" placeholder="Ej. Pikachu" value="{{pokemon.name}}" required>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="pokedex-number" class="form-label"><strong>Número de la Pokédex:</strong></label>
-                            <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1" placeholder="Ej. 25" required>
+                            <input type="number" id="pokedex-number" name="pokedexNumber" class="form-control" min="1" placeholder="Ej. 25" value="{{pokemon.pokedexNumber}}" required>
                         </div>
                     </div>
 
@@ -28,41 +28,42 @@
                         <div class="col-md-6 mb-3">
                             <label for="pokemon-type" class="form-label"><strong>Tipo:</strong></label>
                             <select id="pokemon-type" name="type" class="form-select" required>
-                                <option value="" selected disabled>Selecciona un tipo</option>
-                                <option value="normal">Normal</option>
-                                <option value="fire">Fuego</option>
-                                <option value="water">Agua</option>
-                                <option value="grass">Planta</option>
-                                <option value="electric">Eléctrico</option>
-                                <option value="ice">Hielo</option>
-                                <option value="fighting">Lucha</option>
-                                <option value="poison">Veneno</option>
-                                <option value="ground">Tierra</option>
-                                <option value="flying">Volador</option>
-                                <option value="psychic">Psíquico</option>
-                                <option value="bug">Bicho</option>
-                                <option value="rock">Roca</option>
-                                <option value="ghost">Fantasma</option>
-                                <option value="dragon">Dragón</option>
-                                <option value="dark">Siniestro</option>
-                                <option value="steel">Acero</option>
-                                <option value="fairy">Hada</option>
+                                <option value="" disabled {{^isEdit}}selected{{/isEdit}}>Selecciona un tipo</option>
+                                <option value="normal" {{#isNormal}}selected{{/isNormal}}>Normal</option>
+                                <option value="fire" {{#isFire}}selected{{/isFire}}>Fuego</option>
+                                <option value="water" {{#isWater}}selected{{/isWater}}>Agua</option>
+                                <option value="grass" {{#isGrass}}selected{{/isGrass}}>Planta</option>
+                                <option value="electric" {{#isElectric}}selected{{/isElectric}}>Eléctrico</option>
+                                <option value="ice" {{#isIce}}selected{{/isIce}}>Hielo</option>
+                                <option value="fighting" {{#isFighting}}selected{{/isFighting}}>Lucha</option>
+                                <option value="poison" {{#isPoison}}selected{{/isPoison}}>Veneno</option>
+                                <option value="ground" {{#isGround}}selected{{/isGround}}>Tierra</option>
+                                <option value="flying" {{#isFlying}}selected{{/isFlying}}>Volador</option>
+                                <option value="psychic" {{#isPsychic}}selected{{/isPsychic}}>Psíquico</option>
+                                <option value="bug" {{#isBug}}selected{{/isBug}}>Bicho</option>
+                                <option value="rock" {{#isRock}}selected{{/isRock}}>Roca</option>
+                                <option value="ghost" {{#isGhost}}selected{{/isGhost}}>Fantasma</option>
+                                <option value="dragon" {{#isDragon}}selected{{/isDragon}}>Dragón</option>
+                                <option value="dark" {{#isDark}}selected{{/isDark}}>Siniestro</option>
+                                <option value="steel" {{#isSteel}}selected{{/isSteel}}>Acero</option>
+                                <option value="fairy" {{#isFairy}}selected{{/isFairy}}>Hada</option>
                             </select>
+
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="pokemon-generation" class="form-label"><strong>Generación:</strong></label>
                             <select id="pokemon-generation" name="generation" class="form-select" required>
-                                <option value="" selected disabled>Selecciona una generación</option>
-                                <option value="1">Generación I</option>
-                                <option value="2">Generación II</option>
-                                <option value="3">Generación III</option>
-                                <option value="4">Generación IV</option>
-                                <option value="5">Generación V</option>
-                                <option value="6">Generación VI</option>
-                                <option value="7">Generación VII</option>
-                                <option value="8">Generación VIII</option>
-                                <option value="9">Generación IX</option>
+                                <option value="" disabled {{^isEdit}}selected{{/isEdit}}>Selecciona una generación</option>
+                                <option value="1" {{#isGen1}}selected{{/isGen1}}>Generación I</option>
+                                <option value="2" {{#isGen2}}selected{{/isGen2}}>Generación II</option>
+                                <option value="3" {{#isGen3}}selected{{/isGen3}}>Generación III</option>
+                                <option value="4" {{#isGen4}}selected{{/isGen4}}>Generación IV</option>
+                                <option value="5" {{#isGen5}}selected{{/isGen5}}>Generación V</option>
+                                <option value="6" {{#isGen6}}selected{{/isGen6}}>Generación VI</option>
+                                <option value="7" {{#isGen7}}selected{{/isGen7}}>Generación VII</option>
+                                <option value="8" {{#isGen8}}selected{{/isGen8}}>Generación VIII</option>
+                                <option value="9" {{#isGen9}}selected{{/isGen9}}>Generación IX</option>
                             </select>
                         </div>
                     </div>
@@ -71,25 +72,25 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="pokemon-height" class="form-label"><strong>Altura (m):</strong></label>
-                            <input type="number" id="pokemon-height" name="height" class="form-control" min="0" step="0.1" placeholder="Ej. 0.4" required>
+                            <input type="number" id="pokemon-height" name="height" class="form-control" min="0.1" max="100" step="any" placeholder="Ej. 0.4" value="{{pokemon.height}}" required>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="pokemon-weight" class="form-label"><strong>Peso (kg):</strong></label>
-                            <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0" step="0.1" placeholder="Ej. 6.0" required>
+                            <input type="number" id="pokemon-weight" name="weight" class="form-control" min="0.1" max="1000" step="any" placeholder="Ej. 6.0" value="{{pokemon.weight}}" required>
                         </div>
                     </div>
 
                     <!-- Row 4: Description Textarea -->
                     <div class="mb-3">
                         <label for="pokemon-description" class="form-label"><strong>Descripción:</strong></label>
-                        <textarea id="pokemon-description" name="description" class="form-control" rows="4" placeholder="Escribe una descripción del Pokémon..." required></textarea>
+                        <textarea id="pokemon-description" name="description" class="form-control" rows="4" placeholder="Escribe una descripción del Pokémon..." required>{{pokemon.description}}</textarea>
                     </div>
 
                     <!-- Row 5: Image File Upload Input -->
                     <div class="mb-3">
                         <label for="pokemon-image" class="form-label"><strong>Imagen:</strong></label>
-                        <input type="file" id="pokemon-image" name="image" class="form-control" accept="image/*" required>
+                        <input type="file" id="pokemon-image" name="image" class="form-control" accept="image/*" {{^isEdit}}required{{/isEdit}}>
                     </div>
 
                     <!-- Form Action Control Buttons (Save & Cancel) -->
