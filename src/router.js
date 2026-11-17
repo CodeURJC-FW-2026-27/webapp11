@@ -189,7 +189,7 @@ router.get('/error', (req, res) => {
     });
 });
 
-router.get('/error.html', (req, res) => res.redirect('/error'));
+router.get('/form-error.html', (req, res) => res.redirect('/form-error'));
 
 async function validatePokemon(pokemon, originalPokedexNumber) {
     let errors = [];
@@ -264,3 +264,28 @@ async function validatePokemon(pokemon, originalPokedexNumber) {
     return errors;
 }
 
+router.post('/NewPokemon', upload.single('image'), async (req, res) => {
+    let pokemon = {
+        name: req.body.name,
+        pokedexNumber: Number(req.body.pokedexNumber),
+        formattedNumber: String(req.body.pokedexNumber).padStart(4, '0'),
+        type: req.body.type,
+        generation: Number(req.body.generation),
+        height: Number(req.body.height),
+        weight: Number(req.body.weight),
+        description: req.body.description,
+        image: req.file?.filename,
+        abilities: []
+    };
+
+    let errors = await validatePokemon(pokemon);
+
+    if (errors.length > 0) {
+        console.log("Errores:", errors);
+        return res.render('form-error', { errors });
+    }
+
+    await pokemons.insertOne(pokemon);
+
+    res.render('confirmation', { pokemon });
+});
