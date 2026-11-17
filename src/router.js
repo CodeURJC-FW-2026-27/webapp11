@@ -582,3 +582,14 @@ router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
         isEdit: true
     });
 });
+router.post('/pokemon/:id/delete', async (req, res) => {
+    const id = parseInt(req.params.id);
+    await pokemons.deleteOne({ pokedexNumber: id });
+    res.render('confirmation', { 
+        pageTitle: 'Pokémon Eliminado',
+        title: '¡Pokémon eliminado con éxito!',
+        message: 'El Pokémon ha sido eliminado correctamente de la base de datos.',
+        actionUrl: '/',
+        actionText: 'Volver a la Pokédex'
+     });
+});
