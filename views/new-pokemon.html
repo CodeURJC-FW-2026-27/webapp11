@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="pokemon-name" class="form-label"><strong>Nombre:</strong></label>
-                            <input type="text" id="pokemon-name" name="name" class="form-control" placeholder="Ej. Pikachu" value="{{pokemon.name}}" required>
+                            <input type="text" id="pokemon-name" name="name" class="form-control" placeholder="Ej. Pikachu" value="{{pokemon.name}}" required pattern="^[A-ZÁÉÍÓÚÑ].*" title="El nombre del Pokémon debe comenzar por mayúscula">
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -64,7 +64,7 @@
                     <!-- Row 4: Description Textarea -->
                     <div class="mb-3">
                         <label for="pokemon-description" class="form-label"><strong>Descripción:</strong></label>
-                        <textarea id="pokemon-description" name="description" class="form-control" rows="4" placeholder="Escribe una descripción del Pokémon..." required>{{pokemon.description}}</textarea>
+                        <textarea id="pokemon-description" name="description" class="form-control" rows="4" placeholder="Escribe una descripción del Pokémon..." minlength="10" maxlength="500" required>{{pokemon.description}}</textarea>
                     </div>
 
                     <!-- Row 5: Image File Upload Input -->
