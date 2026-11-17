@@ -65,10 +65,19 @@
             <div class="wb-traffic-inner notika-shadow move-details-card mb-4">
                 <!-- Move Title and Category/Type Badges -->
                 <div class="move-header">
+                    
                     <div class="move-title-group">
-                        <i class="{{iconClass}} fs-3"></i>
+                        {{#imageUploaded}}
+                            <img src="{{imageUrl}}" alt="{{name}}" width="40" height="40">
+                        {{/imageUploaded}}
+
+                        {{^imageUploaded}}
+                            <i class="{{iconClass}} fs-3"></i>
+                        {{/imageUploaded}}
+
                         <h2>{{name}}</h2>
                     </div>
+
                     <div class="move-badges">
                         <!-- Custom Type Badge with Icon Font -->
                         <span class="type-pill">
@@ -133,7 +142,7 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="wb-traffic-inner notika-shadow">
-                <form action="/NewAbility" method="POST">
+                <form action="/NewAbility" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="pokemon_id" value="{{pokemon.pokedexNumber}}">
 
                     <!-- Form Row 1: Name & Type -->
@@ -184,6 +193,13 @@
                     <div class="mb-3">
                         <label for="Description" class="form-label"><strong>Descripción:</strong></label>
                         <textarea class="form-control" id="Description" name="description" rows="3" placeholder="Descripción del movimiento"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ability-image" class="form-label">
+                            <strong>Imagen del movimiento:</strong>
+                        </label>
+                        <input type="file" id="ability-image" name="image" class="form-control" accept="image/*">
                     </div>
 
                     <!-- Submit Button -->

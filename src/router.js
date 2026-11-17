@@ -183,26 +183,27 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/pokemon/:id', async (req, res) => {
-    const pokemon = await pokemons.findOne({ pokedexNumber: parseInt(req.params.id) });
+    const pokemon = await pokemons.findOne({
+        pokedexNumber: parseInt(req.params.id)
+    });
+
     if (!pokemon) {
-        return res.status(404).render('error', {
-            pageTitle: 'Error 404 - Pokémon no encontrado',
-            isDynamic: true,
-            iconClass: 'fa-magnifying-glass-chart text-danger',
-            title: 'Pokémon no encontrado',
-            badgeClass: 'bg-danger text-white',
-            errorType: 'Recurso No Encontrado (HTTP 404)',
-            message: 'El Pokémon solicitado no existe en la base de datos.',
-            actionUrl: '/',
-            actionText: 'Volver a la Pokédex',
-            backUrl: '/new-pokemon',
-            backText: 'Registrar un nuevo Pokémon'
-        });
+        return res.status(404).send('El Pokémon no existe');
     }
+
     const types = Object.entries(pokemonTypes).map(([value, info]) => ({
         value,
         label: info.label
     }));
+
+    // Set image URL for each ability
+    pokemon.abilities = (pokemon.abilities || []).map(ability => ({
+        ...ability,
+        imageUrl: ability.imageUploaded
+            ? `/uploads/${ability.image}`
+            : `/images/${ability.image || 'abilities.svg'}`
+    }));
+
     res.render('pokemon', {
         pokemon: pokemon,
         types: types
@@ -493,7 +494,7 @@ async function validateAbility(pokemonId, ability, originalAbilityId) {
     return errors;
 }
 
-router.post('/NewAbility', async (req, res) => {
+router.post('/NewAbility', upload.single('image'), async (req, res) => {
     let pokemonId = Number(req.body.pokemon_id);
 
     let selectedType = pokemonTypes[req.body.type?.toLowerCase()];
@@ -508,7 +509,8 @@ router.post('/NewAbility', async (req, res) => {
         accuracy: Number(req.body.accuracy),
         pp: Number(req.body.pp),
         description: req.body.description,
-        iconClass: 'fa-solid fa-bolt text-warning'
+        iconClass: 'fa-solid fa-bolt text-warning',image: req.file?.filename || 'abilities.svg',
+        imageUploaded: Boolean(req.file)
     };
 
     let errors = await validateAbility(pokemonId, ability);
@@ -591,7 +593,7 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
     });
 });
 
-router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
+router.post('/EditAbility/:pokemon_id/:ability_id', upload.single('image'), async (req, res) => {
     let pokemonId = Number(req.params.pokemon_id);
     let abilityId = req.params.ability_id;
 
@@ -631,7 +633,8 @@ router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
         pp: Number(req.body.pp),
         description: req.body.description,
         iconClass: originalAbility.iconClass,
-        image: originalAbility.image
+        image: req.file ? req.file.filename : originalAbility.image,
+        imageUploaded: req.file ? true : (originalAbility.imageUploaded || false)
     };
 
     // Validate ability
