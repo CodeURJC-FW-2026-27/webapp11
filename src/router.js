@@ -498,3 +498,53 @@ router.post('/EditAbility/:pokemon_id/:ability_id', async (req, res) => {
 
     res.render('confirmation', { pokemon });
 });
+
+router.get('/pokemon/:id/edit', async (req, res) => {
+    let pokemonId = Number(req.params.id);
+
+    let pokemon = await pokemons.findOne({
+        pokedexNumber: pokemonId
+    });
+
+    if (!pokemon) {
+        return res.status(404).render('form-error', {
+            errors: ["El Pokémon no existe"]
+        });
+    }
+
+    res.render('new-pokemon', {
+        pokemon,
+        isEdit: true
+    });
+});
+
+router.get('/ability/:pokemon_id/:ability_id/edit', async (req, res) => {
+    let pokemonId = Number(req.params.pokemon_id);
+    let abilityId = req.params.ability_id;
+
+    let pokemon = await pokemons.findOne({
+        pokedexNumber: pokemonId
+    });
+
+    if (!pokemon) {
+        return res.status(404).render('form-error', {
+            errors: ["El Pokémon no existe"]
+        });
+    }
+
+    let ability = pokemon.abilities?.find(
+        item => String(item.id) === abilityId
+    );
+
+    if (!ability) {
+        return res.status(404).render('form-error', {
+            errors: ["El movimiento no existe"]
+        });
+    }
+
+    res.render('ability', {
+        pokemon,
+        ability,
+        isEdit: true
+    });
+});
