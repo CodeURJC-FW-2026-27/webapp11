@@ -214,8 +214,12 @@ router.get('/form-error.html', (req, res) => res.redirect('/form-error'));
 async function validatePokemon(pokemon, originalId) {
     let errors = [];
 
-    // Name must start with an uppercase letter
-    if (pokemon.name && !/^[A-ZÁÉÍÓÚÑ]/.test(pokemon.name.trim())) {
+    // Name validation
+    if (!pokemon.name?.trim()) {
+        errors.push("El nombre del Pokémon es obligatorio");
+    }
+
+    if (pokemon.name?.trim() && !/^[A-ZÁÉÍÓÚÑ]/.test(pokemon.name.trim())) {
         errors.push("El nombre del Pokémon debe comenzar por mayúscula");
     }
 
@@ -223,8 +227,14 @@ async function validatePokemon(pokemon, originalId) {
         errors.push("El tipo del Pokémon es obligatorio");
     }
 
-    // Description must contain between 10 and 500 characters
-    if (pokemon.description && (pokemon.description.trim().length < 10 || pokemon.description.trim().length > 500)) {
+    // Description validation
+    if (!pokemon.description?.trim()) {
+        errors.push("La descripción es obligatoria");
+    }
+
+    if (pokemon.description?.trim() &&
+        (pokemon.description.trim().length < 10 ||
+        pokemon.description.trim().length > 500)) {
         errors.push("La descripción debe tener entre 10 y 500 caracteres");
     }
 
