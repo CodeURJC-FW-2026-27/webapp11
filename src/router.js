@@ -156,6 +156,21 @@ router.get('/', async (req, res) => {
 
 router.get('/pokemon/:id', async (req, res) => {
     const pokemon = await pokemons.findOne({ pokedexNumber: parseInt(req.params.id) });
+    if (!pokemon) {
+        return res.status(404).render('error', {
+            pageTitle: 'Error 404 - Pokémon no encontrado',
+            isDynamic: true,
+            iconClass: 'fa-magnifying-glass-chart text-danger',
+            title: 'Pokémon no encontrado',
+            badgeClass: 'bg-danger text-white',
+            errorType: 'Recurso No Encontrado (HTTP 404)',
+            message: 'El Pokémon solicitado no existe en la base de datos.',
+            actionUrl: '/',
+            actionText: 'Volver a la Pokédex',
+            backUrl: '/new-pokemon',
+            backText: 'Registrar un nuevo Pokémon'
+        });
+    }
     const types = Object.entries(pokemonTypes).map(([value, info]) => ({
         value,
         label: info.label
