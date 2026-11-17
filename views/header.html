@@ -47,7 +47,8 @@
                 <div class="col-lg-8 col-6">
                     <div class="notika-nav justify-content-end d-flex align-items-center gap-2 gap-lg-3">
 
-                        <!-- Search Box Dropdown Toggle -->
+                        <!-- Search Box Dropdown Toggle (Only on Home Page) -->
+                        {{#isHome}}
                         <div class="dropdown">
                             <button class="notika-nav-link" type="button" data-bs-toggle="dropdown"
                                 data-bs-auto-close="outside" aria-label="Buscar">
@@ -55,6 +56,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end notika-dropdown search-dropdown">
                                 <form action="/" method="GET" class="search-input-group">
+                                    {{#typeFilter}}<input type="hidden" name="type" value="{{typeFilter}}">{{/typeFilter}}
+                                    {{#genFilter}}<input type="hidden" name="gen" value="{{genFilter}}">{{/genFilter}}
                                     <input type="text" name="search" value="{{searchQuery}}" placeholder="Buscar..."
                                         class="form-control">
                                     <button type="submit" class="btn border-0 p-0 search-icon" aria-label="Buscar">
@@ -63,6 +66,7 @@
                                 </form>
                             </div>
                         </div>
+                        {{/isHome}}
 
                         <!-- Bootstrap Offcanvas Trigger Button for mobile screens -->
                         <button class="notika-nav-link d-lg-none btn border-0 text-white" type="button"
@@ -104,6 +108,7 @@
                     </a>
                 </li>
 
+                {{#isHome}}
                 <li class="sidebar-section-label">Explorar</li>
 
                 <!-- Type Dropdown -->
@@ -113,14 +118,13 @@
                         <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/?type=grass"><span class="tcg-icon">g</span> Planta</a></li>
-                        <li><a class="dropdown-item" href="/?type=fire"><span class="tcg-icon">f</span> Fuego</a></li>
-                        <li><a class="dropdown-item" href="/?type=water"><span class="tcg-icon">w</span> Agua</a></li>
-                        <li><a class="dropdown-item" href="/?type=electric"><span class="tcg-icon">l</span> Eléctrico</a></li>
-                        <li><a class="dropdown-item" href="/?type=psychic"><span class="tcg-icon">p</span> Psíquico</a></li>
-                        <li><a class="dropdown-item" href="/?type=dragon"><span class="tcg-icon">n</span> Dragón</a></li>
-                        <li><a class="dropdown-item" href="/?type=normal"><span class="tcg-icon">c</span> Normal</a></li>
-                        <li><a class="dropdown-item" href="/?type=ghost"><span class="tcg-icon">p</span> Fantasma</a></li>
+                        {{#types}}
+                        <li>
+                            <a class="dropdown-item {{#active}}active{{/active}}" href="/?type={{value}}{{#searchQuery}}&search={{searchQuery}}{{/searchQuery}}{{#genFilter}}&gen={{genFilter}}{{/genFilter}}">
+                                <span class="tcg-icon">{{icon}}</span> {{label}}
+                            </a>
+                        </li>
+                        {{/types}}
                     </ul>
                 </li>
 
@@ -131,17 +135,16 @@
                         <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/?gen=1">Gen I (Kanto)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=2">Gen II (Johto)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=3">Gen III (Hoenn)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=4">Gen IV (Sinnoh)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=5">Gen V (Unova)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=6">Gen VI (Kalos)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=7">Gen VII (Alola)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=8">Gen VIII (Galar)</a></li>
-                        <li><a class="dropdown-item" href="/?gen=9">Gen IX (Paldea)</a></li>
+                        {{#generations}}
+                        <li>
+                            <a class="dropdown-item {{#active}}active{{/active}}" href="/?gen={{value}}{{#searchQuery}}&search={{searchQuery}}{{/searchQuery}}{{#typeFilter}}&type={{typeFilter}}{{/typeFilter}}">
+                                {{label}}
+                            </a>
+                        </li>
+                        {{/generations}}
                     </ul>
                 </li>
+                {{/isHome}}
             </ul>
         </div>
     </div>
@@ -172,6 +175,7 @@
                         </a>
                     </li>
 
+                    {{#isHome}}
                     <li class="sidebar-section-label">Explorar</li>
 
                     <!-- Type Dropdown -->
@@ -181,14 +185,13 @@
                             <span class="tcg-icon" aria-hidden="true">c</span><span>Tipo</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/?type=grass"><span class="tcg-icon">g</span> Planta</a></li>
-                            <li><a class="dropdown-item" href="/?type=fire"><span class="tcg-icon">f</span> Fuego</a></li>
-                            <li><a class="dropdown-item" href="/?type=water"><span class="tcg-icon">w</span> Agua</a></li>
-                            <li><a class="dropdown-item" href="/?type=electric"><span class="tcg-icon">l</span> Eléctrico</a></li>
-                            <li><a class="dropdown-item" href="/?type=psychic"><span class="tcg-icon">p</span> Psíquico</a></li>
-                            <li><a class="dropdown-item" href="/?type=dragon"><span class="tcg-icon">n</span> Dragón</a></li>
-                            <li><a class="dropdown-item" href="/?type=normal"><span class="tcg-icon">c</span> Normal</a></li>
-                            <li><a class="dropdown-item" href="/?type=ghost"><span class="tcg-icon">p</span> Fantasma</a></li>
+                            {{#types}}
+                            <li>
+                                <a class="dropdown-item {{#active}}active{{/active}}" href="/?type={{value}}{{#searchQuery}}&search={{searchQuery}}{{/searchQuery}}{{#genFilter}}&gen={{genFilter}}{{/genFilter}}">
+                                    <span class="tcg-icon">{{icon}}</span> {{label}}
+                                </a>
+                            </li>
+                            {{/types}}
                         </ul>
                     </li>
 
@@ -199,17 +202,16 @@
                             <i class="fa-solid fa-earth-oceania" aria-hidden="true"></i><span>Generación</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/?gen=1">Gen I (Kanto)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=2">Gen II (Johto)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=3">Gen III (Hoenn)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=4">Gen IV (Sinnoh)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=5">Gen V (Unova)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=6">Gen VI (Kalos)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=7">Gen VII (Alola)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=8">Gen VIII (Galar)</a></li>
-                            <li><a class="dropdown-item" href="/?gen=9">Gen IX (Paldea)</a></li>
+                            {{#generations}}
+                            <li>
+                                <a class="dropdown-item {{#active}}active{{/active}}" href="/?gen={{value}}{{#searchQuery}}&search={{searchQuery}}{{/searchQuery}}{{#typeFilter}}&type={{typeFilter}}{{/typeFilter}}">
+                                    {{label}}
+                                </a>
+                            </li>
+                            {{/generations}}
                         </ul>
                     </li>
+                    {{/isHome}}
                 </ul>
             </div>
         </div>
