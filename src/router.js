@@ -422,11 +422,10 @@ async function validatePokemon(pokemon, originalId) {
     return errors;
 }
 
-router.post('/NewPokemon', upload.single('image'), async (req, res) => {
-    
+function parsePokemonFormData(req, existingPokemon) {
     let selectedType = pokemonTypes[req.body.type];
 
-    let pokemon = {
+    return {
         name: req.body.name,
         pokedexNumber: Number(req.body.pokedexNumber),
         formattedNumber: String(req.body.pokedexNumber).padStart(4, '0'),
@@ -437,9 +436,13 @@ router.post('/NewPokemon', upload.single('image'), async (req, res) => {
         height: Number(req.body.height),
         weight: Number(req.body.weight),
         description: req.body.description,
-        image: req.file?.filename,
-        abilities: []
+        image: req.file ? req.file.filename : existingPokemon?.image,
+        abilities: existingPokemon?.abilities || []
     };
+}
+
+router.post('/NewPokemon', upload.single('image'), async (req, res) => {
+    let pokemon = parsePokemonFormData(req);
 
     let errors = await validatePokemon(pokemon);
 
@@ -599,22 +602,7 @@ router.post('/EditPokemon/:id', upload.single('image'), async (req, res) => {
         });
     }
 
-    let selectedType = pokemonTypes[req.body.type];
-
-    let editPokemon = {
-        name: req.body.name,
-        pokedexNumber: Number(req.body.pokedexNumber),
-        formattedNumber: String(req.body.pokedexNumber).padStart(4, '0'),
-        type: req.body.type,
-        typeLabel: selectedType?.label || '',
-        typeIcon: selectedType?.icon || '',
-        generation: Number(req.body.generation),
-        height: Number(req.body.height),
-        weight: Number(req.body.weight),
-        description: req.body.description,
-        image: req.file ? req.file.filename : pokemon.image,
-        abilities: pokemon.abilities
-    };
+    let editPokemon = parsePokemonFormData(req, pokemon);
 
     // Validate Pokémon
     let errors = await validatePokemon(editPokemon, pokemon._id);
