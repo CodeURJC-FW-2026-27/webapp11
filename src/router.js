@@ -163,10 +163,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/index', (req, res) => res.redirect('/'));
-router.get('/index.html', (req, res) => res.redirect('/'));
-
-
 router.get('/pokemon/:id', async (req, res) => {
     const pokemon = await pokemons.findOne({ pokedexNumber: parseInt(req.params.id) })
     res.render('pokemon', {
@@ -201,7 +197,7 @@ router.get('/new-pokemon', (req, res) => {
 const demoCases = {
     case1: {
         iconClass: 'fa-circle-exclamation text-danger',
-        formName: 'Formulario: Crear Nuevo Pokémon (/new-pokemon.html)',
+        formName: 'Formulario: Crear Nuevo Pokémon (/new-pokemon)',
         title: 'Error al registrar el Pokémon',
         badgeClass: 'bg-danger text-white',
         errorType: 'Conflicto de Duplicidad y Validación (HTTP 409)',
@@ -212,7 +208,7 @@ const demoCases = {
             '<strong>Rango numérico:</strong> La altura y el peso deben ser valores positivos mayores a 0.'
         ],
         hasErrorDetails: true,
-        actionUrl: '/new-pokemon.html',
+        actionUrl: '/new-pokemon',
         actionText: 'Volver al formulario de creación',
         backUrl: '/',
         backText: 'Ir al inicio (Pokédex)'
@@ -247,7 +243,7 @@ const demoCases = {
             '<strong>Tamaño de archivo excedido:</strong> El archivo pesa <strong>12.4 MB</strong>, superando el límite máximo permitido de <strong>5 MB</strong>.'
         ],
         hasErrorDetails: true,
-        actionUrl: '/new-pokemon.html',
+        actionUrl: '/new-pokemon',
         actionText: 'Reintentar subida en el formulario',
         backUrl: '/',
         backText: 'Ir al inicio (Pokédex)'
@@ -266,7 +262,7 @@ const demoCases = {
         hasErrorDetails: true,
         actionUrl: '/',
         actionText: 'Volver a la Pokédex principal',
-        backUrl: '/new-pokemon.html',
+        backUrl: '/new-pokemon',
         backText: 'Registrar un nuevo Pokémon'
     }
 };
@@ -278,8 +274,6 @@ router.get('/error', (req, res) => {
         ...demoCases
     });
 });
-
-router.get('/form-error.html', (req, res) => res.redirect('/form-error'));
 
 async function validatePokemon(pokemon, originalId) {
     let errors = [];
