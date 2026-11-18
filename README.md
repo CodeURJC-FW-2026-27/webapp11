@@ -168,7 +168,7 @@ Access the application in your browser at `http://localhost:3000/`.
 ---
 
 ### Demonstration Video
-* **YouTube Video Link**: [Demonstration Video](https://www.youtube.com/)
+* **YouTube Video Link**: [Demonstration Video] (https://www.youtube.com/)
 
 ---
 
@@ -220,17 +220,17 @@ Access the application in your browser at `http://localhost:3000/`.
   5. 
 
 #### Omar Pozo Adán (@OmarPozoAdan)
-* **Task Description:** In charge of implementing and refactoring the error page (`error.html` and `form-error.html` partial) with demonstration cases, error route rendering, and reviewing responsive layout and Mustache structure.
+* **Task Description:** In charge of implementing and refactoring the error page (`error.html` and `form-error.html` partial) with demonstration cases, error route rendering, and reviewing responsive layout and Mustache structure. Helped fixing different mistakes of different views such as the display of Pokemons' movements.
 * **Top 5 Commits:**
-  1. 
-  2. 
-  3. 
-  4. 
-  5. 
+  1. [Implemented error page] (https://github.com/CodeURJC-FW-2026-27/webapp11/commit/a6709ca8c8caa125edb888e0fcd43bf887d2ac90) 
+  2. [Fixed showing movements for each pokemon with Mustache.] (https://github.com/CodeURJC-FW-2026-27/webapp11/commit/094da931b30661b1b6ea5d237cf67a03e8d5cbe6)
+  3. [Established error messages on forms with four different demonstration cases] (https://github.com/CodeURJC-FW-2026-27/webapp11/commit/353c95d7dacecad680745e7598fb18f00deeeb78)
+  4. [Rendering error page correctly instead of form-error.] (https://github.com/CodeURJC-FW-2026-27/webapp11/commit/70c3a9d4e1eccc192c7b5fc250e5d6dbd387eb3d)
+  5. [Modified error and form-error views.] (https://github.com/CodeURJC-FW-2026-27/webapp11/commit/da78b84eb8f30a3e0dbb5518667e8ad63ee87cc4)
 * **Top 5 Files:**
-  1. 
-  2. 
-  3. 
-  4. 
-  5.
+  1. [form-error.html] (https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/form-error.html)
+  2. [error.html] (https://github.com/CodeURJC-FW-2026-27/webapp11/blame/main/views/error.html)
+  3. [pokemon.html] (https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/pokemon.html)
+  4. [router.js] (https://github.com/CodeURJC-FW-2026-27/webapp11/blame/main/src/router.js)
+  5. [custom.css] (https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/public/custom.css)
 
