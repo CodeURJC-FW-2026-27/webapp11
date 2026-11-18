@@ -39,7 +39,7 @@ Represents attacks or abilities associated with a Pokémon.
 ### Images
 Entities have associated images to complement their visualization:
 * **Pokémon:** Each Pokémon has an uploaded main artwork image.
-* **Move:** Moves include icons representing the move's type and category.
+* **Move:** Moves may include icons representing the move's type and category.
 
 ### Search, Filtering, and Categorization
 * **Search:** Text search box to find Pokémon by name.
