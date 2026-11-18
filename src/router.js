@@ -207,10 +207,20 @@ router.get('/pokemon/:id', async (req, res) => {
             backText: 'Registrar un nuevo Pokémon'
         });
     }
+    
     const types = Object.entries(pokemonTypes).map(([value, info]) => ({
         value,
         label: info.label
     }));
+
+    // Prepare uploaded images for Mustache
+    pokemon.abilities = (pokemon.abilities || []).map(ability => ({
+        ...ability,
+        imageUrl: ability.imageUploaded && ability.image
+            ? `/uploads/${ability.image}`
+            : ''
+    }));
+
     res.render('pokemon', {
         pokemon: pokemon,
         types: types
