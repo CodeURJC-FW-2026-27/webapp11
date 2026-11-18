@@ -207,17 +207,17 @@ Access the application in your browser at `http://localhost:3000/`.
 #### Lucas Román Jiménez (@Lucas-Roman-Jimenez)
 * **Task Description:** In charge of client and server validation for both primary (Pokémon) and secondary (Abilities) entities, entity routes, initial database seeding logic, and image upload serving.
 * **Top 5 Commits:**
-  1. 
-  2. 
-  3. 
-  4. 
-  5. 
+  1. [Validation of primary entity in the router](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/5e94c49c13c04a4e2542040704eb1e363079b115)
+  2. [Validation of secondary entity](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/a701631e084ff7cf4935bbeb9a7c1d7a6df8faa3)
+  3. [Added routes for entities](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/6058f7422b8b30d0c76840a02c4f8e22fa338acc)
+  4. [Edition of pokemons and abilities](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/49c6e711a0b87b2e6b74ba92216a747cd1cea6e3)
+  5. [Fixed validations missing](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/e9bd1a0e20eeae0319ad5b5e6bbe2e03c69b20a0)
 * **Top 5 Files:**
-  1. 
-  2. 
-  3. 
-  4. 
-  5. 
+  1. [`router.js`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/src/router.js)
+  2. [`pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/pokemon.html)
+  3. [`new-pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/new-pokemon.html)
+  4. [`ability.html´](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/ability.html)
+  5. [`app.js´](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/app.js)
 
 #### Omar Pozo Adán (@OmarPozoAdan)
 * **Task Description:** In charge of implementing and refactoring the error page (`error.html` and `form-error.html` partial) with demonstration cases, error route rendering, and reviewing responsive layout and Mustache structure. Helped fixing different mistakes of different views such as the display of Pokemons' movements.
