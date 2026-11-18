@@ -127,11 +127,67 @@ Entities have associated images to complement their visualization:
 
 ## Práctica 2
 
-### Screenshots
+### Execution Instructions
+
+#### Requirements
+* **Node.js**: v18.x or higher
+* **MongoDB**: v6.0 or higher (running on port `27017`)
+* **npm**: v9.x or higher
+
+#### Steps to Run
+```bash
+# Clone the repository and enter the directory
+git clone https://github.com/CodeURJC-FW-2026-27/webapp11.git
+cd webapp11
+
+# Install dependencies
+npm install
+
+# Start MongoDB service (in a separate terminal or background)
+mongod
+
+# Start the application
+npm start
+```
+Access the application in your browser at `http://localhost:3000/`.
+
+---
+
+### File Description
+* **`app.js`**: Application entry point. Configures Express, static file serving (`/public` and `/uploads`), and Mustache Express template engine.
+* **`src/router.js`**: Main controller handling database initialization (`initDb`), pagination, search, filters, image uploads with Multer, form validations, and CRUD routes for Pokémon and moves.
+* **`data/pokemons.json`**: Initial dataset used to seed MongoDB on application startup when empty.
+* **`views/header.html` & `views/footer.html`**: Reusable Mustache partials for navigation and footer layout.
+* **`views/index.html`**: Main Pokédex view displaying the paginated Pokémon grid.
+* **`views/pokemon.html`**: Detail view displaying Pokémon info, artwork, moves, and action forms.
+* **`views/new-pokemon.html`**: Reusable form template for creating and editing Pokémon.
+* **`views/ability.html`**: Form view for editing an existing Pokémon move.
+* **`views/confirmation.html`**: Reusable confirmation page for create, edit, and delete operations.
+* **`views/error.html` & `views/form-error.html`**: Error page and partial for validation and server error display.
+
+---
+
+### Demonstration Video
+* **YouTube Video Link**: [Demonstration Video](https://www.youtube.com/)
 
 ---
 
 ### Member Contributions
+
+#### Adrián Molero Miñana (@S0cr4te5)
+* **Task Description:** Responsible for MongoDB connection and initial seeding with demo JSON data and images, refactoring the application architecture with Mustache partials, rendering Pokémon details dynamically from the database, implementing the deletion of Pokémon and abilities, and unifying Pokémon creation and edition forms.
+* **Top 5 Commits:**
+  1. [Refactor code structure and implemented MongoDB](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/d1cbcd575c0c05314c0388a4a2e67106577d796e)
+  2. [Refactor HTML structure with Mustache partials](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/4b9ab9f9b029e775e4fd247a312aebab3644d849)
+  3. [Implemented Pokémon details rendering with the database](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/4b7adb4a7e5e439112fc114e61b57a1e0fe8a9e7)
+  4. [Implemented deletion for Pokemon](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/d0a217eb23d09aba3748d01efd7b321f7bed5076)
+  5. [Unified Pokemon creation and edition](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/a496c1b665afde079a637c58dea106dee3c99abe)
+* **Top 5 Files:**
+  1. [`router.js`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/src/router.js)
+  2. [`pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/pokemon.html)
+  3. [`new-pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/new-pokemon.html)
+  4. [`index.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/index.html)
+  5. [`confirmation.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/views/confirmation.html)
 
 #### Marcos Vidal Castillo (@Marcos-VC)
 * **Task Description:** In charge of pagination, search, categories and filters, helped with mustache templates to avoid dupped code, fixed some errors in other funtionalities..
@@ -142,9 +198,39 @@ Entities have associated images to complement their visualization:
   4. [fix edit pokemon link](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/0d57270c8be1d3a48a2efd4d08c323f30aaccc0d)
   5. [category fix](https://github.com/CodeURJC-FW-2026-27/webapp11/commit/e58973916040da6f0de2c5f1aa53f1e6e664887c)
 * **Top 5 Files:**
-  1. [`home.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/home.html)
+  1. [`index.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/home.html)
   2. [`pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/pokemon.html)
   3. [`new-pokemon.html`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/new-pokemon.html)
   4. [`custom.css`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/custom.css)
-  5. [`README.md`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/README.md)
+  5. [`README.md`](https://github.com/CodeURJC-FW-2026-27/webapp11/blob/main/README.md) 
+
+#### Lucas Román Jiménez (@Lucas-Roman-Jimenez)
+* **Task Description:** In charge of client and server validation for both primary (Pokémon) and secondary (Abilities) entities, entity routes, initial database seeding logic, and image upload serving.
+* **Top 5 Commits:**
+  1. 
+  2. 
+  3. 
+  4. 
+  5. 
+* **Top 5 Files:**
+  1. 
+  2. 
+  3. 
+  4. 
+  5. 
+
+#### Omar Pozo Adán (@OmarPozoAdan)
+* **Task Description:** In charge of implementing and refactoring the error page (`error.html` and `form-error.html` partial) with demonstration cases, error route rendering, and reviewing responsive layout and Mustache structure.
+* **Top 5 Commits:**
+  1. 
+  2. 
+  3. 
+  4. 
+  5. 
+* **Top 5 Files:**
+  1. 
+  2. 
+  3. 
+  4. 
+  5.
 
